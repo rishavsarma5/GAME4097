@@ -50,9 +50,12 @@ public class NPCInteract : MonoBehaviour
         }
     }
 
+
+
     public void PlayDialogueScript()
     {
         currPrompt = npcInfo.dialoguePrompts[index];
+        npcDialogueCanvas.gameObject.SetActive(true);
         StartCoroutine(DisplayCurrentPrompt(currPrompt));
     }
 
