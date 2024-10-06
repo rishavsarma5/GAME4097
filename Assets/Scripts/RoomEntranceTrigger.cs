@@ -39,12 +39,14 @@ public class RoomEntranceTrigger : MonoBehaviour
             playerLeftControllerLocoTurn.gameObject.SetActive(true);
             playerLeftControllerLocoMove.gameObject.SetActive(true);
             inputActionManager.smoothMotionEnabled = true;
+            outsideRoom = false;
         } else
         {
             player.transform.position = tpHallwaySpot.position;
             playerLeftControllerLocoTurn.gameObject.SetActive(false);
             playerLeftControllerLocoMove.gameObject.SetActive(false);
             inputActionManager.smoothMotionEnabled = false;
+            outsideRoom = true;
         }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.InputSystem;
 
 public class NPCInteract : MonoBehaviour
 {
@@ -16,9 +18,16 @@ public class NPCInteract : MonoBehaviour
     [Space(10)]
     [SerializeField] float textSpeed = 0.1f;
 
+    [SerializeField] InputActionReference inputActionRef;
+
     private int scriptLength = 0;
     private NPCDialogue currPrompt;
     private int index = 0;
+
+    private void Awake()
+    {
+        inputActionRef.action.started += UpdateDialogueText;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -26,30 +35,28 @@ public class NPCInteract : MonoBehaviour
         if (!npcInfo)
         {
             throw new System.Exception("NPC Info needed for Interact Script");
+        } else if (!inputActionRef)
+        {
+            throw new System.Exception("No Input Action Ref given for Interact Script");
         }
         dialogueTextBox.text = string.Empty;
         index = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    void UpdateDialogueText(InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (dialogueTextBox.text == currPrompt.textLine)
         {
-            if (dialogueTextBox.text == currPrompt.textLine)
-            {
-                nextLineIndicator.gameObject.SetActive(false);
-                DisplayNextPrompt();
-            }
-            else
-            {
-                StopAllCoroutines();
-                dialogueTextBox.text = currPrompt.textLine;
-                nextLineIndicator.gameObject.SetActive(true);
-            }
+            nextLineIndicator.gameObject.SetActive(false);
+            DisplayNextPrompt();
+        }
+        else
+        {
+            StopAllCoroutines();
+            dialogueTextBox.text = currPrompt.textLine;
+            nextLineIndicator.gameObject.SetActive(true);
         }
     }
-
 
 
     public void PlayDialogueScript()
