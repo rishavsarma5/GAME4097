@@ -4166,7 +4166,7 @@ Transform:
   m_GameObject: {fileID: 1663551630}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.65, y: 0.77, z: -0.73}
+  m_LocalPosition: {x: -0.65, y: 0.576, z: -1.072}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4239,7 +4239,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1690344418}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2141578924}
+        m_TargetAssemblyTypeName: NPCInteract, Assembly-CSharp
+        m_MethodName: UpdateDialogueDisplay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1690344418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5595,7 +5607,7 @@ Transform:
   m_GameObject: {fileID: 1976713401}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 1.25, z: 1.29}
+  m_LocalPosition: {x: -1, y: 0.981, z: 1.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

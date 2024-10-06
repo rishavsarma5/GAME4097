@@ -43,7 +43,12 @@ public class NPCInteract : MonoBehaviour
         index = 0;
     }
 
-    void UpdateDialogueText(InputAction.CallbackContext context)
+    private void UpdateDialogueText(InputAction.CallbackContext context)
+    {
+        UpdateDialogueDisplay();
+    }
+
+    public void UpdateDialogueDisplay()
     {
         if (dialogueTextBox.text == currPrompt.textLine)
         {
