@@ -66,7 +66,12 @@ public class NPCInteract : MonoBehaviour
 
     public void PlayDialogueScript()
     {
+        if (npcDialogueCanvas.gameObject.activeInHierarchy)
+        {
+            return;
+        }
         currPrompt = npcInfo.dialoguePrompts[index];
+        scriptLength = npcInfo.dialoguePrompts.Count;
         npcDialogueCanvas.gameObject.SetActive(true);
         StartCoroutine(DisplayCurrentPrompt(currPrompt));
     }
@@ -98,9 +103,8 @@ public class NPCInteract : MonoBehaviour
         }
         else
         {
-            npcInfo.SetHasBeenPlayed();
+            //npcInfo.SetHasBeenPlayed();
             npcDialogueCanvas.gameObject.SetActive(false);
-            this.gameObject.SetActive(false);
         }
     }
     #endregion
