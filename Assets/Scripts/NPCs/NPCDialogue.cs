@@ -6,5 +6,5 @@ using UnityEngine;
 
 public class NPCDialogue
 {
-    [SerializeField] [TextArea] public string textLine;
+    [SerializeField] [TextArea] public List<string> textLines;
 }

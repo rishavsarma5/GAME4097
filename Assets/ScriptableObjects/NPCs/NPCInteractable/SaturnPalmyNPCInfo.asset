@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f946a911d5b18e84da9360181ec75ebc, type: 3}
-  m_Name: TestNPCInfo
+  m_Script: {fileID: 11500000, guid: c121df8ac1033324bb723198c94d9798, type: 3}
+  m_Name: SaturnPalmyNPCInfo
   m_EditorClassIdentifier: 
-  dialoguePrompts:
-  - textLine: What are you talking about?
-  - textLine: No I didn't see anyone pass through who looked 'suspicious'.
-  - textLine: Can't a lady enjoy a glass of wine in peace.
+  promptCanvasHeader: 
+  dialoguePrompts: []
   hasPlayed: 0
