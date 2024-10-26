@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NPC Interactable", menuName = "NPC Interactable")]
 public class NPCInteractable : ScriptableObject
 {
-    public string promptCanvasHeader;
+    public string promptCanvasHeaderText;
     
     [Header("Dialogue Prompts")]
     public List<NPCDialogue> dialoguePrompts;

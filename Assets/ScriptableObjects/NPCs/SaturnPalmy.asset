@@ -16,5 +16,5 @@ MonoBehaviour:
   weapon: {fileID: 11400000, guid: 2a8bc50bf6fbe3d45ad50f98ce5bb0fb, type: 2}
   clues:
   - {fileID: 11400000, guid: a25edb2f93624974e8195517bb01fbd1, type: 2}
-  npcInteractInfo: {fileID: 11400000, guid: eb1f8781aadfd7f48864a7c6122303ed, type: 2}
+  npcInteractInfo: {fileID: 11400000, guid: ccd8bef6b357ebe40afd4ab5e38e8b20, type: 2}
   pathingWaypoints: []

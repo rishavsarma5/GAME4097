@@ -56,8 +56,6 @@ public class NPCInteract : MonoBehaviour
     {
         dialogueTextBox.text = string.Empty;
         lineIndex = 0;
-
-        UpdateSpecialButton();
     }
 
     public void UpdateSpecialButton()
@@ -81,7 +79,7 @@ public class NPCInteract : MonoBehaviour
     {
         npcNameCanvas.SetActive(false);
         npcPromptCanvas.SetActive(true);
-        promptHeader.text = npcInfo.npcInteractInfo.promptCanvasHeader;
+        promptHeader.text = npcInfo.npcInteractInfo.promptCanvasHeaderText;
         UpdateSpecialButton();
     }
 

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Bar Spoon
   relatedNPC: {fileID: 11400000, guid: 1c923ca10504b7e4fbf53cf9f96df4c4, type: 2}
-  weaponPrefab: {fileID: 0}
-  spawnLocation: {fileID: 0}
+  weaponPrefab: {fileID: 8893904380443151355, guid: acf0b1e6065d46c4b873ff374b158ecc, type: 3}
+  spawnLocation: {fileID: 5491382761358985273, guid: 26f2ad05e7c0fdb4aae94289314b4ad5, type: 3}
   isFound: 0
