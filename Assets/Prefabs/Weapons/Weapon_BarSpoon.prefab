@@ -4843,6 +4843,7 @@ GameObject:
   - component: {fileID: 8489306733042764160}
   - component: {fileID: 3525121166153237297}
   - component: {fileID: 7455966421445273618}
+  - component: {fileID: -7728577057683162928}
   m_Layer: 0
   m_Name: Weapon_BarSpoon
   m_TagString: WeaponInteractable
@@ -5102,6 +5103,27 @@ MonoBehaviour:
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
   m_FarAttachMode: 0
+--- !u!65 &-7728577057683162928
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893904380443151355}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.21966362, y: 0.10274613, z: 2.3961267}
+  m_Center: {x: 0, y: 0.051373065, z: -0.6480761}
 --- !u!1001 &1003239586997465154
 PrefabInstance:
   m_ObjectHideFlags: 0
