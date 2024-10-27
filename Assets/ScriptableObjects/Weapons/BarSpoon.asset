@@ -17,3 +17,5 @@ MonoBehaviour:
   weaponPrefab: {fileID: 8893904380443151355, guid: acf0b1e6065d46c4b873ff374b158ecc, type: 3}
   spawnLocation: {fileID: 5491382761358985273, guid: 26f2ad05e7c0fdb4aae94289314b4ad5, type: 3}
   isFound: 0
+  weaponFoundText: There seems to be blood on the tip of it after taking a closer
+    look...

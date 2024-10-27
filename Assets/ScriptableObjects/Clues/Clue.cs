@@ -12,9 +12,4 @@ public class Clue : ScriptableObject
     public bool isFound = false;
 
     [TextArea] public string description;
-
-    public void OnClueFound()
-    {
-        //relatedNPC
-    }
 }

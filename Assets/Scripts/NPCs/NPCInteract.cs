@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.InputSystem;
+using System;
 
 public class NPCInteract : MonoBehaviour
 {

@@ -13,9 +13,6 @@ public class Weapon : ScriptableObject
 
     public bool isFound = false;
 
-    public void OnWeaponFound()
-    {
-        //relatedNPC
-    }
+    [TextArea] public string weaponFoundText;
    
 }

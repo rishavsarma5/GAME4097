@@ -20,7 +20,7 @@ public class ClueGameManager : MonoBehaviour
     [Space(10)]
     [Header("Clues and Weapons Found")]
     [SerializeField] private List<Clue> foundClues;
-    [SerializeField] private List<Clue> foundWeapons;
+    [SerializeField] private List<Weapon> foundWeapons;
 
     [Space(15)]
     [SerializeField] private int numWeaponsToSpawn = 2;
@@ -48,23 +48,37 @@ public class ClueGameManager : MonoBehaviour
         
     }
 
+    public void OnClueFound(Clue clue)
+    {
+        foundClues.Add(clue);
+        clue.isFound = true;
+    }
+
+    public void OnWeaponFound(Weapon weapon)
+    {
+        foundWeapons.Add(weapon);
+        weapon.isFound = true;
+    }
+
     public void InitializeStartingWeapons()
     {
         for(int i = 0; i < numWeaponsToSpawn; i++)
         {
             Weapon weapon = initialWeaponList[Random.Range(0, initialWeaponList.Count)];
+            initialWeaponList.Remove(weapon);
             activeWeapons.Add(weapon);
-            Instantiate(weapon.weaponPrefab, weapon.spawnLocation.position, weapon.spawnLocation.rotation);
-            Debug.Log($"Weapon {weapon.weaponName} spawned!");
+            Instantiate(weapon.weaponPrefab, weapon.spawnLocation.position, Quaternion.identity);
+            Debug.Log($"Weapon {weapon.weaponName} spawned at {weapon.spawnLocation.position}");
         }
     }
 
     public void InitializeAllFirstClues()
     {
         foreach(Clue clue in firstClues) {
+            firstClues.Remove(clue);
             activeClues.Add(clue);
             clue.clueObject.SetActive(true);
         }
-        Debug.Log($"All fist clues spawned!");
+        Debug.Log($"All first clues spawned!");
     }
 }

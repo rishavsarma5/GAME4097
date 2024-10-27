@@ -57,12 +57,10 @@ public class GameStateManager : MonoBehaviour
 
     private void HandleInitializeGame()
     {
-        ClueGameManager.Instance.InitializeAllFirstClues();
+        //ClueGameManager.Instance.InitializeAllFirstClues();
         ClueGameManager.Instance.InitializeStartingWeapons();
 
-        // call npc interact manager
-
-        UpdateGameState(GameState.MovementDiceRolling);
+        //UpdateGameState(GameState.MovementDiceRolling);
     }
 }
 
