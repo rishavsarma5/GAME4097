@@ -30,7 +30,8 @@ public class NPCInteract : MonoBehaviour
     [Space(10)]
     [SerializeField] float textSpeed = 0.1f;
 
-    [SerializeField] InputActionReference inputActionRef;
+    [SerializeField] InputActionReference continueActionRef;
+    [SerializeField] InputActionReference closeActionRef;
 
     private int scriptLength = 0;
     private NPCDialogue currQuestionDialogue;
@@ -39,7 +40,8 @@ public class NPCInteract : MonoBehaviour
 
     private void Awake()
     {
-        inputActionRef.action.started += UpdateDialogueText;
+        continueActionRef.action.started += UpdateDialogueText;
+        closeActionRef.action.started += CloseDialoguePanel;
 
         if (!npcInfo)
         {
@@ -49,6 +51,12 @@ public class NPCInteract : MonoBehaviour
         npcNameText.text = npcInfo.npcName;
         npcPromptCanvas.SetActive(false);
         npcDialogueCanvas.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        continueActionRef.action.started -= UpdateDialogueText;
+        closeActionRef.action.started -= CloseDialoguePanel;
     }
 
     // Start is called before the first frame update
@@ -77,6 +85,8 @@ public class NPCInteract : MonoBehaviour
 
     public void OpenNPCPromptCanvas()
     {
+        dialogueTextBox.text = string.Empty;
+        lineIndex = 0;
         npcNameCanvas.SetActive(false);
         npcPromptCanvas.SetActive(true);
         promptHeader.text = npcInfo.npcInteractInfo.promptCanvasHeaderText;
@@ -86,6 +96,14 @@ public class NPCInteract : MonoBehaviour
     private void UpdateDialogueText(InputAction.CallbackContext context)
     {
         UpdateDialogueDisplay();
+    }
+
+    private void CloseDialoguePanel(InputAction.CallbackContext context)
+    {
+        npcPromptCanvas.SetActive(false);
+        npcDialogueCanvas.SetActive(false);
+        dialogueTextBox.text = string.Empty;
+        lineIndex = 0;
     }
 
     private void UpdateDialogueDisplay()

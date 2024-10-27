@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c121df8ac1033324bb723198c94d9798, type: 3}
   m_Name: SaturnPalmyNPCInfo
   m_EditorClassIdentifier: 
-  promptCanvasHeader: What's going on sugar?
+  promptCanvasHeaderText: What you want to talk about sugar?
   dialoguePrompts:
   - textLines:
     - yee ol Mr. Jupiter

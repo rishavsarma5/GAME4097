@@ -2055,6 +2055,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "CloseNPCPanel",
+                    "type": "Button",
+                    "id": "b2177ff8-9825-41c9-a4f7-70542b012023",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -2352,6 +2361,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "DialogueScroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eb02c751-33b9-45d2-8aa7-52cb9c44f0c8",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseNPCPanel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
