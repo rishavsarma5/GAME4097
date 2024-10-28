@@ -9,7 +9,7 @@ public class FloatingTextSpawner : MonoBehaviour
 
     public GameObject floatingTextPrefab;
 
-    public Transform cameraTransform;
+    public Transform playerTransform;
 
     private void Awake()
     {
@@ -27,9 +27,10 @@ public class FloatingTextSpawner : MonoBehaviour
     {
         GameObject textObject = Instantiate(floatingTextPrefab);
 
-        textObject.GetComponent<TextMeshProUGUI>().text = text;
+        textObject.GetComponent<FloatingTextController>().textField.text = text;
 
-        textObject.transform.position = cameraTransform.position + cameraTransform.TransformDirection(new Vector3(0, 0.5f, 0.2f));
-        textObject.transform.LookAt(cameraTransform);
+        textObject.transform.position = playerTransform.position + playerTransform.TransformDirection(new Vector3(0, 0.5f, 0.2f));
+        textObject.transform.LookAt(playerTransform);
+        Debug.Log($"floating text spawned at {textObject.transform}");
     }
 }

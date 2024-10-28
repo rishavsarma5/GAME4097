@@ -5061,6 +5061,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1717954560726079273}
+    - target: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: leftController
+      value: 
+      objectReference: {fileID: 1179758091}
+    - target: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: playerLeftControllerLocoMove
+      value: 
+      objectReference: {fileID: 58445279724749192}
+    - target: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: playerLeftControllerLocoTurn
+      value: 
+      objectReference: {fileID: 1470279097522993508}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5880,6 +5896,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 1.956
       objectReference: {fileID: 0}
+    - target: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1717954560726079273}
+    - target: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: leftController
+      value: 
+      objectReference: {fileID: 1179758091}
+    - target: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: playerLeftControllerLocoMove
+      value: 
+      objectReference: {fileID: 58445279724749192}
+    - target: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: playerLeftControllerLocoTurn
+      value: 
+      objectReference: {fileID: 1470279097522993508}
     - target: {fileID: 4314257057172651292, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.03
@@ -6011,7 +6043,7 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 962107964}
         m_TargetAssemblyTypeName: RoomEntranceTrigger, Assembly-CSharp
         m_MethodName: TransitionBetweenRooms
         m_Mode: 1
@@ -6064,6 +6096,17 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 125519323816064848, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
   m_PrefabInstance: {fileID: 962107952}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &962107964 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+  m_PrefabInstance: {fileID: 962107952}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962107953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b108c655a2d104a4789bfd20d3e4b139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963159400
 GameObject:
   m_ObjectHideFlags: 0
@@ -10235,6 +10278,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -180
       objectReference: {fileID: 0}
+    - target: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1717954560726079273}
+    - target: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: leftController
+      value: 
+      objectReference: {fileID: 1179758091}
+    - target: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: playerLeftControllerLocoMove
+      value: 
+      objectReference: {fileID: 58445279724749192}
+    - target: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: playerLeftControllerLocoTurn
+      value: 
+      objectReference: {fileID: 1470279097522993508}
     - target: {fileID: 4314257057172651292, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.71
@@ -10271,9 +10330,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 195318, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1852148548}
-    - targetCorrespondingSourceObject: {fileID: 195318, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1852148547}
   m_SourcePrefab: {fileID: 100100000, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
 --- !u!1 &1852148544 stripped
 GameObject:
@@ -10285,30 +10341,6 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2399480, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
   m_PrefabInstance: {fileID: 1852148543}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1852148546 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 95449813318701490, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
-  m_PrefabInstance: {fileID: 1852148543}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1852148547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852148544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b108c655a2d104a4789bfd20d3e4b139, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tpHallwaySpot: {fileID: 1852148550}
-  tpRoomSpot: {fileID: 1852148546}
-  outsideRoom: 1
-  player: {fileID: 1717954560726079273}
-  leftController: {fileID: 1179758091}
-  playerLeftControllerLocoTurn: {fileID: 1470279097522993508}
-  playerLeftControllerLocoMove: {fileID: 58445279724749192}
 --- !u!114 &1852148548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10393,7 +10425,7 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1852148547}
+      - m_Target: {fileID: 1852148549}
         m_TargetAssemblyTypeName: RoomEntranceTrigger, Assembly-CSharp
         m_MethodName: TransitionBetweenRooms
         m_Mode: 1
@@ -10441,11 +10473,17 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
---- !u!4 &1852148550 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4314257057172651292, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+--- !u!114 &1852148549 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
   m_PrefabInstance: {fileID: 1852148543}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852148544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b108c655a2d104a4789bfd20d3e4b139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1871240160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11212,12 +11250,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 95449813318701490, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 95449813318701490, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.194
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 95449813318701490, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.84
+      value: -1.83
       objectReference: {fileID: 0}
     - target: {fileID: 95449813318701490, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11247,9 +11289,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.811
       objectReference: {fileID: 0}
+    - target: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1717954560726079273}
+    - target: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: leftController
+      value: 
+      objectReference: {fileID: 1179758091}
+    - target: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: playerLeftControllerLocoMove
+      value: 
+      objectReference: {fileID: 58445279724749192}
+    - target: {fileID: 924758851216857689, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: playerLeftControllerLocoTurn
+      value: 
+      objectReference: {fileID: 1470279097522993508}
+    - target: {fileID: 4314257057172651292, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.34
+      objectReference: {fileID: 0}
     - target: {fileID: 4314257057172651292, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.849
+      value: 1.14
       objectReference: {fileID: 0}
     - target: {fileID: 4314257057172651292, guid: b8b27fb944ca23b468b9b0a188b69296, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11389,7 +11451,7 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 962107964}
         m_TargetAssemblyTypeName: RoomEntranceTrigger, Assembly-CSharp
         m_MethodName: TransitionBetweenRooms
         m_Mode: 1
@@ -13842,6 +13904,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 440452098}
     m_Modifications:
+    - target: {fileID: 383667147200282758, guid: 1416316142edea44ea3b1bf717a08c2a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1717954560726079273}
+    - target: {fileID: 383667147200282758, guid: 1416316142edea44ea3b1bf717a08c2a, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 587943539}
+    - target: {fileID: 383667147200282758, guid: 1416316142edea44ea3b1bf717a08c2a, type: 3}
+      propertyPath: player1SuspectSelectLocation
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7487341795058761683, guid: 1416316142edea44ea3b1bf717a08c2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

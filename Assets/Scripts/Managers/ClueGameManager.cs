@@ -81,6 +81,8 @@ public class ClueGameManager : MonoBehaviour
             //secondClues.Remove(clue);
             foundClues.Add(clue);
             clue.isFound = true;
+            StartCoroutine(TransitionToSuspectSelect());
+            /*
             Clue clue3 = clue.relatedNPC.clues[2];
             if (secondClues.Contains(clue3))
             {
@@ -92,6 +94,7 @@ public class ClueGameManager : MonoBehaviour
             {
                 throw new System.Exception("next clue fetched is not a third clue");
             }
+            */
         }
         else
         {
@@ -154,6 +157,13 @@ public class ClueGameManager : MonoBehaviour
     public void ResetActionCompleted()
     {
         actionCompleted = false;
+    }
+
+    public IEnumerator TransitionToSuspectSelect()
+    {
+        FloatingTextSpawner.Instance.SpawnFloatingText("Directing to Guessing Area...");
+        yield return new WaitForSeconds(2f);
+        SetActionCompleted();
     }
 
 }

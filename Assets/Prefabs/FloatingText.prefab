@@ -49,6 +49,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 0}
   offset: {x: 0, y: 0.5, z: 0.2}
   closeTextRef: {fileID: 1051886413064766142, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  textField: {fileID: 8441952661537496287}
 --- !u!82 &5138090440436291825
 AudioSource:
   m_ObjectHideFlags: 0
@@ -552,8 +553,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

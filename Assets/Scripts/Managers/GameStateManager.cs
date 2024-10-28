@@ -11,6 +11,8 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Camera mainCamera;
 
+    [SerializeField] private Transform player1SuspectSelectLocation;
+
     //public static event Action<GameState> onGameStateChanged;
 
     private void Awake()
@@ -49,6 +51,7 @@ public class GameStateManager : MonoBehaviour
                 HandleEndOfRoundUpdates();
                 break;
             case GameState.SuspectSelection:
+                HandleSuspectSelection();
                 break;
             case GameState.Victory:
                 break;
@@ -63,7 +66,7 @@ public class GameStateManager : MonoBehaviour
 
     private void HandleInitializeGame()
     {
-        //ClueGameManager.Instance.InitializeAllFirstClues();
+        ClueGameManager.Instance.InitializeAllFirstClues();
         ClueGameManager.Instance.InitializeStartingWeapons();
 
         UpdateGameState(GameState.MovementDiceRolling);
@@ -92,6 +95,15 @@ public class GameStateManager : MonoBehaviour
     private void HandleEndOfRoundUpdates()
     {
         UpdateGameState(GameState.SuspectSelection);
+    }
+
+    private void HandleSuspectSelection()
+    {
+        // change scenes maybe
+        //player.transform.position = player1SuspectSelectLocation.position;
+
+        // create selection ui popup
+        Debug.Log("got to suspect selection");
     }
 }
 
