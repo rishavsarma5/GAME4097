@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeleportHubSquareBlack Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 467401783134412818, guid: f44a7376bff1e2c4883f491f5aa06b14, type: 3}
+      propertyPath: m_TagString
+      value: TeleportAnchor
+      objectReference: {fileID: 0}
     - target: {fileID: 2508595996595325146, guid: f44a7376bff1e2c4883f491f5aa06b14, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.187

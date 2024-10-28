@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8532728561884324221}
   m_Layer: 0
   m_Name: TeleportHubSquareWhite
-  m_TagString: Untagged
+  m_TagString: TeleportAnchor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

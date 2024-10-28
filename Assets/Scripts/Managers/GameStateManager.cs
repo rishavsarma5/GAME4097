@@ -8,6 +8,8 @@ public class GameStateManager : MonoBehaviour
     public static GameStateManager Instance;
 
     public GameState currentState;
+    [SerializeField] private GameObject player;
+    [SerializeField] private Camera mainCamera;
 
     //public static event Action<GameState> onGameStateChanged;
 
@@ -25,6 +27,7 @@ public class GameStateManager : MonoBehaviour
     private void Start()
     {
         UpdateGameState(GameState.InitializeGame);
+        //player = GameObject.FindGameObjectWithTag("Player") as GameObject;
     }
 
     public void UpdateGameState(GameState newState)
@@ -37,10 +40,13 @@ public class GameStateManager : MonoBehaviour
                 HandleInitializeGame();
                 break;
             case GameState.MovementDiceRolling:
+                HandleDiceRolling();
                 break;
             case GameState.Exploration:
+                HandleExploration();
                 break;
             case GameState.EndRoundUpdates:
+                HandleEndOfRoundUpdates();
                 break;
             case GameState.SuspectSelection:
                 break;
@@ -60,7 +66,32 @@ public class GameStateManager : MonoBehaviour
         //ClueGameManager.Instance.InitializeAllFirstClues();
         ClueGameManager.Instance.InitializeStartingWeapons();
 
-        //UpdateGameState(GameState.MovementDiceRolling);
+        UpdateGameState(GameState.MovementDiceRolling);
+        
+    }
+
+    private void HandleDiceRolling()
+    {
+        
+
+        UpdateGameState(GameState.Exploration);
+    }
+
+    private void HandleExploration()
+    {
+        StartCoroutine(WaitForMeaningfulAction());
+    }
+
+    private IEnumerator WaitForMeaningfulAction()
+    {
+        yield return new WaitUntil(() => ClueGameManager.Instance.GetActionCompleted());
+        ClueGameManager.Instance.ResetActionCompleted();
+        UpdateGameState(GameState.EndRoundUpdates);
+    }
+
+    private void HandleEndOfRoundUpdates()
+    {
+        UpdateGameState(GameState.SuspectSelection);
     }
 }
 

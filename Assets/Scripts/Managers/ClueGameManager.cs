@@ -25,6 +25,8 @@ public class ClueGameManager : MonoBehaviour
     [Space(15)]
     [SerializeField] private int numWeaponsToSpawn = 2;
 
+    [SerializeField] private bool actionCompleted = false;
+
     private void Awake()
     {
         if (!Instance)
@@ -81,4 +83,20 @@ public class ClueGameManager : MonoBehaviour
         }
         Debug.Log($"All first clues spawned!");
     }
+
+    public void SetActionCompleted()
+    {
+        actionCompleted = true;
+    }
+
+    public bool GetActionCompleted()
+    {
+        return actionCompleted;
+    }
+
+    public void ResetActionCompleted()
+    {
+        actionCompleted = false;
+    }
+
 }
