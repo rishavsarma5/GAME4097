@@ -132,6 +132,7 @@ public class ClueGameManager : MonoBehaviour
         {
             int randomIndex = Random.Range(0, i + 1);
             Weapon temp = initialWeaponList[i];
+            temp.isFound = false;
             initialWeaponList[i] = initialWeaponList[randomIndex];
             initialWeaponList[randomIndex] = temp;
         }
