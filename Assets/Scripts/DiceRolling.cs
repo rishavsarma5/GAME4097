@@ -75,6 +75,7 @@ public class DiceRolling : MonoBehaviour
 
             Vector3 punchDir = (this.transform.position - other.transform.position).normalized;
             
+            /*
             if (rightController.TryGetComponent(out Rigidbody controllerRb))
             {
                 Debug.Log("using right controller's velocity");
@@ -85,8 +86,8 @@ public class DiceRolling : MonoBehaviour
                 Debug.Log("using basic velocity");
                 rb.AddForce(punchDir * punchForce, ForceMode.Impulse);
             }
-            
-            //rb.AddForce(punchDir * punchForce, ForceMode.Impulse);
+            */
+            rb.AddForce(punchDir * punchForce, ForceMode.Impulse);
         }
     }
 

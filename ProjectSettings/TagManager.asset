@@ -8,6 +8,9 @@ TagManager:
   - NPCInteractable
   - WeaponInteractable
   - PlayerHand
+  - TeleportAnchor
+  - AudioLocation
+  - ClueInteractable
   layers:
   - Default
   - TransparentFX
