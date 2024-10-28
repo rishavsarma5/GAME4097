@@ -8,6 +8,7 @@ public class FloatingTextSpawner : MonoBehaviour
     public static FloatingTextSpawner Instance;
 
     public GameObject floatingTextPrefab;
+    public Vector3 offset = new Vector3(0f, -0.1f, 0.3f);
 
     public Transform playerTransform;
 
@@ -29,8 +30,7 @@ public class FloatingTextSpawner : MonoBehaviour
 
         textObject.GetComponent<FloatingTextController>().textField.text = text;
 
-        textObject.transform.position = playerTransform.position + playerTransform.TransformDirection(new Vector3(0, 0.5f, 0.2f));
-        textObject.transform.LookAt(playerTransform);
+        textObject.transform.position = playerTransform.position + playerTransform.TransformDirection(offset);
         Debug.Log($"floating text spawned at {textObject.transform.position}");
     }
 }

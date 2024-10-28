@@ -9400,13 +9400,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 440452098}
     m_Modifications:
     - target: {fileID: 1968113859652023906, guid: 249368575dc2aad46aa801b9370ee6a0, type: 3}
-      propertyPath: cameraTransform
-      value: 
-      objectReference: {fileID: 7829373036689702673}
-    - target: {fileID: 1968113859652023906, guid: 249368575dc2aad46aa801b9370ee6a0, type: 3}
       propertyPath: playerTransform
       value: 
-      objectReference: {fileID: 1717954560726079274}
+      objectReference: {fileID: 7829373036689702673}
     - target: {fileID: 6218730561885293965, guid: 249368575dc2aad46aa801b9370ee6a0, type: 3}
       propertyPath: m_Name
       value: FloatingTextSpawner
@@ -9429,15 +9425,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9220793019183278339, guid: 249368575dc2aad46aa801b9370ee6a0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9220793019183278339, guid: 249368575dc2aad46aa801b9370ee6a0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9220793019183278339, guid: 249368575dc2aad46aa801b9370ee6a0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9220793019183278339, guid: 249368575dc2aad46aa801b9370ee6a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9547,11 +9543,6 @@ Transform:
 --- !u!1 &1717954560726079273 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6127219036134933860, guid: f943645a90f6ef94fbad45f773930b7c, type: 3}
-  m_PrefabInstance: {fileID: 7829373036689702672}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1717954560726079274 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3245065943949865286, guid: f943645a90f6ef94fbad45f773930b7c, type: 3}
   m_PrefabInstance: {fileID: 7829373036689702672}
   m_PrefabAsset: {fileID: 0}
 --- !u!33 &1983323718163955513

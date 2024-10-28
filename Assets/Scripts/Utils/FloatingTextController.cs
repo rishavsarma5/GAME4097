@@ -7,7 +7,7 @@ using TMPro;
 public class FloatingTextController : MonoBehaviour
 {
     public Transform cameraTransform;
-    public Vector3 offset = new Vector3(0, 0, 0.2f);
+    public Vector3 offset = new Vector3(0, -0.2f, 0.2f);
 
     [SerializeField] InputActionReference closeTextRef;
     public TextMeshProUGUI textField;
@@ -34,13 +34,13 @@ public class FloatingTextController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = cameraTransform.position + cameraTransform.TransformDirection(offset);
+        //transform.position = cameraTransform.position + cameraTransform.TransformDirection(offset);
         transform.LookAt(cameraTransform);
     }
 
     public void CloseFloatingText(InputAction.CallbackContext context)
     {
         _audioSource.Play();
-        Destroy(this, 0.5f);
+        Destroy(this.gameObject, 0.5f);
     }
 }

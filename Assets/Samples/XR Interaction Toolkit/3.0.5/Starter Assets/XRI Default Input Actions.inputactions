@@ -975,6 +975,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "CloseFloatingText",
+                    "type": "Button",
+                    "id": "fe66ecfc-1cfe-44f4-87b7-1c1b418bd579",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1261,6 +1270,17 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "",
                     "action": "Translate Manipulation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eb9be69d-9c37-42b8-b125-0683d8b1ab97",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseFloatingText",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -2064,15 +2084,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "CloseFloatingText",
-                    "type": "Button",
-                    "id": "7555181d-db59-44c5-8e26-eb02fe9c234a",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -2381,17 +2392,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "CloseNPCPanel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "db2254b8-fd90-456b-a68c-0f5f113947df",
-                    "path": "<XRController>{RightHand}/secondaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CloseFloatingText",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -82,6 +82,7 @@ public class GameStateManager : MonoBehaviour
 
     private void HandleExploration()
     {
+        //FloatingTextSpawner.Instance.SpawnFloatingText("debug text");
         StartCoroutine(WaitForMeaningfulAction());
     }
 
