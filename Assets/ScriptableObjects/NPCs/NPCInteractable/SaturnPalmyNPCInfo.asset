@@ -15,15 +15,17 @@ MonoBehaviour:
   promptCanvasHeaderText: What you want to talk about sugar?
   dialoguePrompts:
   - textLines:
-    - yee ol Mr. Jupiter
-    - boy howdy
-    - adadwa
+    - Moseby and I are... were familiar with each other.
+    - We knew things about each other that most others don't.
+    - And shared some secrets I would never tell ya', sugar.
   - textLines:
-    - nothing
-    - are you implying somethign suagr
-    - why i was no where but the kitchen
+    - Are you implying something?
+    - I along with everyone else is heartbroken over a death that happened right
+      before us.
+    - 'By your records, I was in the kitchen mixing a drink for myself. '
+    - The liquor here was absolutely dreadful.
   - textLines:
-    - aaaah
-    - how did you find that
-    - that's crazy
+    - 'W-where did you find that? '
+    - I did use it sugar but I wouldn't kill Moseby!
+    - I loved him!
   hasPlayed: 0
