@@ -4845,6 +4845,7 @@ GameObject:
   - component: {fileID: 7455966421445273618}
   - component: {fileID: -7728577057683162928}
   - component: {fileID: 2422868199492517842}
+  - component: {fileID: 8590830001222948104}
   m_Layer: 0
   m_Name: Weapon_BarSpoon
   m_TagString: WeaponInteractable
@@ -5006,17 +5007,17 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
-        m_TargetAssemblyTypeName: ClueGameManager, Assembly-CSharp
-        m_MethodName: OnWeaponFound
-        m_Mode: 2
+      - m_Target: {fileID: 8590830001222948104}
+        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+        m_MethodName: OnWeaponGrabbed
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 2a8bc50bf6fbe3d45ad50f98ce5bb0fb, type: 2}
-          m_ObjectArgumentAssemblyTypeName: Weapon, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 2422868199492517842}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
@@ -5030,9 +5031,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 2a8bc50bf6fbe3d45ad50f98ce5bb0fb, type: 2}
-        m_TargetAssemblyTypeName: Weapon, Assembly-CSharp
-        m_MethodName: SpawnWeaponFoundText
+      - m_Target: {fileID: 8590830001222948104}
+        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+        m_MethodName: SpawnFloatingText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 224715426277906253}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Stop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5233,6 +5246,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8590830001222948104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893904380443151355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42635105b60fdc34db7e69e1da0340ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 11400000, guid: 2a8bc50bf6fbe3d45ad50f98ce5bb0fb, type: 2}
 --- !u!1001 &1003239586997465154
 PrefabInstance:
   m_ObjectHideFlags: 0

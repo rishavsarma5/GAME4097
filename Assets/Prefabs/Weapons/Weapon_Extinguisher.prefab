@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6976418543664061220}
   - component: {fileID: 5148874364031562571}
   - component: {fileID: 7547870196698008489}
+  - component: {fileID: 2323353065792122179}
   m_Layer: 0
   m_Name: Weapon_Extinguisher
   m_TagString: WeaponInteractable
@@ -176,22 +177,10 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
-        m_TargetAssemblyTypeName: ClueGameManager, Assembly-CSharp
-        m_MethodName: OnWeaponFound
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 22bbf520fd5b42c4196365a93f0be5ff, type: 2}
-          m_ObjectArgumentAssemblyTypeName: Weapon, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1876032792732831572}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 2323353065792122179}
+        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+        m_MethodName: OnWeaponGrabbed
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -212,21 +201,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  m_SelectExited:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 764671740973690386}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 2323353065792122179}
+        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+        m_MethodName: SpawnFloatingText
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 4472560228083174122}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -415,6 +416,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2323353065792122179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364962506366644541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42635105b60fdc34db7e69e1da0340ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 11400000, guid: 22bbf520fd5b42c4196365a93f0be5ff, type: 2}
 --- !u!1 &3184811234378748968
 GameObject:
   m_ObjectHideFlags: 0
@@ -5257,6 +5271,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponFoundPopup
       objectReference: {fileID: 0}
+    - target: {fileID: 252760478729542161, guid: 3f6bc8c746662424198343d4eaf5f2be, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1374817622511172439, guid: 3f6bc8c746662424198343d4eaf5f2be, type: 3}
       propertyPath: weapon
       value: 
@@ -5346,22 +5364,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f6bc8c746662424198343d4eaf5f2be, type: 3}
---- !u!1 &764671740973690386 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 252760478729542161, guid: 3f6bc8c746662424198343d4eaf5f2be, type: 3}
-  m_PrefabInstance: {fileID: 656774258397721603}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1876032792732831572 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1374817622511172439, guid: 3f6bc8c746662424198343d4eaf5f2be, type: 3}
-  m_PrefabInstance: {fileID: 656774258397721603}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 764671740973690386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c17a2feb5478efc40846aef367d893c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &2408412863143429211 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2914165445123633240, guid: 3f6bc8c746662424198343d4eaf5f2be, type: 3}

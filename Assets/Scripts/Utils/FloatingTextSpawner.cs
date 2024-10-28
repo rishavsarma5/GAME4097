@@ -31,6 +31,6 @@ public class FloatingTextSpawner : MonoBehaviour
 
         textObject.transform.position = playerTransform.position + playerTransform.TransformDirection(new Vector3(0, 0.5f, 0.2f));
         textObject.transform.LookAt(playerTransform);
-        Debug.Log($"floating text spawned at {textObject.transform}");
+        Debug.Log($"floating text spawned at {textObject.transform.position}");
     }
 }
