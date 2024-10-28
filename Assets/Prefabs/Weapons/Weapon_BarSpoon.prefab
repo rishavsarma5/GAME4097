@@ -5018,18 +5018,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1039703994311207507}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 2422868199492517842}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
@@ -5042,21 +5030,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  m_SelectExited:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1039703994311207507}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 11400000, guid: 2a8bc50bf6fbe3d45ad50f98ce5bb0fb, type: 2}
+        m_TargetAssemblyTypeName: Weapon, Assembly-CSharp
+        m_MethodName: SpawnWeaponFoundText
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -5350,11 +5338,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f6bc8c746662424198343d4eaf5f2be, type: 3}
---- !u!1 &1039703994311207507 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 252760478729542161, guid: 3f6bc8c746662424198343d4eaf5f2be, type: 3}
-  m_PrefabInstance: {fileID: 1003239586997465154}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2710334776553242650 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2914165445123633240, guid: 3f6bc8c746662424198343d4eaf5f2be, type: 3}

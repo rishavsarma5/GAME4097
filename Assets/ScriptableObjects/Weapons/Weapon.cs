@@ -14,5 +14,10 @@ public class Weapon : ScriptableObject
     public bool isFound = false;
 
     [TextArea] public string weaponFoundText;
+
+    public void SpawnWeaponFoundText()
+    {
+        FloatingTextSpawner.Instance.SpawnFloatingText(weaponFoundText);
+    }
    
 }
