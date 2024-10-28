@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d27ad053a6ab24b8a3f6e2d55dbd88, type: 3}
+  m_Name: SaturnPalmy_Clue2
+  m_EditorClassIdentifier: 
+  relatedNPC: {fileID: 11400000, guid: 1c923ca10504b7e4fbf53cf9f96df4c4, type: 2}
+  clueObject: {fileID: 6777487557465405837, guid: 0e0774316037e7c4b86c9c50a9773561, type: 3}
+  spawnLocation: {fileID: 0}
+  isFound: 0
+  description: He said someone found out about us and would dump me soon. Ugghhh.
+    I can't believe I spent all this time on a failed prospect. I'm sorry babe. He
+    did tell me he would give me a special present if I talked to him today, so I'll
+    see if I can at least get something.

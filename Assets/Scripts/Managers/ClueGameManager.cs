@@ -50,10 +50,67 @@ public class ClueGameManager : MonoBehaviour
         
     }
 
-    public void OnClueFound(Clue clue)
+    public void OnClue1Found(Clue clue)
     {
-        foundClues.Add(clue);
-        clue.isFound = true;
+        if (firstClues.Contains(clue))
+        {
+            //firstClues.Remove(clue);
+            foundClues.Add(clue);
+            clue.isFound = true;
+            Clue clue2 = clue.relatedNPC.clues[1];
+            if (secondClues.Contains(clue2))
+            {
+                //secondClues.Remove(clue2);
+                activeClues.Add(clue2);
+                Instantiate(clue2.clueObject, clue2.clueObject.transform.position, Quaternion.identity);
+            } else
+            {
+                throw new System.Exception("next clue fetched is not a second clue");
+            }
+            
+        } else
+        {
+            throw new System.Exception("this clue is not a first clue");
+        }
+    }
+
+    public void OnClue2Found(Clue clue)
+    {
+        if (secondClues.Contains(clue))
+        {
+            //secondClues.Remove(clue);
+            foundClues.Add(clue);
+            clue.isFound = true;
+            Clue clue3 = clue.relatedNPC.clues[2];
+            if (secondClues.Contains(clue3))
+            {
+                //secondClues.Remove(clue3);
+                activeClues.Add(clue3);
+                Instantiate(clue3.clueObject, clue3.clueObject.transform.position, Quaternion.identity);
+            }
+            else
+            {
+                throw new System.Exception("next clue fetched is not a third clue");
+            }
+        }
+        else
+        {
+            throw new System.Exception("this clue is not a second clue");
+        }
+    }
+
+    public void OnClue3Found(Clue clue)
+    {
+        if (thirdClues.Contains(clue))
+        {
+            //thirdClues.Remove(clue);
+            foundClues.Add(clue);
+            clue.isFound = true;
+        }
+        else
+        {
+            throw new System.Exception("this clue is not a third clue");
+        }
     }
 
     public void OnWeaponFound(Weapon weapon)
@@ -67,7 +124,7 @@ public class ClueGameManager : MonoBehaviour
         for(int i = 0; i < numWeaponsToSpawn; i++)
         {
             Weapon weapon = initialWeaponList[Random.Range(0, initialWeaponList.Count)];
-            initialWeaponList.Remove(weapon);
+            //initialWeaponList.Remove(weapon);
             activeWeapons.Add(weapon);
             Instantiate(weapon.weaponPrefab, weapon.spawnLocation.position, Quaternion.identity);
             Debug.Log($"Weapon {weapon.weaponName} spawned at {weapon.spawnLocation.position}");
@@ -77,9 +134,9 @@ public class ClueGameManager : MonoBehaviour
     public void InitializeAllFirstClues()
     {
         foreach(Clue clue in firstClues) {
-            firstClues.Remove(clue);
+            //firstClues.Remove(clue);
             activeClues.Add(clue);
-            clue.clueObject.SetActive(true);
+            Instantiate(clue.clueObject, clue.clueObject.transform.position, Quaternion.identity);
         }
         Debug.Log($"All first clues spawned!");
     }
