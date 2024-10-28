@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ClueGameManager : MonoBehaviour
@@ -54,15 +55,14 @@ public class ClueGameManager : MonoBehaviour
     {
         if (firstClues.Contains(clue))
         {
-            //firstClues.Remove(clue);
             foundClues.Add(clue);
             clue.isFound = true;
             Clue clue2 = clue.relatedNPC.clues[1];
             if (secondClues.Contains(clue2))
             {
-                //secondClues.Remove(clue2);
                 activeClues.Add(clue2);
                 Instantiate(clue2.clueObject, clue2.clueObject.transform.position, Quaternion.identity);
+                Debug.Log($"Second clue {clue2} spawned!");
             } else
             {
                 throw new System.Exception("next clue fetched is not a second clue");
@@ -124,20 +124,31 @@ public class ClueGameManager : MonoBehaviour
 
     public void InitializeStartingWeapons()
     {
-        for(int i = 0; i < numWeaponsToSpawn; i++)
+        foundWeapons.Clear();
+        activeWeapons.Clear();
+
+        // Shuffle initialWeaponList in place
+        for (int i = initialWeaponList.Count - 1; i > 0; i--)
         {
-            Weapon weapon = initialWeaponList[Random.Range(0, initialWeaponList.Count)];
-            //initialWeaponList.Remove(weapon);
+            int randomIndex = Random.Range(0, i + 1);
+            Weapon temp = initialWeaponList[i];
+            initialWeaponList[i] = initialWeaponList[randomIndex];
+            initialWeaponList[randomIndex] = temp;
+        }
+
+        for (int i = 0; i < numWeaponsToSpawn && i < initialWeaponList.Count; i++)
+        {
+            Weapon weapon = initialWeaponList[i];
             activeWeapons.Add(weapon);
             Instantiate(weapon.weaponPrefab, weapon.spawnLocation.position, Quaternion.identity);
             Debug.Log($"Weapon {weapon.weaponName} spawned at {weapon.spawnLocation.position}");
         }
     }
-
     public void InitializeAllFirstClues()
     {
+        foundClues.Clear();
+
         foreach(Clue clue in firstClues) {
-            //firstClues.Remove(clue);
             activeClues.Add(clue);
             Instantiate(clue.clueObject, clue.clueObject.transform.position, Quaternion.identity);
         }

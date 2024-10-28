@@ -5103,6 +5103,7 @@ GameObject:
   - component: {fileID: 1009816564477780873}
   - component: {fileID: 7023711626188979431}
   - component: {fileID: 5864187376906299991}
+  - component: {fileID: 3264374191978645330}
   m_Layer: 0
   m_Name: SP_Clue2
   m_TagString: ClueInteractable
@@ -5118,13 +5119,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6777487557465405837}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.95657307, z: -0, w: -0.2914927}
+  m_LocalRotation: {x: -0, y: -0.9565723, z: 0, w: -0.29149523}
   m_LocalPosition: {x: 6.219, y: -1.518, z: 3.17}
   m_LocalScale: {x: 0.3, y: 0.018000001, z: 0.24000001}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9202255968202240127}
   - {fileID: 4654953886662569387}
+  - {fileID: 5689809509545801513}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -213.895, z: 0}
 --- !u!33 &754009967289949760
@@ -5285,9 +5287,9 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 363886662014660026}
-        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
-        m_MethodName: Stop
+      - m_Target: {fileID: 3264374191978645330}
+        m_TargetAssemblyTypeName: ClueController, Assembly-CSharp
+        m_MethodName: OnClue2Grabbed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5297,13 +5299,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
-        m_TargetAssemblyTypeName: ClueGameManager, Assembly-CSharp
-        m_MethodName: OnClue2Found
+      - m_Target: {fileID: 5864187376906299991}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: a25edb2f93624974e8195517bb01fbd1, type: 2}
-          m_ObjectArgumentAssemblyTypeName: Clue, Assembly-CSharp
+          m_ObjectArgument: {fileID: 8300000, guid: 16fba6d30ed741d4a9fdd6e79ee2f3ac, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5479,3 +5481,47 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3264374191978645330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6777487557465405837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5b8546c641e6bb458983ef6d455d81c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clue: {fileID: 11400000, guid: a62e123d02bb7274288a913a9a3dbf14, type: 2}
+--- !u!1 &8469666116103434726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5689809509545801513}
+  m_Layer: 0
+  m_Name: GrabTransformPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5689809509545801513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8469666116103434726}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0.51, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5376559513419465662}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
