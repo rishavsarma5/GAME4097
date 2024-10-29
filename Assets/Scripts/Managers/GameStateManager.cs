@@ -29,8 +29,8 @@ public class GameStateManager : MonoBehaviour
     private void Start()
     {
         UpdateGameState(GameState.InitializeGame);
-        //player = GameObject.FindGameObjectWithTag("Player") as GameObject;
-    }
+		//player = GameObject.FindGameObjectWithTag("Player") as GameObject;
+	}
 
     public void UpdateGameState(GameState newState)
     {
@@ -100,8 +100,10 @@ public class GameStateManager : MonoBehaviour
 
     private void HandleSuspectSelection()
     {
-        // change scenes maybe
-        //player.transform.position = player1SuspectSelectLocation.position;
+		List<Weapon> weaponsList = ClueGameManager.Instance.foundWeapons;
+		FindObjectOfType<SuspectGuessUI>().setUp(weaponsList);
+
+		player.transform.position = player1SuspectSelectLocation.position;
 
         // create selection ui popup
         Debug.Log("got to suspect selection");

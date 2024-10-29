@@ -21,7 +21,8 @@ public class ClueGameManager : MonoBehaviour
     [Space(10)]
     [Header("Clues and Weapons Found")]
     [SerializeField] private List<Clue> foundClues;
-    [SerializeField] private List<Weapon> foundWeapons;
+    [SerializeField] public List<Weapon> foundWeapons;
+
 
     [Space(15)]
     [SerializeField] private int numWeaponsToSpawn = 2;
