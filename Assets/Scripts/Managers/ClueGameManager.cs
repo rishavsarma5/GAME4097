@@ -7,30 +7,31 @@ public class ClueGameManager : MonoBehaviour
 {
     public static ClueGameManager Instance;
 
-    [Header("Initial Lists")]
+    [Header("Initial Clues and Weapons")]
     public List<Clue> firstClues;
-    public List<GameObject> firstClueGameObjects;
+    [SerializeField] private List<GameObject> firstClueGameObjects;
     public List<Clue> secondClues;
-    public List<GameObject> secondClueGameObjects;
+    [SerializeField] private List<GameObject> secondClueGameObjects;
     public List<Clue> thirdClues;
-    public List<GameObject> thirdClueGameObjects;
-    public List<Weapon> initialWeaponList;
-    public List<GameObject> weaponGameObjects;
+    [SerializeField] private List<GameObject> thirdClueGameObjects;
+    public List<Weapon> initialWeapons;
+    [SerializeField] private List<GameObject> weaponGameObjects;
 
-    [Space(10)]
+    private Dictionary<Clue, GameObject> listOfClues = new Dictionary<Clue, GameObject>();
+    private Dictionary<Weapon, GameObject> listOfWeapons = new Dictionary<Weapon, GameObject>();
+
+    [Space(5)]
     [Header("Active Clues and Weapons")]
-    public List<Clue> activeClues;
-    public List<Weapon> activeWeapons;
+    public List<GameObject> activeClues;
+    public List<GameObject> activeWeapons;
 
-    [Space(10)]
+    [Space(5)]
     [Header("Clues and Weapons Found")]
     [SerializeField] private List<Clue> foundClues;
     [SerializeField] public List<Weapon> foundWeapons;
 
-
-    [Space(15)]
+    [Space(10)]
     [SerializeField] private int numWeaponsToSpawn = 2;
-
     [SerializeField] private bool actionCompleted = false;
 
     private void Awake()
@@ -43,14 +44,23 @@ public class ClueGameManager : MonoBehaviour
         {
             throw new System.Exception("Can't be two Clue Game Managers!");
         }
+
+        // get all clues and weapons from the scene
+        firstClueGameObjects = GameObject.FindGameObjectsWithTag("Clue1Interactable").ToList();
+        //Debug.Log($"{firstClueGameObjects.Count} First Clue Objects found!");
+        secondClueGameObjects = GameObject.FindGameObjectsWithTag("Clue2Interactable").ToList();
+        //Debug.Log($"{secondClueGameObjects.Count} Second Clue Objects found!");
+        thirdClueGameObjects = GameObject.FindGameObjectsWithTag("Clue3Interactable").ToList();
+        //Debug.Log($"{thirdClueGameObjects.Count} Third Clue Objects found!");
+        weaponGameObjects = GameObject.FindGameObjectsWithTag("WeaponInteractable").ToList();
+        //Debug.Log($"{weaponGameObjects.Count} Weapon Objects found!");
+
+        AddAllCluesToDict();
     }
     // Start is called before the first frame update
     void Start()
     {
-        firstClueGameObjects = GameObject.FindGameObjectsWithTag("Clue1Interactable").ToList();
-        secondClueGameObjects = GameObject.FindGameObjectsWithTag("Clue2Interactable").ToList();
-        thirdClueGameObjects = GameObject.FindGameObjectsWithTag("Clue3Interactable").ToList();
-        weaponGameObjects = GameObject.FindGameObjectsWithTag("WeaponInteractable").ToList();
+
     }
 
     // Update is called once per frame
@@ -61,26 +71,21 @@ public class ClueGameManager : MonoBehaviour
 
     public void OnClue1Found(Clue clue)
     {
+        // if clue found is actually a clue 1
         if (firstClues.Contains(clue))
         {
+            // get the second clue of the related NPC for found Clue 1
             foundClues.Add(clue);
             clue.isFound = true;
             Clue clue2 = clue.relatedNPC.clues[1];
+
+            // if second clue is actually a clue 2
             if (secondClues.Contains(clue2))
             {
-                GameObject clue2GameObject = secondClueGameObjects
-                .Find(go => go.GetComponent<ClueController>().clue == clue2);
-
-                if (clue2GameObject != null)
-                {
-                    clue2GameObject.SetActive(true);
-                    activeClues.Add(clue2);
-                    Debug.Log($"Second clue {clue2} GameObject spawned!");
-                }
-                else
-                {
-                    Debug.LogWarning("Could not find the GameObject for the second clue.");
-                }
+                // set clue 2 game object to active in the scene and add to active clues
+                GameObject clue2Object = listOfClues[clue2];
+                clue2Object.SetActive(true);
+                activeClues.Add(clue2Object);
             } else
             {
                 throw new System.Exception("next clue fetched is not a second clue");
@@ -146,22 +151,16 @@ public class ClueGameManager : MonoBehaviour
         activeWeapons.Clear();
 
         // Shuffle initialWeaponList in place
-        for (int i = weaponGameObjects.Count - 1; i > 0; i--)
-        {
-            int randomIndex = Random.Range(0, i + 1);
-            GameObject temp = weaponGameObjects[i];
-            temp.GetComponent<WeaponController>().weapon.isFound = false;
-            weaponGameObjects[i] = weaponGameObjects[randomIndex];
-            weaponGameObjects[randomIndex] = temp;
-        }
+        ShuffleList(weaponGameObjects);
 
         for (int i = 0; i < numWeaponsToSpawn; i++)
         {
             GameObject weaponToSpawn = weaponGameObjects[i];
             weaponToSpawn.SetActive(true);
-            Weapon weapon = initialWeaponList.Find(w => w == weaponToSpawn.GetComponent<WeaponController>().weapon);
-            activeWeapons.Add(weapon);
-            Debug.Log($"Weapon {weapon.weaponName} spawned.");
+            Weapon weaponSO = weaponToSpawn.GetComponent<WeaponController>().weapon;
+            listOfWeapons.Add(weaponSO, weaponToSpawn);
+            activeWeapons.Add(weaponToSpawn);
+            Debug.Log($"Weapon {weaponSO.weaponName} spawned.");
         }
     }
     public void InitializeAllFirstClues()
@@ -170,7 +169,7 @@ public class ClueGameManager : MonoBehaviour
 
         foreach(GameObject clue in firstClueGameObjects) {
             clue.SetActive(true);
-            activeClues.Add(firstClues.Find(c => c == clue.GetComponent<ClueController>().clue));
+            activeClues.Add(clue);
         }
         Debug.Log($"All first clues spawned!");
     }
@@ -197,4 +196,30 @@ public class ClueGameManager : MonoBehaviour
         SetActionCompleted();
     }
 
+    private void AddAllCluesToDict()
+    {
+        foreach (GameObject clue1 in firstClueGameObjects)
+        {
+            listOfClues.Add(clue1.GetComponent<ClueController>().clue, clue1);
+        }
+
+        foreach (GameObject clue2 in secondClueGameObjects)
+        {
+            listOfClues.Add(clue2.GetComponent<ClueController>().clue, clue2);
+        }
+
+        foreach (GameObject clue3 in thirdClueGameObjects)
+        {
+            listOfClues.Add(clue3.GetComponent<ClueController>().clue, clue3);
+        }
+    }
+
+    private void ShuffleList<T>(List<T> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (list[i], list[j]) = (list[j], list[i]);
+        }
+    }
 }
