@@ -10,7 +10,9 @@ TagManager:
   - PlayerHand
   - TeleportAnchor
   - AudioLocation
-  - ClueInteractable
+  - Clue1Interactable
+  - Clue2Interactable
+  - Clue3Interactable
   layers:
   - Default
   - TransparentFX

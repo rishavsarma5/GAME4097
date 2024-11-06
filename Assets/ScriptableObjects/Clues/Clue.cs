@@ -6,8 +6,6 @@ using UnityEngine;
 public class Clue : ScriptableObject
 {
     public GameNPC relatedNPC;
-    public GameObject clueObject;
-    public Transform spawnLocation;
 
     public bool isFound = false;
 

@@ -9,9 +9,13 @@ public class ClueGameManager : MonoBehaviour
 
     [Header("Initial Lists")]
     public List<Clue> firstClues;
+    public List<GameObject> firstClueGameObjects;
     public List<Clue> secondClues;
+    public List<GameObject> secondClueGameObjects;
     public List<Clue> thirdClues;
+    public List<GameObject> thirdClueGameObjects;
     public List<Weapon> initialWeaponList;
+    public List<GameObject> weaponGameObjects;
 
     [Space(10)]
     [Header("Active Clues and Weapons")]
@@ -43,7 +47,10 @@ public class ClueGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        firstClueGameObjects = GameObject.FindGameObjectsWithTag("Clue1Interactable").ToList();
+        secondClueGameObjects = GameObject.FindGameObjectsWithTag("Clue2Interactable").ToList();
+        thirdClueGameObjects = GameObject.FindGameObjectsWithTag("Clue3Interactable").ToList();
+        weaponGameObjects = GameObject.FindGameObjectsWithTag("WeaponInteractable").ToList();
     }
 
     // Update is called once per frame
@@ -61,9 +68,19 @@ public class ClueGameManager : MonoBehaviour
             Clue clue2 = clue.relatedNPC.clues[1];
             if (secondClues.Contains(clue2))
             {
-                activeClues.Add(clue2);
-                Instantiate(clue2.clueObject, clue2.clueObject.transform.position, Quaternion.identity);
-                Debug.Log($"Second clue {clue2} spawned!");
+                GameObject clue2GameObject = secondClueGameObjects
+                .Find(go => go.GetComponent<ClueController>().clue == clue2);
+
+                if (clue2GameObject != null)
+                {
+                    clue2GameObject.SetActive(true);
+                    activeClues.Add(clue2);
+                    Debug.Log($"Second clue {clue2} GameObject spawned!");
+                }
+                else
+                {
+                    Debug.LogWarning("Could not find the GameObject for the second clue.");
+                }
             } else
             {
                 throw new System.Exception("next clue fetched is not a second clue");
@@ -129,30 +146,31 @@ public class ClueGameManager : MonoBehaviour
         activeWeapons.Clear();
 
         // Shuffle initialWeaponList in place
-        for (int i = initialWeaponList.Count - 1; i > 0; i--)
+        for (int i = weaponGameObjects.Count - 1; i > 0; i--)
         {
             int randomIndex = Random.Range(0, i + 1);
-            Weapon temp = initialWeaponList[i];
-            temp.isFound = false;
-            initialWeaponList[i] = initialWeaponList[randomIndex];
-            initialWeaponList[randomIndex] = temp;
+            GameObject temp = weaponGameObjects[i];
+            temp.GetComponent<WeaponController>().weapon.isFound = false;
+            weaponGameObjects[i] = weaponGameObjects[randomIndex];
+            weaponGameObjects[randomIndex] = temp;
         }
 
-        for (int i = 0; i < numWeaponsToSpawn && i < initialWeaponList.Count; i++)
+        for (int i = 0; i < numWeaponsToSpawn; i++)
         {
-            Weapon weapon = initialWeaponList[i];
+            GameObject weaponToSpawn = weaponGameObjects[i];
+            weaponToSpawn.SetActive(true);
+            Weapon weapon = initialWeaponList.Find(w => w == weaponToSpawn.GetComponent<WeaponController>().weapon);
             activeWeapons.Add(weapon);
-            Instantiate(weapon.weaponPrefab, weapon.spawnLocation.position, Quaternion.identity);
-            Debug.Log($"Weapon {weapon.weaponName} spawned at {weapon.spawnLocation.position}");
+            Debug.Log($"Weapon {weapon.weaponName} spawned.");
         }
     }
     public void InitializeAllFirstClues()
     {
         foundClues.Clear();
 
-        foreach(Clue clue in firstClues) {
-            activeClues.Add(clue);
-            Instantiate(clue.clueObject, clue.clueObject.transform.position, Quaternion.identity);
+        foreach(GameObject clue in firstClueGameObjects) {
+            clue.SetActive(true);
+            activeClues.Add(firstClues.Find(c => c == clue.GetComponent<ClueController>().clue));
         }
         Debug.Log($"All first clues spawned!");
     }
