@@ -70,7 +70,6 @@ public class GameStateManager : MonoBehaviour
         ClueGameManager.Instance.InitializeStartingWeapons();
 
         UpdateGameState(GameState.MovementDiceRolling);
-        
     }
 
     private void HandleDiceRolling()

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
+using TMPro;
 
 public class DiceRolling : MonoBehaviour
 {
@@ -9,28 +11,40 @@ public class DiceRolling : MonoBehaviour
     [SerializeField] float floatSpeed = 1.0f;
     [SerializeField] float floatAmplitude = 0.5f;
 
+    [Header("Punch Info")]
     [SerializeField] GameObject rightController;
     [SerializeField] private float punchForce = 2.5f;
-
-    [SerializeField] GameObject punchText;
-
+    [SerializeField] private float spinForce = 2f;
     [SerializeField] float stopThreshold = 0.01f;
+
+    [Header("Dice Faces")]
+    [SerializeField] private List<Transform> diceFaces;
+
+    [Space(5)]
+    [SerializeField] GameObject punchCanvas;
+    [SerializeField] TextMeshProUGUI punchText;
 
     private Rigidbody rb;
     private bool isFloating = true;
     private Transform startTransform;
-    private Vector3 startPos;
-    private bool hasStopped = false;
     private bool isPunched = false;
+
+    public UnityEvent<int> OnDiceRollValue;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        // set default to floating state
+        SetToFloatingState();
         startTransform = this.transform;
-        startPos = this.transform.position;
+    }
 
-        rb.useGravity = false;
+    private void OnEnable()
+    {
+        // reset to floating state when enabled
+        SetToFloatingState();
+        //this.transform.SetPositionAndRotation(startTransform.position, startTransform.rotation);
     }
 
     // Update is called once per frame
@@ -38,23 +52,18 @@ public class DiceRolling : MonoBehaviour
     {
         if (isFloating)
         {
-            float newY = startPos.y + Mathf.Sin(Time.time * floatSpeed) * floatAmplitude;
-            this.transform.position = new Vector3(startPos.x, newY, startPos.z);
+            float newY = startTransform.position.y + Mathf.Sin(Time.time * floatSpeed) * floatAmplitude;
+            this.transform.position = new Vector3(startTransform.position.x, newY, startTransform.position.z);
         }
 
-        if (!hasStopped && HasDiceStoppedRolling())
+        if (isPunched && HasDiceStoppedRolling())
         {
-            hasStopped = true;
-            // determine side that's up for value
-            rb.useGravity = false;
-            transform.position = startTransform.position;
-            transform.rotation = startTransform.rotation;
-            isFloating = true;
-            punchText.SetActive(true);
-            isPunched = false;
-        } else if (hasStopped && !HasDiceStoppedRolling())
-        {
-            hasStopped = false;
+            int diceValue = GetNumberOnDie();
+            punchText.text = $"Dice roll: {diceValue}";
+            punchCanvas.SetActive(true);
+            SetToFloatingState();
+            this.transform.Rotate(-90f, 0, 0);
+            this.transform.position = startTransform.position;
         }
     }
 
@@ -69,27 +78,46 @@ public class DiceRolling : MonoBehaviour
         if (!isPunched && other.CompareTag("PlayerHand"))
         {
             isFloating = false;
-            rb.useGravity = true;
-            punchText.SetActive(false);
             isPunched = true;
+            rb.useGravity = true;
 
-            Vector3 punchDir = (this.transform.position - other.transform.position).normalized;
-            
-            /*
-            if (rightController.TryGetComponent(out Rigidbody controllerRb))
-            {
-                Debug.Log("using right controller's velocity");
-                Vector3 controllerVelocity = controllerRb.velocity;
-                rb.AddForce(controllerVelocity * punchForce, ForceMode.Impulse);
-            } else
-            {
-                Debug.Log("using basic velocity");
-                rb.AddForce(punchDir * punchForce, ForceMode.Impulse);
-            }
-            */
+            punchCanvas.SetActive(false);
+
+            Vector3 punchDir = (other.transform.position - this.transform.position).normalized;
             rb.AddForce(punchDir * punchForce, ForceMode.Impulse);
+
+            float randX = Random.Range(0f, 1f);
+            float randY = Random.Range(0f, 1f);
+            float randZ = Random.Range(0f, 1f);
+            rb.AddTorque(new Vector3(randX, randY, randZ) * spinForce, ForceMode.Impulse);
         }
     }
 
+    private void SetToFloatingState()
+    {
+        rb.useGravity = false;
+        isFloating = true;
+        isPunched = false;
+    }
 
+    private int GetNumberOnDie()
+    {
+        if (diceFaces == null) throw new System.Exception("Dice needs dice face transforms");
+
+        var topFace = 0;
+        var lastYPosition = diceFaces[0].position.y;
+
+        for (int i = 0; i < diceFaces.Count; i++)
+        {
+            if (diceFaces[i].position.y > lastYPosition)
+            {
+                lastYPosition = diceFaces[i].position.y;
+                topFace = i;
+            }
+        }
+
+        topFace++; // to make dice value 1-indexed
+        OnDiceRollValue?.Invoke(topFace);
+        return topFace;
+    }
 }
