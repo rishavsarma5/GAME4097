@@ -124,7 +124,6 @@ public class NPCInteract : MonoBehaviour
 
     public void PlayDialogueForQuestion(int question)
     {
-        Debug.Log("func called");
         currQuestion = question;
         lineIndex = 0;
         dialogueTextBox.text = string.Empty;

@@ -28,10 +28,10 @@ public class DiceRolling : MonoBehaviour
     private bool isFloating = true;
     private Transform startTransform;
     private Vector3 startPos;
-    private bool isPunched = false;
+    [SerializeField] private bool isPunched = false;
     private Coroutine floatingCoroutine;
 
-    public UnityEvent<int> OnDiceRollValue;
+    public static UnityEvent<int> OnDiceRollValue;
 
     // Start is called before the first frame update
     void Start()
@@ -59,7 +59,7 @@ public class DiceRolling : MonoBehaviour
             punchCanvas.SetActive(true);
             SetToFloatingState();
             this.transform.Rotate(-90f, 0, 0);
-            this.transform.position = startTransform.position;
+            this.transform.position = startPos;
         }
     }
 
@@ -70,9 +70,10 @@ public class DiceRolling : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("got to on trigger enter");
-        if (!isPunched && other.CompareTag("PlayerHand"))
+        
+        if (!isPunched && (other.CompareTag("PlayerHand") || other.gameObject.layer == LayerMask.NameToLayer("Player")))
         {
+            Debug.Log("got to on trigger enter");
             // Stop floating when punched
             if (floatingCoroutine != null)
             {
@@ -85,7 +86,7 @@ public class DiceRolling : MonoBehaviour
 
             punchCanvas.SetActive(false);
 
-            Vector3 punchDir = (other.transform.position - this.transform.position).normalized;
+            Vector3 punchDir = (this.transform.position - other.transform.position).normalized;
             rb.AddForce(punchDir * punchForce, ForceMode.Impulse);
 
             float randX = Random.Range(0f, 1f);
@@ -98,8 +99,8 @@ public class DiceRolling : MonoBehaviour
     private void SetToFloatingState()
     {
         rb.useGravity = false;
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+        //rb.velocity = Vector3.zero;
+        //rb.angularVelocity = Vector3.zero;
         isFloating = true;
         isPunched = false;
 

@@ -22,6 +22,16 @@ public class TeleportDistanceManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        DiceRolling.OnDiceRollValue.AddListener(CreateTeleportDistanceBox);
+    }
+
+    private void OnDestroy()
+    {
+        DiceRolling.OnDiceRollValue.RemoveListener(CreateTeleportDistanceBox);
+    }
+
     public void CreateTeleportDistanceBox(int diceRollValue)
     {
         size = diceRollValue;
