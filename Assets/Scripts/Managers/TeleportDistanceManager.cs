@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class TeleportDistanceManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class TeleportDistanceManager : MonoBehaviour
     [SerializeField] private int size;
     [SerializeField] private Transform playerPosition;
     [SerializeField] private GameObject diceMovementBoxPrefab;
+    [SerializeField] private List<GameObject> dice;
 
     private void Awake()
     {
@@ -24,16 +26,26 @@ public class TeleportDistanceManager : MonoBehaviour
 
     private void Start()
     {
-        DiceRolling.OnDiceRollValue.AddListener(CreateTeleportDistanceBox);
+        dice = GameObject.FindGameObjectsWithTag("Dice").ToList();
+
+        foreach (GameObject die in dice)
+        {
+            die.GetComponentInChildren<DiceRolling>().OnDiceRollValue.AddListener(CreateTeleportDistanceBox);
+        }
+        
     }
 
     private void OnDestroy()
     {
-        DiceRolling.OnDiceRollValue.RemoveListener(CreateTeleportDistanceBox);
+        foreach (GameObject die in dice)
+        {
+            die.GetComponentInChildren<DiceRolling>().OnDiceRollValue.RemoveListener(CreateTeleportDistanceBox);
+        }
     }
 
     public void CreateTeleportDistanceBox(int diceRollValue)
     {
+        Debug.Log($"teleport box size: {diceRollValue}");
         size = diceRollValue;
         GameObject distanceBox = Instantiate(diceMovementBoxPrefab, playerPosition.position, Quaternion.identity);
         distanceBox.transform.localScale *= size;

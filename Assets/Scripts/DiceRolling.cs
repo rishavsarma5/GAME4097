@@ -31,7 +31,7 @@ public class DiceRolling : MonoBehaviour
     [SerializeField] private bool isPunched = false;
     private Coroutine floatingCoroutine;
 
-    public static UnityEvent<int> OnDiceRollValue;
+    public UnityEvent<int> OnDiceRollValue;
 
     // Start is called before the first frame update
     void Start()
@@ -57,9 +57,9 @@ public class DiceRolling : MonoBehaviour
             int diceValue = GetNumberOnDie();
             punchText.text = $"Dice roll: {diceValue}";
             punchCanvas.SetActive(true);
-            SetToFloatingState();
             this.transform.Rotate(-90f, 0, 0);
             this.transform.position = startPos;
+            SetToFloatingState();
         }
     }
 

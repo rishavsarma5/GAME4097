@@ -11,6 +11,7 @@ public class DiceMovementTriggerHandler : MonoBehaviour
     {
         if (other.CompareTag("MovementDistanceBox"))
         {
+            Debug.Log("trigger for teleport anchors hit!");
             teleportationAnchor.enabled = true;
             particleSystemParent.SetActive(true);
         }

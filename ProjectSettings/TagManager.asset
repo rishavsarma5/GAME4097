@@ -14,6 +14,7 @@ TagManager:
   - Clue2Interactable
   - Clue3Interactable
   - MovementDistanceBox
+  - Dice
   layers:
   - Default
   - TransparentFX
