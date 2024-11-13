@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: FireExtinguisher
   m_EditorClassIdentifier: 
   weaponName: Fire Extinguisher
+  icon: {fileID: 21300000, guid: db3e7b7c8db355e499429545071a0321, type: 3}
   relatedNPC: {fileID: 0}
-  weaponPrefab: {fileID: 1364962506366644541, guid: 8882c4d25ad3841448d48e58a2eb62ae, type: 3}
-  spawnLocation: {fileID: 5338382005520904128, guid: 9e61afbfe7b93a64694e6d13ef36bf65, type: 3}
   isFound: 0
   weaponFoundText: Weird location for a fire extinguisher. Didn't you see this in
     the same room Mr. Jupiter died in!

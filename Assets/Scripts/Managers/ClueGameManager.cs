@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class ClueGameManager : MonoBehaviour
@@ -31,6 +32,8 @@ public class ClueGameManager : MonoBehaviour
     [Space(10)]
     [SerializeField] private int numWeaponsToSpawn = 2;
     [SerializeField] private bool actionCompleted = false;
+
+	public NotepadUI inventoryNotepad;
 
     private void Awake()
     {
@@ -67,7 +70,10 @@ public class ClueGameManager : MonoBehaviour
             // get the second clue of the related NPC for found Clue 1
             foundClues.Add(clue);
             clue.isFound = true;
-            Clue clue2 = clue.relatedNPC.clues[1];
+
+			inventoryNotepad.AddClue(clue);
+
+			Clue clue2 = clue.relatedNPC.clues[1];
 
             // if second clue is actually a clue 2
             if (secondClues.Contains(clue2))
@@ -119,6 +125,7 @@ public class ClueGameManager : MonoBehaviour
     {
         foundWeapons.Add(weapon);
         weapon.isFound = true;
+		inventoryNotepad.AddWeapon(weapon);
     }
 
     public void InitializeStartingWeapons()
