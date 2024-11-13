@@ -9,6 +9,11 @@ public class EndTurnMenu : MonoBehaviour
 
     public void OnEndTurnPressed()
     {
+        if (GameStateManager.Instance.IsPlayerInsideRoom())
+        {
+            FloatingTextSpawner.Instance.SpawnFloatingTextWithTimedDestroy("Have to be outside a room to end turn", 3f);
+            return;
+        }
         endTurnPressed = true;
     }
 

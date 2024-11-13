@@ -16,6 +16,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private EndTurnMenu endTurnMenu;
     [SerializeField] private TextMeshProUGUI numTurnsText;
     [SerializeField] private Transform player1SuspectSelectLocation;
+    [SerializeField] private bool playerInsideRoom = false;
 
     [SerializeField] private Camera mainCamera;
     [SerializeField] private int numTurnsInGame = 5;
@@ -179,6 +180,16 @@ public class GameStateManager : MonoBehaviour
 		FindObjectOfType<SuspectGuessUI>().setUp(weaponsList);
 
 		player.transform.position = player1SuspectSelectLocation.position;
+    }
+
+    public void SetPlayerInsideRoom(bool inside)
+    {
+        playerInsideRoom = inside;
+    }
+
+    public bool IsPlayerInsideRoom()
+    {
+        return playerInsideRoom;
     }
 }
 
