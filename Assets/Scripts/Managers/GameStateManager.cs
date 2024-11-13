@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject playerDice;
     [SerializeField] private EndTurnMenu endTurnMenu;
+    [SerializeField] private TextMeshProUGUI numTurnsText;
     [SerializeField] private Transform player1SuspectSelectLocation;
 
     [SerializeField] private Camera mainCamera;
@@ -37,7 +39,7 @@ public class GameStateManager : MonoBehaviour
 
         foreach (var tp in allTPs)
         {
-            teleportAnchors.Add(tp.GetComponent<DiceMovementTriggerHandler>());
+            teleportAnchors.Add(tp.GetComponentInChildren<DiceMovementTriggerHandler>());
         }
     }
 
@@ -91,6 +93,7 @@ public class GameStateManager : MonoBehaviour
         }
 
         endTurnMenu.ResetEndTurn();
+        numTurnsText.text = $"Num Turns: {numTurnsInGame}";
 
         UpdateGameState(GameState.MovementDiceRolling);
     }
@@ -103,13 +106,13 @@ public class GameStateManager : MonoBehaviour
 
         TeleportDistanceManager.Instance.diceMovementStageActive = true;
         StartCoroutine(WaitForTeleportDistanceBoxesToSpawn());
-        UpdateGameState(GameState.Exploration);
     }
 
     private IEnumerator WaitForTeleportDistanceBoxesToSpawn()
     {
         yield return new WaitUntil(() => TeleportDistanceManager.Instance.GetAllBoxesSpawned());
-
+        TeleportDistanceManager.Instance.ResetTeleportDistanceManager();
+        UpdateGameState(GameState.Exploration);
     }
 
     private void HandleExploration()
@@ -135,8 +138,6 @@ public class GameStateManager : MonoBehaviour
         {
             FloatingTextSpawner.Instance.SpawnFloatingText("Transitioning to suspect select stage...");
             StartCoroutine(PauseBeforeSuspectSelection());
-
-            UpdateGameState(GameState.SuspectSelection);
         } else
         {
             // reset all teleport anchors to be deactive
@@ -147,11 +148,14 @@ public class GameStateManager : MonoBehaviour
 
             // reset end of turn button
             endTurnMenu.ResetEndTurn();
+            numTurnsText.text = $"Num Turns: {numTurnsInGame}";
 
+            /*
             // move all npcs and reset interactions
             NPCManager.Instance.MoveNPCsToNewWaypoint();
             StartCoroutine(WaitForNPCFinishMoving());
             NPCManager.Instance.ResetAllNPCInteractionDistances();
+            */
 
             UpdateGameState(GameState.MovementDiceRolling);
         }
@@ -160,6 +164,7 @@ public class GameStateManager : MonoBehaviour
     private IEnumerator PauseBeforeSuspectSelection()
     {
         yield return new WaitForSeconds(2f);
+        UpdateGameState(GameState.SuspectSelection);
     }
 
     private IEnumerator WaitForNPCFinishMoving()

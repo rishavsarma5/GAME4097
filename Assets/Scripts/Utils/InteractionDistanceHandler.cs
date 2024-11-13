@@ -19,6 +19,8 @@ public class InteractionDistanceHandler : MonoBehaviour
         {
             Debug.LogError("Grab Interactable needs to be specified if using it");
         }
+
+        TurnOffInteractable();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,10 +30,10 @@ public class InteractionDistanceHandler : MonoBehaviour
             Debug.Log("trigger for npc hit!");
             if (useSimpleInteractable)
             {
-                simpleInteractable.gameObject.SetActive(true);
+                simpleInteractable.enabled = true;
             } else
             {
-                grabInteractable.gameObject.SetActive(true);
+                grabInteractable.enabled = true;
             }
             
         }
@@ -41,11 +43,11 @@ public class InteractionDistanceHandler : MonoBehaviour
     {
         if (useSimpleInteractable)
         {
-            simpleInteractable.gameObject.SetActive(false);
+            simpleInteractable.enabled = false;
         }
         else
         {
-            grabInteractable.gameObject.SetActive(false);
+            grabInteractable.enabled = false;
         }
     }
 }

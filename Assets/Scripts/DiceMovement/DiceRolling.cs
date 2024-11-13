@@ -66,6 +66,7 @@ public class DiceRolling : MonoBehaviour
         {
             int diceValue = GetNumberOnDie();
             punchText.text = $"Dice roll: {diceValue}";
+            Debug.Log($"Dice rolled a {diceValue}");
             punchCanvas.SetActive(true);
             this.transform.Rotate(-90f, 0, 0);
             this.transform.position = startPos;

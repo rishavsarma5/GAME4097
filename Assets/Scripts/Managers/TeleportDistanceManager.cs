@@ -15,6 +15,7 @@ public class TeleportDistanceManager : MonoBehaviour
     [SerializeField] private List<GameObject> dice;
     private List<bool> allRollsCompleted;
     private bool allBoxesSpawned = false;
+    private bool coroutineRunning = false;
     
     private void Awake()
     {
@@ -38,21 +39,18 @@ public class TeleportDistanceManager : MonoBehaviour
         {
             die.GetComponentInChildren<DiceRolling>().OnDiceRollValue.AddListener(CreateTeleportDistanceBox);
         }
+
+        allBoxesSpawned = false;
     }
 
     private void Update()
     {
-        if (diceMovementStageActive)
+        if (diceMovementStageActive && !coroutineRunning)
         {
-            StartCoroutine(WaitUntilAllDiceValuesGenerated());
-            allBoxesSpawned = false;
-            diceMovementStageActive = false;
+            coroutineRunning = true; 
+            allRollsCompleted = new List<bool>(new bool[dice.Count]); // reset all rolls completed to false
 
-            foreach(GameObject die in dice)
-            {
-                die.GetComponent<DiceRolling>().ResetText();
-                die.SetActive(false);
-            }
+            StartCoroutine(WaitUntilAllDiceValuesGenerated());
         }   
     }
 
@@ -60,8 +58,22 @@ public class TeleportDistanceManager : MonoBehaviour
     {
         yield return new WaitUntil(() => allRollsCompleted.All(completed => completed));
 
+        Debug.Log("Finished dice rolls");
         allBoxesSpawned = true;
+        coroutineRunning = false;
         Debug.Log($"All {dice.Count} Teleport Boxes Spawned!");
+    }
+
+    public void ResetTeleportDistanceManager()
+    {
+        allBoxesSpawned = false;
+        diceMovementStageActive = false;
+
+        foreach (GameObject die in dice)
+        {
+            die.GetComponentInChildren<DiceRolling>().ResetText();
+            die.SetActive(false);
+        }
     }
 
 
