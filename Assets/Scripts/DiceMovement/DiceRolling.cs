@@ -31,6 +31,7 @@ public class DiceRolling : MonoBehaviour
     [SerializeField] [TextArea] string punchTextDescription = "Punch me for movement rolling!";
 
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private BoxCollider boxCollider;
     private bool isFloating = true;
     private Vector3 startPos;
     [SerializeField] private int dicePlayerIndex = -1;
@@ -44,15 +45,20 @@ public class DiceRolling : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        boxCollider = GetComponent<BoxCollider>();
 
         if (dicePlayerIndex == -1)
         {
             Debug.LogError("Create unique index variable for dicePlayerIndex");
         }
         punchText.text = punchTextDescription;
+
+    }
+
+    private void OnEnable()
+    {
         // set default to floating state
         SetToFloatingState();
-
     }
 
     private void OnDestroy()
@@ -78,20 +84,19 @@ public class DiceRolling : MonoBehaviour
 
         if (IsDiceGrounded())
         {
+            Debug.Log("got to dice settled state");
             int diceValue = GetNumberOnDie();
             punchText.text = $"Dice roll: {diceValue}";
             Debug.Log($"Dice rolled a {diceValue}");
             punchCanvas.SetActive(true);
-            //this.transform.Rotate(-90f, 0, 0);
             this.transform.position = startPos;
-            SetToFloatingState();
-
+            boxCollider.enabled = false;
             // Rotate the dice so that the top face points toward the player
             AlignTopFaceTowardPlayer(diceValue);
-
+            ResetDiceState();
             yield return new WaitForSeconds(showDiceResultWaitTime);
-
             OnDiceRollValue?.Invoke(dicePlayerIndex, diceValue);
+            boxCollider.enabled = true;
         }
         else
         {
@@ -104,9 +109,10 @@ public class DiceRolling : MonoBehaviour
         Transform topFace = diceFaces[topFaceIndex - 1]; // Adjust for 0-based index
 
         Vector3 playerDirection = (playerTransform.position - transform.position).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(playerDirection, -topFace.forward);
 
         // Rotate the dice so that the top face points toward the player
-        transform.rotation = Quaternion.LookRotation(-topFace.up, playerDirection);
+        transform.rotation = targetRotation;
     }
 
     private bool HasDiceStoppedRolling()
@@ -125,7 +131,6 @@ public class DiceRolling : MonoBehaviour
         
         if (!isPunched && (other.CompareTag("PlayerHand") || other.gameObject.layer == LayerMask.NameToLayer("Player")))
         {
-            Debug.Log("got to on trigger enter");
             // Stop floating when punched
             if (floatingCoroutine != null)
             {
@@ -153,8 +158,8 @@ public class DiceRolling : MonoBehaviour
     private void SetToFloatingState()
     {
         rb.useGravity = false;
-        //rb.velocity = Vector3.zero;
-        //rb.angularVelocity = Vector3.zero;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         isFloating = true;
         isPunched = false;
 
@@ -162,6 +167,17 @@ public class DiceRolling : MonoBehaviour
 
         // Start the floating coroutine
         floatingCoroutine = StartCoroutine(FloatEffect());
+    }
+
+    private void ResetDiceState()
+    {
+        rb.useGravity = false;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        isFloating = true;
+        isPunched = false;
+
+        startPos = this.transform.position;
     }
 
     private IEnumerator FloatEffect()

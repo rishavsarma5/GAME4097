@@ -102,7 +102,9 @@ public class GameStateManager : MonoBehaviour
     private void HandleDiceRolling()
     {
         Debug.Log("Entered Dice Rolling State");
-        // spawn dices on player locations
+        // spawn dices on player location in a space that isn't obstructed
+
+
         playerDice.SetActive(true);
 
         TeleportDistanceManager.Instance.diceMovementStageActive = true;
