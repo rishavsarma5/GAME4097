@@ -5,6 +5,7 @@ using UnityEngine;
 public class ClueController : MonoBehaviour
 {
     public Clue clue;
+	//public GameObject simplifiedGameObject;
 
     public void OnClue1Grabbed()
     {
@@ -18,6 +19,6 @@ public class ClueController : MonoBehaviour
 
     public void OnClue3Grabbed()
     {
-        ClueGameManager.Instance.OnClue2Found(clue);
+        ClueGameManager.Instance.OnClue3Found(clue);
     }
 }

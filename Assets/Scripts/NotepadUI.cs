@@ -1,30 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NotepadUI : MonoBehaviour
 {
 	public GameObject[] RowCollection;
 
-	private GameObject[][] InventorySpaces;
+	private InventorySpace[][] InventorySpaces;
+
+	public GameObject inventoryPage;
+	public GameObject itemPage;
 
 
-    void Start()
-    {
-		GameObject[] itemsList;
+	void Awake()
+	{
+		inventoryPage.SetActive(true);
+		itemPage.SetActive(false);
+		InventorySpaces = new InventorySpace[RowCollection.Length][];
+		InventorySpace[] itemsList;
 		for (int row = 0; row < RowCollection.Length; row++)
 		{
-			itemsList = RowCollection[row].GetComponentsInChildren<GameObject>();
+			InventorySpaces[row] = new InventorySpace[3];
+			itemsList = RowCollection[row].GetComponentsInChildren<InventorySpace>();
 			for (int item = 0; item < 3; item++)
 			{
 				InventorySpaces[row][item] = itemsList[item];
 			}
 		}
-    }
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public void AddClue(Clue clue)
+	{
+		for (int row = 0; row < RowCollection.Length; row++)
+		{
+			for (int space = 0; space < 2; space++)
+			{
+				if (InventorySpaces[row][space].fillWithClue(clue))
+				{
+					return;
+				}
+			}
+		}
+	}
+
+	public void AddWeapon(Weapon weapon)
+	{
+		for (int row = 0; row < RowCollection.Length; row++)
+		{
+			if (InventorySpaces[row][2].fillWithWeapon(weapon))
+			{
+				return;
+			}
+		}
+	}
+
+	public void goToItemPage(Clue clue)
+	{
+		inventoryPage.SetActive(false);
+		itemPage.SetActive(true);
+	}
+
+	public void goToItemPage(Weapon weapon)
+	{
+		inventoryPage.SetActive(false);
+		itemPage.SetActive(true);
+	}
+
 }
