@@ -229,7 +229,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Punch me for movement rolling! (Work in Progress)
+  m_text: Punch me for movement rolling!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -615,6 +615,7 @@ MonoBehaviour:
   punchForce: 50
   spinForce: 2
   stopThreshold: 0.01
+  isPunched: 0
   diceFaces:
   - {fileID: 812066973265560731}
   - {fileID: 239653623882498462}
@@ -624,5 +625,9 @@ MonoBehaviour:
   - {fileID: 6538471850346049642}
   punchCanvas: {fileID: 2714882192397737256}
   punchText: {fileID: 7786497364536470311}
+  punchTextDescription: Punch me for movement rolling!
   rb: {fileID: 3568921105802515992}
-  isPunched: 0
+  dicePlayerIndex: 0
+  OnDiceRollValue:
+    m_PersistentCalls:
+      m_Calls: []

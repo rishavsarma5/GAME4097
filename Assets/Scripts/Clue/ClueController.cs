@@ -16,9 +16,4 @@ public class ClueController : MonoBehaviour
     {
         ClueGameManager.Instance.OnClue2Found(clue);
     }
-
-    public void OnClue3Grabbed()
-    {
-        ClueGameManager.Instance.OnClue3Found(clue);
-    }
 }

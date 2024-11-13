@@ -100,7 +100,7 @@ public class ClueGameManager : MonoBehaviour
             //secondClues.Remove(clue);
             foundClues.Add(clue);
             clue.isFound = true;
-            StartCoroutine(TransitionToSuspectSelect());
+            //StartCoroutine(TransitionToSuspectSelect());
             /*
             Clue clue3 = clue.relatedNPC.clues[2];
             if (secondClues.Contains(clue3))

@@ -40,14 +40,6 @@ public class TeleportDistanceManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        foreach (GameObject die in dice)
-        {
-            die.GetComponentInChildren<DiceRolling>().OnDiceRollValue.RemoveListener(CreateTeleportDistanceBox);
-        }
-    }
-
     private void Update()
     {
         if (diceMovementStageActive)

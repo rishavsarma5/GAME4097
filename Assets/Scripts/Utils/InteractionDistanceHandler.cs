@@ -1,14 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class InteractionDistanceHandler : MonoBehaviour
 {
-    [SerializeField] BoxCollider _interactionCollider;
+    [SerializeField] XRGrabInteractable grabInteractable;
+    [SerializeField] XRSimpleInteractable simpleInteractable;
+
+    [SerializeField] private bool useSimpleInteractable = true;
 
     private void Start()
     {
-        BoxCollider _interactionCollider = GetComponent<BoxCollider>();
+        if (simpleInteractable == null && useSimpleInteractable)
+        {
+            Debug.LogError("Simple Interactable needs to be specified if using it");
+        } else if (grabInteractable == null && !useSimpleInteractable)
+        {
+            Debug.LogError("Grab Interactable needs to be specified if using it");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -16,12 +26,26 @@ public class InteractionDistanceHandler : MonoBehaviour
         if (other.CompareTag("MovementDistanceBox"))
         {
             Debug.Log("trigger for npc hit!");
-            _interactionCollider.gameObject.SetActive(true);
+            if (useSimpleInteractable)
+            {
+                simpleInteractable.gameObject.SetActive(true);
+            } else
+            {
+                grabInteractable.gameObject.SetActive(true);
+            }
+            
         }
     }
 
-    public void TurnOffCollider()
+    public void TurnOffInteractable()
     {
-        _interactionCollider.gameObject.SetActive(false);
+        if (useSimpleInteractable)
+        {
+            simpleInteractable.gameObject.SetActive(false);
+        }
+        else
+        {
+            grabInteractable.gameObject.SetActive(false);
+        }
     }
 }

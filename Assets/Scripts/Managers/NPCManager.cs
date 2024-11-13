@@ -7,8 +7,8 @@ public class NPCManager : MonoBehaviour
     public static NPCManager Instance;
 
     [SerializeField] List<GameObject> npcs;
-    private List<InteractionDistanceHandler> nPCInteractionDistances;
-    private List<NPCController> nPCController;
+    private List<InteractionDistanceHandler> nPCInteractionDistances = new();
+    private List<NPCController> nPCController = new();
 
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class NPCManager : MonoBehaviour
         foreach(GameObject npc in npcs)
         {
             nPCInteractionDistances.Add(npc.GetComponent<InteractionDistanceHandler>());
-            nPCController.Add(npc.GetComponent<NPCController>());
+            //nPCController.Add(npc.GetComponent<NPCController>());
         }
     }
 
@@ -61,7 +61,7 @@ public class NPCManager : MonoBehaviour
     {
         foreach(var interact in nPCInteractionDistances)
         {
-            interact.TurnOffCollider();
+            interact.TurnOffInteractable();
         }
     }
 }

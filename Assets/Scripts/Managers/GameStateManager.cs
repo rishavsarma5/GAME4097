@@ -8,15 +8,17 @@ public class GameStateManager : MonoBehaviour
     public static GameStateManager Instance;
 
     public GameState currentState;
+
+    [Header("Player Specific Values Needed")]
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject playerDice;
-    [SerializeField] private Camera mainCamera;
-
+    [SerializeField] private EndTurnMenu endTurnMenu;
     [SerializeField] private Transform player1SuspectSelectLocation;
 
+    [SerializeField] private Camera mainCamera;
     [SerializeField] private int numTurnsInGame = 5;
 
-    [SerializeField] private List<DiceMovementTriggerHandler> teleportAnchors;
+    [SerializeField] private List<DiceMovementTriggerHandler> teleportAnchors = new();
 
     //public static event Action<GameState> onGameStateChanged;
 
@@ -29,17 +31,18 @@ public class GameStateManager : MonoBehaviour
         {
             throw new System.Exception("Can't be two Game State Managers!");
         }
+
+
+        var allTPs = GameObject.FindGameObjectsWithTag("TeleportAnchor");
+
+        foreach (var tp in allTPs)
+        {
+            teleportAnchors.Add(tp.GetComponent<DiceMovementTriggerHandler>());
+        }
     }
 
     private void Start()
     {
-        var allTPs = GameObject.FindGameObjectsWithTag("TeleportAnchor");
-
-        foreach(var tp in allTPs)
-        {
-            teleportAnchors.Add(tp.GetComponent<DiceMovementTriggerHandler>());
-        }
-
         UpdateGameState(GameState.InitializeGame);
         //player = GameObject.FindGameObjectWithTag("Player") as GameObject;
     }
@@ -87,6 +90,8 @@ public class GameStateManager : MonoBehaviour
             tp.ResetTeleportAnchor();
         }
 
+        endTurnMenu.ResetEndTurn();
+
         UpdateGameState(GameState.MovementDiceRolling);
     }
 
@@ -111,14 +116,13 @@ public class GameStateManager : MonoBehaviour
     {
         Debug.Log("Entered Exploration State");
         FloatingTextSpawner.Instance.SpawnFloatingText("Visit rooms to search for clues/weapons or talk to NPCs in range.");
-
-        StartCoroutine(WaitForMeaningfulAction());
+        endTurnMenu.TurnOnCanvas();
+        StartCoroutine(WaitForEndTurnPress());
     }
 
-    private IEnumerator WaitForMeaningfulAction()
+    private IEnumerator WaitForEndTurnPress()
     {
-        yield return new WaitUntil(() => ClueGameManager.Instance.GetActionCompleted());
-        ClueGameManager.Instance.ResetActionCompleted();
+        yield return new WaitUntil(() => endTurnMenu.GetEndTurnPressed());
         UpdateGameState(GameState.EndRoundUpdates);
     }
 
@@ -140,6 +144,9 @@ public class GameStateManager : MonoBehaviour
             {
                 tp.ResetTeleportAnchor();
             }
+
+            // reset end of turn button
+            endTurnMenu.ResetEndTurn();
 
             // move all npcs and reset interactions
             NPCManager.Instance.MoveNPCsToNewWaypoint();

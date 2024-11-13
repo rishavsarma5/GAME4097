@@ -51,11 +51,12 @@ public class DiceRolling : MonoBehaviour
 
     }
 
-    private void OnEnable()
+    private void OnDestroy()
     {
-        // reset to floating state when enabled
-        //SetToFloatingState();
-        //this.transform.SetPositionAndRotation(startTransform.position, startTransform.rotation);
+        if (TeleportDistanceManager.Instance != null)
+        {
+            OnDiceRollValue.RemoveListener(TeleportDistanceManager.Instance.CreateTeleportDistanceBox);
+        }
     }
 
     // Update is called once per frame
@@ -71,6 +72,7 @@ public class DiceRolling : MonoBehaviour
             SetToFloatingState();
         }
     }
+
 
     private bool HasDiceStoppedRolling()
     {
