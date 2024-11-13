@@ -7,11 +7,15 @@ public class TeleportDistanceManager : MonoBehaviour
 {
     public static TeleportDistanceManager Instance;
 
+    public bool diceMovementStageActive = false;
+
     [SerializeField] private int size;
     [SerializeField] private Transform playerPosition;
     [SerializeField] private GameObject diceMovementBoxPrefab;
     [SerializeField] private List<GameObject> dice;
-
+    private List<bool> allRollsCompleted;
+    private bool allBoxesSpawned = false;
+    
     private void Awake()
     {
         if (!Instance)
@@ -28,11 +32,12 @@ public class TeleportDistanceManager : MonoBehaviour
     {
         dice = GameObject.FindGameObjectsWithTag("Dice").ToList();
 
+        allRollsCompleted = new List<bool>(new bool[dice.Count]);
+
         foreach (GameObject die in dice)
         {
             die.GetComponentInChildren<DiceRolling>().OnDiceRollValue.AddListener(CreateTeleportDistanceBox);
         }
-        
     }
 
     private void OnDestroy()
@@ -43,12 +48,49 @@ public class TeleportDistanceManager : MonoBehaviour
         }
     }
 
-    public void CreateTeleportDistanceBox(int diceRollValue)
+    private void Update()
+    {
+        if (diceMovementStageActive)
+        {
+            StartCoroutine(WaitUntilAllDiceValuesGenerated());
+            allBoxesSpawned = false;
+            diceMovementStageActive = false;
+
+            foreach(GameObject die in dice)
+            {
+                die.GetComponent<DiceRolling>().ResetText();
+                die.SetActive(false);
+            }
+        }   
+    }
+
+    private IEnumerator WaitUntilAllDiceValuesGenerated()
+    {
+        yield return new WaitUntil(() => allRollsCompleted.All(completed => completed));
+
+        allBoxesSpawned = true;
+        Debug.Log($"All {dice.Count} Teleport Boxes Spawned!");
+    }
+
+
+
+    public void CreateTeleportDistanceBox(int dicePlayerIndex, int diceRollValue)
     {
         Debug.Log($"teleport box size: {diceRollValue}");
         size = diceRollValue;
         GameObject distanceBox = Instantiate(diceMovementBoxPrefab, playerPosition.position, Quaternion.identity);
-        distanceBox.transform.localScale *= size;
+        distanceBox.transform.localScale *= size * 2;
         Destroy(distanceBox, 0.5f);
+
+        // sets roll completed for current dice
+        if (dicePlayerIndex >= 0 && dicePlayerIndex < allRollsCompleted.Count)
+        {
+            allRollsCompleted[dicePlayerIndex] = true;
+        }
+    }
+
+    public bool GetAllBoxesSpawned()
+    {
+        return allBoxesSpawned;
     }
 }

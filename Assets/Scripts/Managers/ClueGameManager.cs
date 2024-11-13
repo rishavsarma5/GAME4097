@@ -12,8 +12,6 @@ public class ClueGameManager : MonoBehaviour
     [SerializeField] private List<GameObject> firstClueGameObjects;
     public List<Clue> secondClues;
     [SerializeField] private List<GameObject> secondClueGameObjects;
-    public List<Clue> thirdClues;
-    [SerializeField] private List<GameObject> thirdClueGameObjects;
     public List<Weapon> initialWeapons;
     [SerializeField] private List<GameObject> weaponGameObjects;
 
@@ -50,8 +48,6 @@ public class ClueGameManager : MonoBehaviour
         //Debug.Log($"{firstClueGameObjects.Count} First Clue Objects found!");
         secondClueGameObjects = GameObject.FindGameObjectsWithTag("Clue2Interactable").ToList();
         //Debug.Log($"{secondClueGameObjects.Count} Second Clue Objects found!");
-        thirdClueGameObjects = GameObject.FindGameObjectsWithTag("Clue3Interactable").ToList();
-        //Debug.Log($"{thirdClueGameObjects.Count} Third Clue Objects found!");
         weaponGameObjects = GameObject.FindGameObjectsWithTag("WeaponInteractable").ToList();
         //Debug.Log($"{weaponGameObjects.Count} Weapon Objects found!");
 
@@ -61,12 +57,6 @@ public class ClueGameManager : MonoBehaviour
     void Start()
     {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void OnClue1Found(Clue clue)
@@ -122,20 +112,6 @@ public class ClueGameManager : MonoBehaviour
         else
         {
             throw new System.Exception("this clue is not a second clue");
-        }
-    }
-
-    public void OnClue3Found(Clue clue)
-    {
-        if (thirdClues.Contains(clue))
-        {
-            //thirdClues.Remove(clue);
-            foundClues.Add(clue);
-            clue.isFound = true;
-        }
-        else
-        {
-            throw new System.Exception("this clue is not a third clue");
         }
     }
 
@@ -206,11 +182,6 @@ public class ClueGameManager : MonoBehaviour
         foreach (GameObject clue2 in secondClueGameObjects)
         {
             listOfClues.Add(clue2.GetComponent<ClueController>().clue, clue2);
-        }
-
-        foreach (GameObject clue3 in thirdClueGameObjects)
-        {
-            listOfClues.Add(clue3.GetComponent<ClueController>().clue, clue3);
         }
     }
 

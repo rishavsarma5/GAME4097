@@ -18,4 +18,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a25edb2f93624974e8195517bb01fbd1, type: 2}
   - {fileID: 11400000, guid: a62e123d02bb7274288a913a9a3dbf14, type: 2}
   npcInteractInfo: {fileID: 11400000, guid: ccd8bef6b357ebe40afd4ab5e38e8b20, type: 2}
-  pathingWaypoints: []
+  pathingWaypoints:
+  - {fileID: 0}

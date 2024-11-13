@@ -9,9 +9,14 @@ public class GameStateManager : MonoBehaviour
 
     public GameState currentState;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject playerDice;
     [SerializeField] private Camera mainCamera;
 
     [SerializeField] private Transform player1SuspectSelectLocation;
+
+    [SerializeField] private int numTurnsInGame = 5;
+
+    [SerializeField] private List<DiceMovementTriggerHandler> teleportAnchors;
 
     //public static event Action<GameState> onGameStateChanged;
 
@@ -28,9 +33,16 @@ public class GameStateManager : MonoBehaviour
 
     private void Start()
     {
+        var allTPs = GameObject.FindGameObjectsWithTag("TeleportAnchor");
+
+        foreach(var tp in allTPs)
+        {
+            teleportAnchors.Add(tp.GetComponent<DiceMovementTriggerHandler>());
+        }
+
         UpdateGameState(GameState.InitializeGame);
-		//player = GameObject.FindGameObjectWithTag("Player") as GameObject;
-	}
+        //player = GameObject.FindGameObjectWithTag("Player") as GameObject;
+    }
 
     public void UpdateGameState(GameState newState)
     {
@@ -66,22 +78,40 @@ public class GameStateManager : MonoBehaviour
 
     private void HandleInitializeGame()
     {
+        Debug.Log("Entered Initialize Game State");
         ClueGameManager.Instance.InitializeAllFirstClues();
         ClueGameManager.Instance.InitializeStartingWeapons();
+
+        foreach(var tp in teleportAnchors)
+        {
+            tp.ResetTeleportAnchor();
+        }
 
         UpdateGameState(GameState.MovementDiceRolling);
     }
 
     private void HandleDiceRolling()
     {
-        
+        Debug.Log("Entered Dice Rolling State");
+        // spawn dices on player locations
+        playerDice.SetActive(true);
 
+        TeleportDistanceManager.Instance.diceMovementStageActive = true;
+        StartCoroutine(WaitForTeleportDistanceBoxesToSpawn());
         UpdateGameState(GameState.Exploration);
+    }
+
+    private IEnumerator WaitForTeleportDistanceBoxesToSpawn()
+    {
+        yield return new WaitUntil(() => TeleportDistanceManager.Instance.GetAllBoxesSpawned());
+
     }
 
     private void HandleExploration()
     {
-        //FloatingTextSpawner.Instance.SpawnFloatingText("debug text");
+        Debug.Log("Entered Exploration State");
+        FloatingTextSpawner.Instance.SpawnFloatingText("Visit rooms to search for clues/weapons or talk to NPCs in range.");
+
         StartCoroutine(WaitForMeaningfulAction());
     }
 
@@ -94,18 +124,49 @@ public class GameStateManager : MonoBehaviour
 
     private void HandleEndOfRoundUpdates()
     {
-        UpdateGameState(GameState.SuspectSelection);
+        Debug.Log("Entered End of Round State");
+        numTurnsInGame--;
+
+        if (numTurnsInGame <= 0)
+        {
+            FloatingTextSpawner.Instance.SpawnFloatingText("Transitioning to suspect select stage...");
+            StartCoroutine(PauseBeforeSuspectSelection());
+
+            UpdateGameState(GameState.SuspectSelection);
+        } else
+        {
+            // reset all teleport anchors to be deactive
+            foreach (var tp in teleportAnchors)
+            {
+                tp.ResetTeleportAnchor();
+            }
+
+            // move all npcs and reset interactions
+            NPCManager.Instance.MoveNPCsToNewWaypoint();
+            StartCoroutine(WaitForNPCFinishMoving());
+            NPCManager.Instance.ResetAllNPCInteractionDistances();
+
+            UpdateGameState(GameState.MovementDiceRolling);
+        }
+    }
+
+    private IEnumerator PauseBeforeSuspectSelection()
+    {
+        yield return new WaitForSeconds(2f);
+    }
+
+    private IEnumerator WaitForNPCFinishMoving()
+    {
+        yield return new WaitUntil(() => NPCManager.Instance.GetAllNPCSFinishedMoving());
     }
 
     private void HandleSuspectSelection()
     {
-		List<Weapon> weaponsList = ClueGameManager.Instance.foundWeapons;
+        Debug.Log("Entered Suspect Seleection State");
+        List<Weapon> weaponsList = ClueGameManager.Instance.foundWeapons;
 		FindObjectOfType<SuspectGuessUI>().setUp(weaponsList);
 
 		player.transform.position = player1SuspectSelectLocation.position;
-
-        // create selection ui popup
-        Debug.Log("got to suspect selection");
     }
 }
 

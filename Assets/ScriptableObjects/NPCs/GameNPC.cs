@@ -9,5 +9,4 @@ public class GameNPC : ScriptableObject
     public Weapon weapon;
     public List<Clue> clues;
     public NPCInteractable npcInteractInfo;
-    public List<Transform> pathingWaypoints;
 }
