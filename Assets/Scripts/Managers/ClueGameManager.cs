@@ -140,6 +140,7 @@ public class ClueGameManager : MonoBehaviour
             GameObject weaponToSpawn = weaponGameObjects[i];
             weaponToSpawn.SetActive(true);
             Weapon weaponSO = weaponToSpawn.GetComponent<WeaponController>().weapon;
+            weaponSO.isFound = false;
             listOfWeapons.Add(weaponSO, weaponToSpawn);
             activeWeapons.Add(weaponToSpawn);
             Debug.Log($"Weapon {weaponSO.weaponName} spawned.");
@@ -182,12 +183,16 @@ public class ClueGameManager : MonoBehaviour
     {
         foreach (GameObject clue1 in firstClueGameObjects)
         {
-            listOfClues.Add(clue1.GetComponent<ClueController>().clue, clue1);
+            Clue clueSO = clue1.GetComponent<ClueController>().clue;
+            clueSO.isFound = false;
+            listOfClues.Add(clueSO, clue1);
         }
 
         foreach (GameObject clue2 in secondClueGameObjects)
         {
-            listOfClues.Add(clue2.GetComponent<ClueController>().clue, clue2);
+            Clue clueSO = clue2.GetComponent<ClueController>().clue;
+            clueSO.isFound = false;
+            listOfClues.Add(clueSO, clue2);
         }
     }
 

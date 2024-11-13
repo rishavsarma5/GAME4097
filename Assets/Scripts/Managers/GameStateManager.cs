@@ -12,7 +12,7 @@ public class GameStateManager : MonoBehaviour
 
     [Header("Player Specific Values Needed")]
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject playerDice;
+    [SerializeField] private GameObject diceController;
     [SerializeField] private EndTurnMenu endTurnMenu;
     [SerializeField] private TextMeshProUGUI numTurnsText;
     [SerializeField] private Transform player1SuspectSelectLocation;
@@ -102,10 +102,10 @@ public class GameStateManager : MonoBehaviour
     private void HandleDiceRolling()
     {
         Debug.Log("Entered Dice Rolling State");
-        // spawn dices on player location in a space that isn't obstructed
 
-
-        playerDice.SetActive(true);
+        // set up dice controller
+        diceController.SetActive(true);
+        FloatingTextSpawner.Instance.SpawnFloatingTextWithTimedDestroy("Press L Trigger To Confirm Location or X to undo Location Lock", 5f);
 
         TeleportDistanceManager.Instance.diceMovementStageActive = true;
         StartCoroutine(WaitForTeleportDistanceBoxesToSpawn());
@@ -121,7 +121,7 @@ public class GameStateManager : MonoBehaviour
     private void HandleExploration()
     {
         Debug.Log("Entered Exploration State");
-        FloatingTextSpawner.Instance.SpawnFloatingText("Visit rooms to search for clues/weapons or talk to NPCs in range.");
+        FloatingTextSpawner.Instance.SpawnFloatingTextWithTimedDestroy("Visit rooms to search for clues/weapons or talk to NPCs in range.", 5f);
         endTurnMenu.TurnOnCanvas();
         StartCoroutine(WaitForEndTurnPress());
     }
@@ -139,7 +139,7 @@ public class GameStateManager : MonoBehaviour
 
         if (numTurnsInGame <= 0)
         {
-            FloatingTextSpawner.Instance.SpawnFloatingText("Transitioning to suspect select stage...");
+            FloatingTextSpawner.Instance.SpawnFloatingTextWithTimedDestroy("Transitioning to suspect select stage...", 5f);
             StartCoroutine(PauseBeforeSuspectSelection());
         } else
         {
@@ -177,7 +177,8 @@ public class GameStateManager : MonoBehaviour
 
     private void HandleSuspectSelection()
     {
-        Debug.Log("Entered Suspect Seleection State");
+        Debug.Log("Entered Suspect Selection State");
+        endTurnMenu.ResetEndTurn();
         List<Weapon> weaponsList = ClueGameManager.Instance.foundWeapons;
 		FindObjectOfType<SuspectGuessUI>().setUp(weaponsList);
 

@@ -35,6 +35,8 @@ public class DiceRolling : MonoBehaviour
     private bool isFloating = true;
     private Vector3 startPos;
     [SerializeField] private int dicePlayerIndex = -1;
+
+    [SerializeField] private DiceController diceController;
     
 
     private Coroutine floatingCoroutine;
@@ -218,5 +220,10 @@ public class DiceRolling : MonoBehaviour
     public void ResetText()
     {
         punchText.text = punchTextDescription;
+    }
+
+    public void SetupDiceForController()
+    {
+        rb.useGravity = false;
     }
 }
