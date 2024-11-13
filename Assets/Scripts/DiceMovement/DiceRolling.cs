@@ -7,6 +7,8 @@ using TMPro;
 
 public class DiceRolling : MonoBehaviour
 {
+    [SerializeField] private Transform playerTransform;
+
     [Header("Float Components")]
     [SerializeField] float floatSpeed = 1.0f;
     [SerializeField] float floatAmplitude = 0.5f;
@@ -17,6 +19,8 @@ public class DiceRolling : MonoBehaviour
     [SerializeField] private float spinForce = 2f;
     [SerializeField] float stopThreshold = 0.01f;
     [SerializeField] private bool isPunched = false;
+    [SerializeField] private float groundCheckDistance = 0.1f;
+    [SerializeField] private float showDiceResultWaitTime = 2.0f;
 
     [Header("Dice Faces")]
     [SerializeField] private List<Transform> diceFaces;
@@ -62,22 +66,58 @@ public class DiceRolling : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isPunched && HasDiceStoppedRolling())
+        if (isPunched && HasDiceStoppedRolling() && IsDiceGrounded())
+        {
+            StartCoroutine(WaitForDiceToSettle());
+        }
+    }
+
+    private IEnumerator WaitForDiceToSettle()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        if (IsDiceGrounded())
         {
             int diceValue = GetNumberOnDie();
             punchText.text = $"Dice roll: {diceValue}";
             Debug.Log($"Dice rolled a {diceValue}");
             punchCanvas.SetActive(true);
-            this.transform.Rotate(-90f, 0, 0);
+            //this.transform.Rotate(-90f, 0, 0);
             this.transform.position = startPos;
             SetToFloatingState();
+
+            // Rotate the dice so that the top face points toward the player
+            AlignTopFaceTowardPlayer(diceValue);
+
+            yield return new WaitForSeconds(showDiceResultWaitTime);
+
+            OnDiceRollValue?.Invoke(dicePlayerIndex, diceValue);
+        }
+        else
+        {
+            Debug.Log("Dice is not grounded yet.");
         }
     }
 
+    private void AlignTopFaceTowardPlayer(int topFaceIndex)
+    {
+        Transform topFace = diceFaces[topFaceIndex - 1]; // Adjust for 0-based index
+
+        Vector3 playerDirection = (playerTransform.position - transform.position).normalized;
+
+        // Rotate the dice so that the top face points toward the player
+        transform.rotation = Quaternion.LookRotation(-topFace.up, playerDirection);
+    }
 
     private bool HasDiceStoppedRolling()
     {
         return rb.velocity.magnitude < stopThreshold && rb.angularVelocity.magnitude < stopThreshold;
+    }
+
+    private bool IsDiceGrounded()
+    {
+        RaycastHit hit;
+        return Physics.Raycast(transform.position - new Vector3(0, 0.1f, 0), Vector3.down, out hit, groundCheckDistance);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -101,10 +141,12 @@ public class DiceRolling : MonoBehaviour
             Vector3 punchDir = (this.transform.position - other.transform.position).normalized;
             rb.AddForce(punchDir * punchForce, ForceMode.Impulse);
 
+            
             float randX = Random.Range(0f, 1f);
             float randY = Random.Range(0f, 1f);
             float randZ = Random.Range(0f, 1f);
             rb.AddTorque(new Vector3(randX, randY, randZ) * spinForce, ForceMode.Impulse);
+            
         }
     }
 
@@ -149,7 +191,6 @@ public class DiceRolling : MonoBehaviour
         }
 
         topFace++; // to make dice value 1-indexed
-        OnDiceRollValue?.Invoke(dicePlayerIndex, topFace);
         return topFace;
     }
 
