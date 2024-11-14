@@ -36,9 +36,6 @@ public class DiceRolling : MonoBehaviour
     private Vector3 startPos;
     [SerializeField] private int dicePlayerIndex = -1;
 
-    [SerializeField] private DiceController diceController;
-    
-
     private Coroutine floatingCoroutine;
 
     public UnityEvent<int, int> OnDiceRollValue;

@@ -8,6 +8,7 @@ public class DiceController : MonoBehaviour
     [SerializeField] private GameObject dice;
     [SerializeField] private GameObject diceTextCanvas;
     [SerializeField] private float moveDiceSpeed = 2f;
+    [SerializeField] private float moveCameraSpeed = 0.5f;
 
     [SerializeField] private Transform cameraTransform;
 
@@ -67,7 +68,7 @@ public class DiceController : MonoBehaviour
         {
             // Move dice horizontally based on the camera's left-right direction
             Vector3 targetPosition = cameraTransform.position + cameraTransform.forward * 1.5f;
-            targetPosition += cameraTransform.right * Mathf.Sin(Time.time * moveDiceSpeed) * 0.5f;
+            targetPosition += cameraTransform.right * Mathf.Sin(Time.time * moveCameraSpeed) * 0.5f;
             this.transform.position = new Vector3(targetPosition.x, this.transform.position.y, targetPosition.z);
             this.transform.LookAt(cameraTransform);
             //transform.LookAt(cameraTransform);
