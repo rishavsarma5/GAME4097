@@ -34,6 +34,18 @@ public class FloatingTextSpawner : MonoBehaviour
         Debug.Log($"floating text spawned at {textObject.transform.position}");
     }
 
+    public GameObject SpawnFloatingTextAndReturnGameObject(string text)
+    {
+        GameObject textObject = Instantiate(floatingTextPrefab);
+
+        textObject.GetComponent<FloatingTextController>().textField.text = text;
+
+        textObject.transform.position = playerTransform.position + playerTransform.TransformDirection(offset);
+        Debug.Log($"floating text spawned at {textObject.transform.position}");
+
+        return textObject;
+    }
+
     public void SpawnFloatingTextWithTimedDestroy(string text, float destroyTimer)
     {
         GameObject textObject = Instantiate(floatingTextPrefab);

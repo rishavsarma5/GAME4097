@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c121df8ac1033324bb723198c94d9798, type: 3}
+  m_Name: CassandraVenusNPCInfo
+  m_EditorClassIdentifier: 
+  promptCanvasHeaderText: What do you want?
+  dialoguePrompts:
+  - textLines:
+    - Robert and I were old business partners.
+    - No no not for his current company. A different one. An old one.
+    - That's now gone under...
+  - textLines:
+    - In his study
+    - So no. Not where he was murdered.
+  - textLines:
+    - I don't know what you are trying to prove here.
+    - I know my rights.
+    - I ain't going to say anything that would incriminate me.
+    - Talk to my lawyers.
+  hasPlayed: 0

@@ -5,26 +5,20 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     public Weapon weapon;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private GameObject descriptionTextObject;
 
     public void OnWeaponGrabbed()
     {
         ClueGameManager.Instance.OnWeaponFound(weapon);
     }
 
-    public void SpawnFloatingText()
+    public void SpawnWeaponDescriptionText()
     {
-        FloatingTextSpawner.Instance.SpawnFloatingText(weapon.weaponFoundText);
+        descriptionTextObject = FloatingTextSpawner.Instance.SpawnFloatingTextAndReturnGameObject(weapon.weaponFoundText);
+    }
+
+    public void DestroyWeaponDescriptionText()
+    {
+        Destroy(descriptionTextObject);
     }
 }

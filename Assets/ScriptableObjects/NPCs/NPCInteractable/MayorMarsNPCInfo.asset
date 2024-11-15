@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c121df8ac1033324bb723198c94d9798, type: 3}
+  m_Name: MayorMarsNPCInfo
+  m_EditorClassIdentifier: 
+  promptCanvasHeaderText: What would you like to ask your honorable mayor?
+  dialoguePrompts:
+  - textLines:
+    - Robert and I have had an ongoing professional relationship for many years now.
+    - He was running for mayor in this upcoming election.
+    - I would say he was a competitive rival of sorts who I had the upmost respect
+      for.
+  - textLines:
+    - Why I was in the study 'miring his collection.
+    - He and I... shared many interests I have found.
+  - textLines:
+    - I-I love to play golf with my sponsors.
+    - So did Robert!
+    - That's just a coincidence.
+  hasPlayed: 0
