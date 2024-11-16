@@ -63,7 +63,12 @@ public class ClueGameManager : MonoBehaviour
 		menuButton.action.started += ToggleMenu;
     }
 
-	void ToggleMenu(InputAction.CallbackContext context)
+    private void OnDestroy()
+    {
+        menuButton.action.started -= ToggleMenu;
+    }
+
+    void ToggleMenu(InputAction.CallbackContext context)
 	{
 		inventoryNotepad.gameObject.SetActive(!inventoryNotepad.gameObject.activeSelf);
 	}

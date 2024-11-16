@@ -54,6 +54,7 @@ public class NPCInteract : MonoBehaviour
         npcNameText.text = npcInfo.npcName;
         npcPromptCanvas.SetActive(false);
         npcDialogueCanvas.SetActive(false);
+        promptHeaderCoroutine = null;
     }
 
     private void OnDestroy()
@@ -85,6 +86,8 @@ public class NPCInteract : MonoBehaviour
             npcNameText.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
+
+        promptHeaderCoroutine = null;
     }
 
     public void ExitHoverPromptChange()
@@ -93,9 +96,8 @@ public class NPCInteract : MonoBehaviour
         {
             StopCoroutine(promptHeaderCoroutine);
             promptHeaderCoroutine = null;
-            npcNameText.text = String.Empty;
-            npcNameText.fontSize = 30;
         }
+        npcNameText.fontSize = 30;
         npcNameText.text = npcInfo.npcName;
     }
 
