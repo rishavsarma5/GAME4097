@@ -19,10 +19,7 @@ public class InventorySpace : MonoBehaviour
 
 	public Type type;
 
-
 	private bool filled;
-
-	//private GameObject item;
 
 	private Clue clueInfo;
 	private Weapon weaponInfo;

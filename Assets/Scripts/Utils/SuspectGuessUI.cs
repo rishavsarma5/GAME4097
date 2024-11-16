@@ -8,24 +8,29 @@ public class SuspectGuessUI : MonoBehaviour
 	public GameObject suspectPanel;
 	public GameObject weaponPanel;
 	public GameObject spoonButton;
-	public GameObject fireButton;
+	public GameObject golfButton;
+	public GameObject dartButton;
 
 	public GameObject winPanel;
 	public GameObject partialWinPanel;
 	public GameObject partialLossPanel;
 	public GameObject lossPanel;
 
-	private int suspectGuess;
-	private int weaponGuess;
+	private int suspectGuess = 0;
+	private int weaponGuess = 0;
+
+	private List<int> foundWeapons;
 
 	private void Start() {
+		foundWeapons = new List<int>();
 		suspectPanel.SetActive(true);
 		suspectGuess = 0;
 		weaponGuess = 0;
 
 		weaponPanel.SetActive(true);
 		spoonButton.SetActive(false);
-		fireButton.SetActive(false);
+		golfButton.SetActive(false);
+		dartButton.SetActive(false);
 
 
 		winPanel.SetActive(false);
@@ -41,23 +46,26 @@ public class SuspectGuessUI : MonoBehaviour
 			if (w.weaponName.Equals("Bar Spoon"))
 			{
 				spoonButton.SetActive(true);
-			} else if (w.weaponName.Equals("Fire Extinguisher"))
+				foundWeapons.Add(1);
+
+			} 
+			else if (w.weaponName.Equals("Poison Dart"))
 			{
-				fireButton.SetActive(true);
+				dartButton.SetActive(true);
+				foundWeapons.Add(2);
+			} 
+			else if (w.weaponName.Equals("Golf Club"))
+			{
+				golfButton.SetActive(true);
+				foundWeapons.Add(3);
 			}
 			weaponPanel.SetActive(false);
 		}
 	}
 
-	public void suspectChoice(Boolean correct)
+	public void suspectChoice(int characterNum)
 	{
-		if (correct)
-		{
-			this.suspectGuess = 1;
-		} else
-		{
-			this.suspectGuess = -1;
-		}
+		this.suspectGuess = characterNum;
 	}
 
 	public void continueToWeapon()
@@ -69,34 +77,24 @@ public class SuspectGuessUI : MonoBehaviour
 		}
 	}
 
-	public void weaponChoice(Boolean correct)
+	public void weaponChoice(int characterNum)
 	{
-		if (correct)
-		{
-			this.weaponGuess = 1;
-		}
-		else
-		{
-			this.weaponGuess = -1;
-		}
+		this.weaponGuess = characterNum;
 	}
 
 	public void endScreen()
 	{
-		if (suspectGuess == 1 &&  weaponGuess == 1)
-		{
-			winPanel.SetActive(true);
-		}
-		if (suspectGuess == 1 && weaponGuess == -1) { 
-			partialWinPanel.SetActive(true);
-		}
-		if (suspectGuess == -1 && weaponGuess == 1)
-		{
-			partialLossPanel.SetActive(true);
-		}
-		if (suspectGuess == -1 && weaponGuess == -1)
-		{
-			lossPanel.SetActive(true);
-		}
+			if (suspectGuess == weaponGuess)
+			{
+				winPanel.SetActive(true);
+			}
+			else if (foundWeapons.Contains(suspectGuess))
+			{
+				partialWinPanel.SetActive(true);
+			}
+			else
+			{
+				lossPanel.SetActive(true);
+			}
 	}
 }

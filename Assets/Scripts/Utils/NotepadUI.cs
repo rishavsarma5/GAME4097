@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,6 +13,10 @@ public class NotepadUI : MonoBehaviour
 	public GameObject inventoryPage;
 	public GameObject itemPage;
 
+	public AudioClip newItemSound;
+	public AudioClip clickSound;
+
+	private List<string> clueAndWeaponList;
 
 	void Awake()
 	{
@@ -32,13 +37,18 @@ public class NotepadUI : MonoBehaviour
 
 	public void AddClue(Clue clue)
 	{
-		for (int row = 0; row < RowCollection.Length; row++)
+		if (!clueAndWeaponList.Contains(clue.name))
 		{
-			for (int space = 0; space < 2; space++)
+			for (int row = 0; row < RowCollection.Length; row++)
 			{
-				if (InventorySpaces[row][space].fillWithClue(clue))
+				for (int space = 0; space < 2; space++)
 				{
-					return;
+					if (InventorySpaces[row][space].fillWithClue(clue))
+					{
+						AudioSource.PlayClipAtPoint(newItemSound, Camera.main.transform.position);
+						clueAndWeaponList.Add(clue.name);
+						return;
+					}
 				}
 			}
 		}
@@ -46,25 +56,38 @@ public class NotepadUI : MonoBehaviour
 
 	public void AddWeapon(Weapon weapon)
 	{
-		for (int row = 0; row < RowCollection.Length; row++)
+		if (!clueAndWeaponList.Contains(weapon.name))
 		{
-			if (InventorySpaces[row][2].fillWithWeapon(weapon))
+			for (int row = 0; row < RowCollection.Length; row++)
 			{
-				return;
+				if (InventorySpaces[row][2].fillWithWeapon(weapon))
+				{
+					AudioSource.PlayClipAtPoint(newItemSound, Camera.main.transform.position);
+					clueAndWeaponList.Add(weapon.name);
+					return;
+				}
 			}
 		}
 	}
 
 	public void goToItemPage(Clue clue)
 	{
+		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
 		inventoryPage.SetActive(false);
 		itemPage.SetActive(true);
 	}
 
 	public void goToItemPage(Weapon weapon)
 	{
+		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
 		inventoryPage.SetActive(false);
 		itemPage.SetActive(true);
 	}
 
+	public void goToInvPage()
+	{
+		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
+		itemPage.SetActive(false);
+		inventoryPage.SetActive(true);
+	}
 }
