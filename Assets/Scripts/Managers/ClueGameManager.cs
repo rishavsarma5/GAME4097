@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ClueGameManager : MonoBehaviour
 {
@@ -33,8 +34,9 @@ public class ClueGameManager : MonoBehaviour
     [SerializeField] private bool actionCompleted = false;
 
 	public NotepadUI inventoryNotepad;
+	public InputActionReference menuButton;
 
-    private void Awake()
+	private void Awake()
     {
         if (!Instance)
         {
@@ -55,13 +57,20 @@ public class ClueGameManager : MonoBehaviour
 
         AddAllCluesToDict();
     }
+
     // Start is called before the first frame update
     void Start()
     {
+		menuButton.action.started += ToggleMenu;
+	}
 
-    }
+	void ToggleMenu(InputAction.CallbackContext context)
+	{
+		inventoryNotepad.gameObject.SetActive(!inventoryNotepad.gameObject.activeSelf);
+	}
 
-    public void OnClue1Found(Clue clue)
+
+	public void OnClue1Found(Clue clue)
     {
         // if clue found is actually a clue 1
         if (firstClues.Contains(clue))

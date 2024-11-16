@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class NotepadUI : MonoBehaviour
 {
@@ -12,9 +13,16 @@ public class NotepadUI : MonoBehaviour
 	public GameObject inventoryPage;
 	public GameObject itemPage;
 
+	private List<Clue> ClueList;
+	private List<Weapon> WeaponList;
+
+	public InputActionReference menuButton;
+
 
 	void Awake()
 	{
+		ClueList = new List<Clue>();
+		WeaponList = new List<Weapon>();
 		inventoryPage.SetActive(true);
 		itemPage.SetActive(false);
 		InventorySpaces = new InventorySpace[RowCollection.Length][];
@@ -30,15 +38,24 @@ public class NotepadUI : MonoBehaviour
 		}
 	}
 
+	private void Start()
+	{
+		menuButton += ToggleMenu;
+	}
+
 	public void AddClue(Clue clue)
 	{
-		for (int row = 0; row < RowCollection.Length; row++)
+		if (!ClueList.Contains(clue))
 		{
-			for (int space = 0; space < 2; space++)
+			for (int row = 0; row < RowCollection.Length; row++)
 			{
-				if (InventorySpaces[row][space].fillWithClue(clue))
+				for (int space = 0; space < 2; space++)
 				{
-					return;
+					if (InventorySpaces[row][space].fillWithClue(clue))
+					{
+						ClueList.Add(clue);
+						return;
+					}
 				}
 			}
 		}
@@ -46,11 +63,15 @@ public class NotepadUI : MonoBehaviour
 
 	public void AddWeapon(Weapon weapon)
 	{
-		for (int row = 0; row < RowCollection.Length; row++)
+		if (!WeaponList.Contains(weapon))
 		{
-			if (InventorySpaces[row][2].fillWithWeapon(weapon))
+			for (int row = 0; row < RowCollection.Length; row++)
 			{
-				return;
+				if (InventorySpaces[row][2].fillWithWeapon(weapon))
+				{
+					WeaponList.Add(weapon);
+					return;
+				}
 			}
 		}
 	}
@@ -66,5 +87,19 @@ public class NotepadUI : MonoBehaviour
 		inventoryPage.SetActive(false);
 		itemPage.SetActive(true);
 	}
+
+	public void goToInventoryPage()
+	{
+		itemPage.SetActive(false);
+		inventoryPage.SetActive(true);
+	}
+
+
+	void ToggleMenu(InputAction.CallbackContext context)
+	{
+
+	}
+
+
 
 }
