@@ -39,6 +39,8 @@ public class NPCInteract : MonoBehaviour
     private int lineIndex = 0;
     private int currQuestion = -1;
 
+    private Coroutine promptHeaderCoroutine;
+
     private void Awake()
     {
         continueActionRef.action.started += UpdateDialogueText;
@@ -65,6 +67,36 @@ public class NPCInteract : MonoBehaviour
     {
         dialogueTextBox.text = string.Empty;
         lineIndex = 0;
+    }
+
+    public void OnHoverPromptChange()
+    {
+        if (promptHeaderCoroutine == null) {
+            npcNameText.text = String.Empty;
+            npcNameText.fontSize = 27;
+            promptHeaderCoroutine = StartCoroutine(DisplayPromptChangeText());
+        }
+    }
+
+    private IEnumerator DisplayPromptChangeText()
+    {
+        foreach (char c in npcInfo.npcInteractInfo.promptCanvasHeaderText.ToCharArray())
+        {
+            npcNameText.text += c;
+            yield return new WaitForSeconds(textSpeed);
+        }
+    }
+
+    public void ExitHoverPromptChange()
+    {
+        if (promptHeaderCoroutine != null)
+        {
+            StopCoroutine(promptHeaderCoroutine);
+            promptHeaderCoroutine = null;
+            npcNameText.text = String.Empty;
+            npcNameText.fontSize = 30;
+        }
+        npcNameText.text = npcInfo.npcName;
     }
 
     public void UpdateSpecialButton()
