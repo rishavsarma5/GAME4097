@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: CS4097_Group8
-  productName: GAME4097_Group8_FinalProject
+  companyName: CS4097_Group7
+  productName: GAME4097_Group7_FinalProject
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -165,7 +165,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.CS4097_Group8.GAME4097_Group8_FinalProject
+    Android: com.CS4097_Group7.GAME4097_Group7_FinalProject
   buildNumber:
     Standalone: 0
     VisionOS: 0
