@@ -54,6 +54,7 @@ public class NPCInteract : MonoBehaviour
         npcNameText.text = npcInfo.npcName;
         npcPromptCanvas.SetActive(false);
         npcDialogueCanvas.SetActive(false);
+        promptHeaderCoroutine = null;
     }
 
     private void OnDestroy()
