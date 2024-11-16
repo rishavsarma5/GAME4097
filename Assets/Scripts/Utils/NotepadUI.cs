@@ -16,6 +16,8 @@ public class NotepadUI : MonoBehaviour
 	public AudioClip newItemSound;
 	public AudioClip clickSound;
 
+	public ItemDisplay itemDisplayPage;
+
 	private List<string> clueAndWeaponList;
 
 	void Awake()
@@ -73,6 +75,7 @@ public class NotepadUI : MonoBehaviour
 	public void goToItemPage(Clue clue)
 	{
 		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
+		itemDisplayPage.Display(clue.description, clue.icon);
 		inventoryPage.SetActive(false);
 		itemPage.SetActive(true);
 	}
@@ -80,6 +83,7 @@ public class NotepadUI : MonoBehaviour
 	public void goToItemPage(Weapon weapon)
 	{
 		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
+		itemDisplayPage.Display(weapon.weaponFoundText, weapon.icon);
 		inventoryPage.SetActive(false);
 		itemPage.SetActive(true);
 	}
