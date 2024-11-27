@@ -2932,7 +2932,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1949671195395142, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       propertyPath: m_Name
-      value: Door_4_White (15)
+      value: Door 2
       objectReference: {fileID: 0}
     - target: {fileID: 4227889827151656, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4724,7 +4724,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1949671195395142, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       propertyPath: m_Name
-      value: Door_4_White (16)
+      value: Door 1
       objectReference: {fileID: 0}
     - target: {fileID: 4227889827151656, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
       propertyPath: m_LocalScale.x
