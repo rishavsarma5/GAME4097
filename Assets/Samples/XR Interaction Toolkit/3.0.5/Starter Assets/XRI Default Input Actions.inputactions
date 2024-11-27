@@ -479,6 +479,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "DiceSpawn",
+                    "type": "Button",
+                    "id": "40a65eaa-3559-4cfe-9683-744a01f0443b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -919,6 +928,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "DiceControllerConfirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b47c2c32-f383-49d1-afba-037bf3ee6624",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DiceSpawn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -7,7 +7,7 @@ using TMPro;
 
 public class DiceRolling : MonoBehaviour
 {
-    [SerializeField] private Transform playerTransform;
+    [SerializeField] private Transform cameraTransform;
 
     [Header("Float Components")]
     [SerializeField] float floatSpeed = 1.0f;
@@ -35,6 +35,7 @@ public class DiceRolling : MonoBehaviour
     private bool isFloating = true;
     private Vector3 startPos;
     [SerializeField] private int dicePlayerIndex = -1;
+    [SerializeField] private DiceController _diceController;
 
     private Coroutine floatingCoroutine;
 
@@ -45,12 +46,23 @@ public class DiceRolling : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
+        cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
 
         if (dicePlayerIndex == -1)
         {
             Debug.LogError("Create unique index variable for dicePlayerIndex");
         }
         punchText.text = punchTextDescription;
+
+        if (_diceController == null)
+        {
+            _diceController = GetComponentInParent<DiceController>();
+        }
+
+        if (rightController == null)
+        {
+            rightController = GameObject.FindGameObjectWithTag("PlayerHand");
+        }
 
     }
 
@@ -95,7 +107,7 @@ public class DiceRolling : MonoBehaviour
             ResetDiceState();
             yield return new WaitForSeconds(showDiceResultWaitTime);
             OnDiceRollValue?.Invoke(dicePlayerIndex, diceValue);
-            boxCollider.enabled = true;
+            _diceController.DestroyDice();
         }
         else
         {
@@ -105,13 +117,22 @@ public class DiceRolling : MonoBehaviour
 
     private void AlignTopFaceTowardPlayer(int topFaceIndex)
     {
+        // restore original dice's rotation
+        transform.rotation = Quaternion.identity;
+
         Transform topFace = diceFaces[topFaceIndex - 1]; // Adjust for 0-based index
 
-        Vector3 playerDirection = (playerTransform.position - transform.position).normalized;
-        Quaternion targetRotation = Quaternion.LookRotation(playerDirection, -topFace.forward);
+        Vector3 playerDirection = (cameraTransform.position - transform.position).normalized;
+
+        // Align dice so the top face points directly up
+        Quaternion topFaceRotation = Quaternion.FromToRotation(topFace.up, Vector3.up);
+        transform.rotation = topFaceRotation * transform.rotation;
+
+        Vector3 forwardDirection = Vector3.ProjectOnPlane(playerDirection, Vector3.up).normalized;
+        Quaternion facePlayerRotation = Quaternion.LookRotation(forwardDirection, Vector3.up);
 
         // Rotate the dice so that the top face points toward the player
-        transform.rotation = targetRotation;
+        transform.rotation = facePlayerRotation * transform.rotation;
     }
 
     private bool HasDiceStoppedRolling()
@@ -212,15 +233,5 @@ public class DiceRolling : MonoBehaviour
     public int GetDicePlayerIndex()
     {
         return dicePlayerIndex;
-    }
-
-    public void ResetText()
-    {
-        punchText.text = punchTextDescription;
-    }
-
-    public void SetupDiceForController()
-    {
-        rb.useGravity = false;
     }
 }

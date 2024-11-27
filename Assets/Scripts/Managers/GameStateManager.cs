@@ -12,7 +12,7 @@ public class GameStateManager : MonoBehaviour
 
     [Header("Player Specific Values Needed")]
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject diceController;
+    [SerializeField] private DiceSpawnManager diceSpawner;
     [SerializeField] private EndTurnMenu endTurnMenu;
     [SerializeField] private TextMeshProUGUI numTurnsText;
     [SerializeField] private Transform player1SuspectSelectLocation;
@@ -37,6 +37,7 @@ public class GameStateManager : MonoBehaviour
 
 
         var allTPs = GameObject.FindGameObjectsWithTag("TeleportAnchor");
+        diceSpawner = GetComponent<DiceSpawnManager>();
 
         foreach (var tp in allTPs)
         {
@@ -103,12 +104,19 @@ public class GameStateManager : MonoBehaviour
     {
         Debug.Log("Entered Dice Rolling State");
 
-        // set up dice controller
-        diceController.SetActive(true);
-        FloatingTextSpawner.Instance.SpawnFloatingTextWithTimedDestroy("Press L Trigger To Confirm Location or X to undo Location Lock", 5f);
+        // enable dice spawn manager
+        diceSpawner.enabled = true;
+
+        FloatingTextSpawner.Instance.SpawnFloatingText("Press L Trigger To Spawn the Dice in Front of You!");
+        StartCoroutine(WaitForPlayerToSpawnDice());
 
         TeleportDistanceManager.Instance.diceMovementStageActive = true;
         StartCoroutine(WaitForTeleportDistanceBoxesToSpawn());
+    }
+
+    private IEnumerator WaitForPlayerToSpawnDice()
+    {
+        yield return new WaitUntil(() => diceSpawner.DiceSpawned());
     }
 
     private IEnumerator WaitForTeleportDistanceBoxesToSpawn()

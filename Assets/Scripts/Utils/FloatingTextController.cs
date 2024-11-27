@@ -7,7 +7,7 @@ using TMPro;
 public class FloatingTextController : MonoBehaviour
 {
     public Transform cameraTransform;
-    public Vector3 offset = new Vector3(0, -0.2f, 0.2f);
+    public Vector3 offset = new Vector3(0, -0.05f, 0.2f);
 
     [SerializeField] InputActionReference closeTextRef;
     public TextMeshProUGUI textField;

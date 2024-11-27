@@ -31,16 +31,7 @@ public class TeleportDistanceManager : MonoBehaviour
 
     private void Start()
     {
-        dice = GameObject.FindGameObjectsWithTag("Dice").ToList();
 
-        allRollsCompleted = new List<bool>(new bool[dice.Count]);
-
-        foreach (GameObject die in dice)
-        {
-            die.GetComponentInChildren<DiceRolling>().OnDiceRollValue.AddListener(CreateTeleportDistanceBox);
-        }
-
-        allBoxesSpawned = false;
     }
 
     private void Update()
@@ -68,15 +59,7 @@ public class TeleportDistanceManager : MonoBehaviour
     {
         allBoxesSpawned = false;
         diceMovementStageActive = false;
-
-        foreach (GameObject die in dice)
-        {
-            die.GetComponentInChildren<DiceRolling>().ResetText();
-            die.SetActive(false);
-        }
     }
-
-
 
     public void CreateTeleportDistanceBox(int dicePlayerIndex, int diceRollValue)
     {
@@ -96,5 +79,14 @@ public class TeleportDistanceManager : MonoBehaviour
     public bool GetAllBoxesSpawned()
     {
         return allBoxesSpawned;
+    }
+
+    public void AddCreatedDice(GameObject spawnedDice)
+    {
+        dice.Add(spawnedDice);
+        allRollsCompleted.Add(false);
+        spawnedDice.GetComponentInChildren<DiceRolling>().OnDiceRollValue.AddListener(CreateTeleportDistanceBox);
+
+        allBoxesSpawned = false;
     }
 }

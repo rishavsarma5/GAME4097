@@ -88,14 +88,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2714882192397737256}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
+  m_LocalRotation: {x: 0, y: -1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.0075000003, y: 0.007500002, z: 0.007500002}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7464191270162962655}
   m_Father: {fileID: 929420002861954062}
-  m_LocalEulerAnglesHint: {x: -270, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -360, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0.35}
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Punch me for movement rolling!
+  m_text: Punch me to get how many spaces you can move!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -400,6 +400,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 929420002861954062}
+  - component: {fileID: 1937755171010407920}
   m_Layer: 0
   m_Name: Dice
   m_TagString: Dice
@@ -424,6 +425,27 @@ Transform:
   - {fileID: 9000439921964389562}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1937755171010407920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7422000473247308028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b36b1372bcb421744b3240a3f23568d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dice: {fileID: 907395613374232380}
+  diceTextCanvas: {fileID: 2714882192397737256}
+  diceText: {fileID: 7786497364536470311}
+  diceMovementText: Use L Joystick to move the dice to a punchable spot. Press L
+    Trigger to confirm Dice Position.
+  moveDiceSpeed: 2
+  cameraTransform: {fileID: 0}
+  LC_JoystickRef: {fileID: 3877662917853032162, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  LC_TriggerRef: {fileID: 6102845611691782862, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &8112896260603028534
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,6 +631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372f0d75bad770c4697839dedbb5e35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 0}
   floatSpeed: 0.1
   floatAmplitude: 0.2
   rightController: {fileID: 0}
@@ -616,6 +639,8 @@ MonoBehaviour:
   spinForce: 2
   stopThreshold: 0.01
   isPunched: 0
+  groundCheckDistance: 0.1
+  showDiceResultWaitTime: 2
   diceFaces:
   - {fileID: 812066973265560731}
   - {fileID: 239653623882498462}
@@ -627,7 +652,14 @@ MonoBehaviour:
   punchText: {fileID: 7786497364536470311}
   punchTextDescription: Punch me for movement rolling!
   rb: {fileID: 3568921105802515992}
+  boxCollider: {fileID: 8464687818388933721}
   dicePlayerIndex: 0
+  _diceController: {fileID: 1937755171010407920}
   OnDiceRollValue:
     m_PersistentCalls:
       m_Calls: []
+--- !u!65 &8464687818388933721 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 4058656200435170185, guid: c7675d177a715e348afc15f0fd5012b2, type: 3}
+  m_PrefabInstance: {fileID: 5560717344813742032}
+  m_PrefabAsset: {fileID: 0}
