@@ -8,13 +8,21 @@ public class LobbyCanvasManager : MonoBehaviour
 {
     [SerializeField] private GameObject lobbyHomeCanvas;
     [SerializeField] private GameObject howToPlayCanvas;
+    [SerializeField] private GameObject creditsCanvas;
+    [SerializeField] private GameObject gameProgressCanvas;
     [SerializeField] private TextMeshProUGUI startGameText;
+    [SerializeField] private TextMeshProUGUI gameProgressText;
     [SerializeField] private string mainMenu = "MainRoom";
+
+    private bool gameStarted = false;
+    private float gameTimer = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
         howToPlayCanvas.SetActive(false);
+        creditsCanvas.SetActive(false);
+        gameProgressCanvas.SetActive(false);
         lobbyHomeCanvas.SetActive(true);
     }
 
@@ -27,6 +35,7 @@ public class LobbyCanvasManager : MonoBehaviour
     public void OnStartGameButtonPressed()
     {
         startGameText.text = "Continue Game";
+        gameStarted = true;
         SceneManager.LoadSceneAsync(mainMenu, LoadSceneMode.Single);
     }
 
@@ -36,9 +45,25 @@ public class LobbyCanvasManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void OnCreditsButtonPressed()
+    {
+        lobbyHomeCanvas.SetActive(false);
+        creditsCanvas.SetActive(true);
+    }
+
+    public void OnGameProgressButtonPressed()
+    {
+        lobbyHomeCanvas.SetActive(false);
+        gameProgressCanvas.SetActive(true);
+
+
+    }
+
     public void OnGoBackButtonPressed()
     {
         howToPlayCanvas.SetActive(false);
+        creditsCanvas.SetActive(false);
+        gameProgressCanvas.SetActive(false);
         lobbyHomeCanvas.SetActive(true);
     }
 }
