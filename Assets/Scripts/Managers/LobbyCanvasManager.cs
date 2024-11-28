@@ -36,6 +36,10 @@ public class LobbyCanvasManager : MonoBehaviour
 
     public void OnQuitButtonPressed()
     {
+        if (GameProgressManager.Instance.gameProgress.gameStarted)
+        {
+            GameProgressManager.Instance.gameProgress.SaveGameProgress();
+        }
         Debug.Log("Quitting Game");
         Application.Quit();
     }

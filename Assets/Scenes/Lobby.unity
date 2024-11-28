@@ -1394,7 +1394,7 @@ MonoBehaviour:
   howToPlayCanvas: {fileID: 761940335}
   creditsCanvas: {fileID: 960083884}
   gameProgressCanvas: {fileID: 1045493118}
-  playGameCanvas: {fileID: 0}
+  playGameCanvas: {fileID: 1361577267}
   gameProgressText: {fileID: 1909874790}
 --- !u!1 &467580916
 GameObject:
