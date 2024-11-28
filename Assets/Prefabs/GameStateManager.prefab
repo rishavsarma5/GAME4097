@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7487341795058761683}
   - component: {fileID: 383667147200282758}
+  - component: {fileID: 5586867930562630633}
   m_Layer: 0
   m_Name: GameStateManager
   m_TagString: Untagged
@@ -45,3 +46,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  player: {fileID: 0}
+  diceSpawner: {fileID: 5586867930562630633}
+  endTurnMenu: {fileID: 0}
+  numTurnsText: {fileID: 0}
+  player1SuspectSelectLocation: {fileID: 0}
+  playerInsideRoom: 0
+  mainCamera: {fileID: 0}
+  numTurnsInGame: 5
+  teleportAnchors: []
+--- !u!114 &5586867930562630633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8733426665173158289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a02a4a6d6f1b245842920b3b189b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diceToSpawn: {fileID: 7422000473247308028, guid: a07e331f83f4f7142b19c7694ae04c75, type: 3}
+  cameraTransform: {fileID: 0}
+  spawnDistance: 1.5
+  LC_TriggerRef: {fileID: 652744566812636931, guid: c348712bda248c246b8c49b3db54643f, type: 3}

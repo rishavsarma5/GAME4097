@@ -30,7 +30,6 @@ public class DiceController : MonoBehaviour
         TeleportDistanceManager.Instance.AddCreatedDice(this.gameObject);
         _diceRollingScript = dice.GetComponent<DiceRolling>();
         _diceRb = dice.GetComponent<Rigidbody>();
-        _diceRollingScript.enabled = false;
     }
 
     // Start is called before the first frame update
@@ -88,7 +87,7 @@ public class DiceController : MonoBehaviour
         else
         {
             ChangeDiceBoxColliderState(true);
-            _diceRollingScript.enabled = true;
+            _diceRollingScript.SetupDiceForRolling();
             diceControllerFinished = true;
         }
     }

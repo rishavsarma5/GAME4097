@@ -47,6 +47,7 @@ public class GameStateManager : MonoBehaviour
 
     private void Start()
     {
+        diceSpawner.enabled = false;
         UpdateGameState(GameState.InitializeGame);
         //player = GameObject.FindGameObjectWithTag("Player") as GameObject;
     }
@@ -105,13 +106,35 @@ public class GameStateManager : MonoBehaviour
         Debug.Log("Entered Dice Rolling State");
 
         // enable dice spawn manager
-        diceSpawner.enabled = true;
+        if (!diceSpawner.isActiveAndEnabled)
+        {
+            diceSpawner.enabled = true;
+        }
 
-        FloatingTextSpawner.Instance.SpawnFloatingText("Press L Trigger To Spawn the Dice in Front of You!");
-        StartCoroutine(WaitForPlayerToSpawnDice());
+        StartCoroutine(HandleDiceRollingSequence());
+    }
 
+    private IEnumerator HandleDiceRollingSequence()
+    {
+        //Wait for the player to spawn in
+        yield return WaitForPlayerToSpawnIn();
+
+        //Show message and wait for dice to be spawned
+        FloatingTextSpawner.Instance.SpawnFloatingTextWithTimedDestroy("Press L Trigger To Spawn the Dice in Front of You!", 5f);
+        yield return WaitForPlayerToSpawnDice();
+
+        Debug.Log("Dice has been spawned.");
+
+        // Wait for teleport distance boxes to spawn
         TeleportDistanceManager.Instance.diceMovementStageActive = true;
-        StartCoroutine(WaitForTeleportDistanceBoxesToSpawn());
+        yield return WaitForTeleportDistanceBoxesToSpawn();
+
+        UpdateGameState(GameState.Exploration);
+    }
+
+    private IEnumerator WaitForPlayerToSpawnIn()
+    {
+        yield return new WaitForSeconds(0.5f);
     }
 
     private IEnumerator WaitForPlayerToSpawnDice()

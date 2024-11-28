@@ -27,6 +27,9 @@ public class TeleportDistanceManager : MonoBehaviour
         {
             throw new System.Exception("Can't be two Teleport Distance Managers!");
         }
+
+        dice = new List<GameObject>();
+        allRollsCompleted = new List<bool>();
     }
 
     private void Start()

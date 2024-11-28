@@ -30,6 +30,7 @@ public class EndTurnMenu : MonoBehaviour
 
     public void TurnOnCanvas()
     {
+        Debug.Log("End Turn Menu TurnedOn");
         turnMenuCanvas.SetActive(true);
     }
 

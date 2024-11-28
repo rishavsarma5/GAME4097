@@ -38,6 +38,7 @@ public class DiceRolling : MonoBehaviour
     [SerializeField] private DiceController _diceController;
 
     private Coroutine floatingCoroutine;
+    private bool isActive = false;
 
     public UnityEvent<int, int> OnDiceRollValue;
 
@@ -52,7 +53,6 @@ public class DiceRolling : MonoBehaviour
         {
             Debug.LogError("Create unique index variable for dicePlayerIndex");
         }
-        punchText.text = punchTextDescription;
 
         if (_diceController == null)
         {
@@ -66,10 +66,12 @@ public class DiceRolling : MonoBehaviour
 
     }
 
-    private void OnEnable()
+    public void SetupDiceForRolling()
     {
         // set default to floating state
         SetToFloatingState();
+        punchText.text = punchTextDescription;
+        isActive = true;
     }
 
     private void OnDestroy()
@@ -83,6 +85,8 @@ public class DiceRolling : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isActive) return;
+
         if (isPunched && HasDiceStoppedRolling() && IsDiceGrounded())
         {
             StartCoroutine(WaitForDiceToSettle());
