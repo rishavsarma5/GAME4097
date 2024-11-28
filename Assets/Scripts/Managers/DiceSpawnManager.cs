@@ -29,7 +29,6 @@ public class DiceSpawnManager : MonoBehaviour
     private void OnDisable()
     {
         LC_TriggerRef.action.started -= LC_TriggerCustomAction;
-        diceSpawned = false;
     }
 
     public void LC_TriggerCustomAction(InputAction.CallbackContext context)

@@ -81,7 +81,16 @@ public class NPCInteract : MonoBehaviour
             promptHeaderCoroutine = StartCoroutine(DisplayPromptChangeText());
         }
 
-        this.transform.LookAt(cameraTransform);
+        Vector3 directionToCamera = cameraTransform.position - transform.position;
+
+        directionToCamera.y = 0f;
+
+        if (directionToCamera.sqrMagnitude > 0.001f)
+        {
+            // Rotate the NPC to look at the camera only on the Y-axis
+            Quaternion targetRotation = Quaternion.LookRotation(directionToCamera);
+            transform.rotation = targetRotation;
+        }
     }
 
     private IEnumerator DisplayPromptChangeText()

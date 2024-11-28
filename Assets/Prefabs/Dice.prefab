@@ -650,7 +650,7 @@ MonoBehaviour:
   - {fileID: 6538471850346049642}
   punchCanvas: {fileID: 2714882192397737256}
   punchText: {fileID: 7786497364536470311}
-  punchTextDescription: Punch me for movement rolling!
+  punchTextDescription: Punch me with the right controller for movement rolling!
   rb: {fileID: 3568921105802515992}
   boxCollider: {fileID: 8464687818388933721}
   dicePlayerIndex: 0

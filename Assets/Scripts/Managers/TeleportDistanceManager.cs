@@ -62,6 +62,9 @@ public class TeleportDistanceManager : MonoBehaviour
     {
         allBoxesSpawned = false;
         diceMovementStageActive = false;
+        allRollsCompleted.Clear();
+        dice.Clear();
+        coroutineRunning = false;
     }
 
     public void CreateTeleportDistanceBox(int dicePlayerIndex, int diceRollValue)
