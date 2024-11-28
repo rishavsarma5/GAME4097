@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 2
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -69,7 +69,7 @@ LightmapSettings:
     m_FinalGather: 0
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 256
-    m_ReflectionCompression: 2
+    m_ReflectionCompression: 0
     m_MixedBakeMode: 2
     m_BakeBackend: 1
     m_PVRSampling: 1
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 143199820}
   - component: {fileID: 143199819}
   m_Layer: 0
-  m_Name: Spruce_Wood_Planks
+  m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241,7 +241,7 @@ Transform:
   m_GameObject: {fileID: 143199817}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.306263, y: -5.6080623, z: 39.503216}
+  m_LocalPosition: {x: -20.306263, y: 0, z: 39.503216}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -267,7 +267,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 3607689808407946855, guid: 3ef24509b04aae74cb72ee466ce725d4, type: 3}
+  - {fileID: 2100000, guid: f5287f575a5b1334bbd04d022d3e930a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 254887048}
   - component: {fileID: 254887047}
   m_Layer: 0
-  m_Name: Warped_Planks
+  m_Name: Sink Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -324,7 +324,7 @@ Transform:
   m_GameObject: {fileID: 254887045}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.306263, y: -5.6080623, z: 39.503216}
+  m_LocalPosition: {x: -20.306263, y: 0.05, z: 35.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -350,7 +350,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5886064264405185235, guid: 3ef24509b04aae74cb72ee466ce725d4, type: 3}
+  - {fileID: 2100000, guid: 8d36e1bce5f91fe4eaf17fef68f7ee90, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 475796951}
   - component: {fileID: 475796950}
   m_Layer: 0
-  m_Name: Pink_Concrete
+  m_Name: White Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -407,11 +407,11 @@ Transform:
   m_GameObject: {fileID: 475796948}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.306263, y: -5.6080623, z: 39.503216}
+  m_LocalPosition: {x: -20.306263, y: 0, z: 39.503216}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1982865818}
+  m_Father: {fileID: 575127667}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &475796950
 MeshRenderer:
@@ -433,7 +433,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2334519270572566062, guid: 3ef24509b04aae74cb72ee466ce725d4, type: 3}
+  - {fileID: 2100000, guid: 99e80950e83258947b5b1810a9cb4ec7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -463,6 +463,39 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475796948}
   m_Mesh: {fileID: 16553137131058354, guid: 3ef24509b04aae74cb72ee466ce725d4, type: 3}
+--- !u!1 &575127666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 575127667}
+  m_Layer: 0
+  m_Name: Floor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &575127667
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575127666}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1805112112}
+  - {fileID: 475796949}
+  m_Father: {fileID: 1982865818}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &784078699
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,7 +508,7 @@ GameObject:
   - component: {fileID: 784078702}
   - component: {fileID: 784078701}
   m_Layer: 0
-  m_Name: Birch_Stairs
+  m_Name: Trim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -490,7 +523,7 @@ Transform:
   m_GameObject: {fileID: 784078699}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.306263, y: -5.6080623, z: 39.503216}
+  m_LocalPosition: {x: -20.306263, y: 0, z: 39.503216}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -516,7 +549,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8233789686358934471, guid: 3ef24509b04aae74cb72ee466ce725d4, type: 3}
+  - {fileID: 2100000, guid: 8d36e1bce5f91fe4eaf17fef68f7ee90, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -558,7 +591,7 @@ GameObject:
   - component: {fileID: 1379026400}
   - component: {fileID: 1379026399}
   m_Layer: 0
-  m_Name: Birch_Slab
+  m_Name: Doorways
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -573,7 +606,7 @@ Transform:
   m_GameObject: {fileID: 1379026397}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.306263, y: -5.6080623, z: 39.503216}
+  m_LocalPosition: {x: -20.306263, y: 0, z: 39.503216}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -599,7 +632,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8233789686358934471, guid: 3ef24509b04aae74cb72ee466ce725d4, type: 3}
+  - {fileID: 2100000, guid: 8d36e1bce5f91fe4eaf17fef68f7ee90, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -641,7 +674,7 @@ GameObject:
   - component: {fileID: 1805112114}
   - component: {fileID: 1805112113}
   m_Layer: 0
-  m_Name: Magenta_Concrete
+  m_Name: Black Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -656,11 +689,11 @@ Transform:
   m_GameObject: {fileID: 1805112111}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.306263, y: -5.6080623, z: 39.503216}
+  m_LocalPosition: {x: -20.306263, y: 0, z: 39.503216}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1982865818}
+  m_Father: {fileID: 575127667}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1805112113
 MeshRenderer:
@@ -682,7 +715,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7369357978860541276, guid: 3ef24509b04aae74cb72ee466ce725d4, type: 3}
+  - {fileID: 2100000, guid: c6717ee79362e9f40a4cfce8aff98a11, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -724,7 +757,7 @@ GameObject:
   - component: {fileID: 1854384055}
   - component: {fileID: 1854384054}
   m_Layer: 0
-  m_Name: Birch_Wood_Planks
+  m_Name: Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -739,7 +772,7 @@ Transform:
   m_GameObject: {fileID: 1854384052}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.306263, y: -5.6080623, z: 39.503216}
+  m_LocalPosition: {x: -20.306263, y: 0, z: 39.503216}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -765,7 +798,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8233789686358934471, guid: 3ef24509b04aae74cb72ee466ce725d4, type: 3}
+  - {fileID: 2100000, guid: 8d36e1bce5f91fe4eaf17fef68f7ee90, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -805,7 +838,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1982865818}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -821,16 +854,15 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1379026398}
   - {fileID: 784078700}
   - {fileID: 1854384053}
-  - {fileID: 1805112112}
-  - {fileID: 475796949}
-  - {fileID: 143199818}
   - {fileID: 254887046}
+  - {fileID: 575127667}
+  - {fileID: 143199818}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2073770580

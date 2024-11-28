@@ -401,13 +401,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62255418}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.31277418, y: -0.6864439, z: 0.27188045, w: 0.597535}
+  m_LocalRotation: {x: 0.12456585, y: -0.74398655, z: 0.10806206, w: 0.647526}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 48.335, y: -101.987, z: -9.043}
+  m_LocalEulerAnglesHint: {x: 18.791, y: -98.386, z: -2.749}
 --- !u!1001 &71718797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1651,7 +1651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 934058151}
   m_Layer: 0
-  m_Name: Clues
+  m_Name: Interact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1707,7 +1707,6 @@ Transform:
   - {fileID: 224931752}
   - {fileID: 1552720791}
   - {fileID: 759586531}
-  - {fileID: 2122092580}
   - {fileID: 1349662474}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8316,15 +8315,15 @@ Transform:
   m_GameObject: {fileID: 2122092579}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8400044, y: 1, z: 2.7400007}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0.16800088, y: 0, z: 0.54800016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 768456509}
   - {fileID: 673768066}
   - {fileID: 216172895}
   - {fileID: 1067826706}
-  m_Father: {fileID: 1006529006}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &553881405587499502
 PrefabInstance:
@@ -8469,5 +8468,6 @@ SceneRoots:
   - {fileID: 1779656597}
   - {fileID: 62255420}
   - {fileID: 1006529006}
+  - {fileID: 2122092580}
   - {fileID: 1759722272}
   - {fileID: 934058151}
