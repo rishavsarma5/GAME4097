@@ -25,35 +25,62 @@ public class GameProgressManager : MonoBehaviour
     void Start()
     {
         gameProgress.startTime = Time.time;
+        gameProgress.SaveStartTime();
     }
 
-    public void SetTotalCluesCount(int clueCount)
+    public void SaveTotalClues(int clueCount)
     {
-        gameProgress.totalCluesCount = clueCount;
+        if (gameProgress.totalCluesCount != clueCount)
+        {
+            gameProgress.SaveTotalClues(clueCount);
+        }
     }
 
-    public void SetTotalCluesFound(int cluesFound)
+    public void SaveFoundClues(int currFoundClues)
     {
-        gameProgress.numCluesFound = cluesFound;
+        if (gameProgress.numCluesFound != currFoundClues)
+        {
+            gameProgress.SaveFoundClues(currFoundClues);
+        }
     }
 
-    public void SetTotalWeaponCount(int weaponCount)
+    public void SaveTotalWeapons(int weaponCount)
     {
-        gameProgress.totalWeaponsCount = weaponCount;
+        if (gameProgress.totalWeaponsCount != weaponCount)
+        {
+            gameProgress.SaveTotalWeapons(weaponCount);
+        }
     }
 
-    public void SetTotalWeaponsFound(int weaponsFound)
+    public void SaveFoundWeapons(int currFoundWeapons)
     {
-        gameProgress.numWeaponsFound = weaponsFound;
+        if (gameProgress.numWeaponsFound != currFoundWeapons)
+        {
+            gameProgress.SaveFoundWeapons(currFoundWeapons);
+        }
     }
 
-    public void SetTotalTurns(int turns)
+    public void SavePlayerPosition(Vector3 currPlayerPos)
     {
-        gameProgress.totalTurns = turns;
+        if (gameProgress.currentPlayerPosition != currPlayerPos)
+        {
+            gameProgress.SavePlayerPosition(currPlayerPos);
+        }
     }
 
-    public void SetNumTurnsPlayed(int turns)
+    public void SaveTotalTurns(int turnCount)
     {
-        gameProgress.numTurnsPlayed = turns;
+        if (gameProgress.totalTurns != turnCount)
+        {
+            gameProgress.SaveTotalTurns(turnCount);
+        }
+    }
+
+    public void SaveTurnsPlayed(int numsTurnsPlayed)
+    {
+        if (gameProgress.numTurnsPlayed != numsTurnsPlayed)
+        {
+            gameProgress.SaveNumTurnsPlayed(numsTurnsPlayed);
+        }
     }
 }

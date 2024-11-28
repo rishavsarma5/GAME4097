@@ -42,6 +42,23 @@ public class PlayGamePanel : MonoBehaviour
     public void OnRestartGameButtonPressed()
     {
         GameProgressManager.Instance.gameProgress.ResetGame();
+        DestroyDontDestroyOnLoadObjects();
         SceneManager.LoadSceneAsync(introCutscene, LoadSceneMode.Single);
+    }
+
+    private void DestroyDontDestroyOnLoadObjects()
+    {
+        // Get the DontDestroyOnLoad scene
+        Scene dontDestroyOnLoadScene = SceneManager.GetSceneByName("DontDestroyOnLoad");
+        if (!dontDestroyOnLoadScene.IsValid()) return;
+
+        // Find all root game objects in the scene
+        GameObject[] rootObjects = dontDestroyOnLoadScene.GetRootGameObjects();
+
+        // Destroy each object
+        foreach (GameObject obj in rootObjects)
+        {
+            Destroy(obj);
+        }
     }
 }

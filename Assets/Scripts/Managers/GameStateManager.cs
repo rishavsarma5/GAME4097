@@ -36,6 +36,15 @@ public class GameStateManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        /*
+        // Load progress if continuing game
+        if (GameProgressManager.Instance.gameProgress.gameStarted)
+        {
+            GameProgressManager.Instance.gameProgress.LoadGameProgress();
+            RestoreGameState();
+        }
+        */
+
         var allTPs = GameObject.FindGameObjectsWithTag("TeleportAnchor");
         diceSpawner = GetComponent<DiceSpawnManager>();
 
@@ -55,6 +64,9 @@ public class GameStateManager : MonoBehaviour
     public void UpdateGameState(GameState newState)
     {
         currentState = newState;
+
+        // Save the game state
+        GameProgressManager.Instance.SavePlayerPosition(player.transform.position);
 
         switch (newState)
         {
@@ -89,6 +101,7 @@ public class GameStateManager : MonoBehaviour
         Debug.Log("Entered Initialize Game State");
         ClueGameManager.Instance.InitializeAllFirstClues();
         ClueGameManager.Instance.InitializeStartingWeapons();
+        ClueGameManager.Instance.SaveInitialization();
 
         foreach(var tp in teleportAnchors)
         {
@@ -97,6 +110,7 @@ public class GameStateManager : MonoBehaviour
 
         endTurnMenu.ResetEndTurn();
         numTurnsText.text = $"Num Turns: {numTurnsInGame}";
+        GameProgressManager.Instance.SaveTotalTurns(numTurnsInGame);
 
         UpdateGameState(GameState.MovementDiceRolling);
     }
@@ -189,6 +203,10 @@ public class GameStateManager : MonoBehaviour
             endTurnMenu.ResetEndTurn();
             numTurnsText.text = $"Num Turns: {numTurnsInGame}";
 
+            // update game progress
+            GameProgressManager.Instance.SaveTurnsPlayed(numTurnsInGame);
+            ClueGameManager.Instance.SaveCluesAndWeaponsFound();
+
             diceSpawner.enabled = false;
 
             /*
@@ -231,6 +249,23 @@ public class GameStateManager : MonoBehaviour
     public bool IsPlayerInsideRoom()
     {
         return playerInsideRoom;
+    }
+
+    private void RestoreGameState()
+    {
+        var gameProgress = GameProgressManager.Instance.gameProgress;
+
+        // Restore player's position
+        player.transform.position = gameProgress.currentPlayerPosition;
+
+        // Restore number of turns
+        numTurnsInGame = gameProgress.numTurnsPlayed;
+
+        // Update current state
+        currentState = (GameState)PlayerPrefs.GetInt("CurrentGameState", (int)GameState.InitializeGame);
+        UpdateGameState(currentState);
+
+        // Restore other elements as necessary
     }
 }
 

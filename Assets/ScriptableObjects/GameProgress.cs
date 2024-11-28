@@ -25,7 +25,14 @@ public class GameProgress : ScriptableObject
         return timeElapsed;
     }
 
-    public void SaveGameProgress()
+    public void SaveStartTime()
+    {
+        PlayerPrefs.SetFloat("TimeStarted", startTime);
+    }
+
+    
+    /*
+    public void SaveAllGameProgress()
     {
         var didGameStart = gameStarted ? 1 : 0;
         PlayerPrefs.SetInt("GameStarted", didGameStart);
@@ -35,6 +42,40 @@ public class GameProgress : ScriptableObject
         SaveClues();
         SaveWeapons();
         SaveTurns();
+    }
+    */
+    
+
+    public void SavePlayerPosition(Vector3 playerPosition)
+    {
+        currentPlayerPosition = playerPosition;
+        PlayerPrefs.SetFloat("PlayerPositionX", playerPosition.x);
+        PlayerPrefs.SetFloat("PlayerPositionY", playerPosition.y);
+        PlayerPrefs.SetFloat("PlayerPositionZ", playerPosition.z);
+    }
+
+    public void LoadGameProgress()
+    {
+        gameStarted = PlayerPrefs.GetInt("GameStarted", 0) == 1;
+        startTime = PlayerPrefs.GetFloat("TimeStarted", 0);
+        timeElapsed = PlayerPrefs.GetFloat("ElapsedTime", 0);
+
+        numCluesFound = PlayerPrefs.GetInt("CluesFound", 0);
+        totalCluesCount = PlayerPrefs.GetInt("TotalClues", 0);
+
+        numWeaponsFound = PlayerPrefs.GetInt("WeaponsFound", 0);
+        totalWeaponsCount = PlayerPrefs.GetInt("TotalWeapons", 0);
+
+        numTurnsPlayed = PlayerPrefs.GetInt("TurnsPlayed", 0);
+        totalTurns = PlayerPrefs.GetInt("TotalTurns", 0);
+
+        // Set default or saved player position
+        currentPlayerPosition = PlayerPrefs.HasKey("PlayerPositionX")
+            ? new Vector3(
+                PlayerPrefs.GetFloat("PlayerPositionX"),
+                PlayerPrefs.GetFloat("PlayerPositionY"),
+                PlayerPrefs.GetFloat("PlayerPositionZ"))
+            : Vector3.zero;
     }
 
     public void ResetGame()
@@ -52,21 +93,39 @@ public class GameProgress : ScriptableObject
         PlayerPrefs.DeleteAll();
     }
 
-    private void SaveClues()
+    public void SaveFoundClues(int currFoundClues)
     {
+        numCluesFound = currFoundClues;
         PlayerPrefs.SetInt("CluesFound", numCluesFound);
+    }
+
+    public void SaveTotalClues(int totalClues)
+    {
+        totalCluesCount = totalClues;
         PlayerPrefs.SetInt("TotalClues", totalCluesCount);
     }
 
-    private void SaveWeapons()
+    public void SaveTotalWeapons(int totalWeapons)
     {
-        PlayerPrefs.SetInt("WeaponsFound", numWeaponsFound);
+        totalWeaponsCount = totalWeapons;
         PlayerPrefs.SetInt("TotalWeapons", totalWeaponsCount);
     }
 
-    private void SaveTurns()
+    public void SaveFoundWeapons(int currFoundWeapons)
     {
+        numWeaponsFound = currFoundWeapons;
+        PlayerPrefs.SetInt("WeaponsFound", numWeaponsFound);
+    }
+
+    public void SaveNumTurnsPlayed(int currNumTurns)
+    {
+        numTurnsPlayed = currNumTurns;
         PlayerPrefs.SetInt("TurnsPlayed", numTurnsPlayed);
+    }
+
+    public void SaveTotalTurns(int turnCount)
+    {
+        totalTurns = turnCount;
         PlayerPrefs.SetInt("TotalTurns", totalTurns);
     }
 }

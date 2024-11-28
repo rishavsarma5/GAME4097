@@ -38,7 +38,7 @@ public class LobbyCanvasManager : MonoBehaviour
     {
         if (GameProgressManager.Instance.gameProgress.gameStarted)
         {
-            GameProgressManager.Instance.gameProgress.SaveGameProgress();
+            //GameProgressManager.Instance.gameProgress.SaveAllGameProgress();
         }
         Debug.Log("Quitting Game");
         Application.Quit();

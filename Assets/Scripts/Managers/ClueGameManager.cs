@@ -170,6 +170,18 @@ public class ClueGameManager : MonoBehaviour
         Debug.Log($"All first clues spawned!");
     }
 
+    public void SaveInitialization()
+    {
+        GameProgressManager.Instance.SaveTotalClues(listOfClues.Count);
+        GameProgressManager.Instance.SaveTotalWeapons(listOfWeapons.Count);
+    }
+
+    public void SaveCluesAndWeaponsFound()
+    {
+        GameProgressManager.Instance.SaveFoundClues(foundClues.Count);
+        GameProgressManager.Instance.SaveFoundWeapons(foundWeapons.Count);
+    }
+
     public void SetActionCompleted()
     {
         actionCompleted = true;
