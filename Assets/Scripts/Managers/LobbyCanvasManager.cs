@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class LobbyCanvasManager : MonoBehaviour
@@ -10,12 +9,8 @@ public class LobbyCanvasManager : MonoBehaviour
     [SerializeField] private GameObject howToPlayCanvas;
     [SerializeField] private GameObject creditsCanvas;
     [SerializeField] private GameObject gameProgressCanvas;
-    [SerializeField] private TextMeshProUGUI startGameText;
+    [SerializeField] private GameObject playGameCanvas;
     [SerializeField] private TextMeshProUGUI gameProgressText;
-    [SerializeField] private string mainMenu = "MainRoom";
-
-    private bool gameStarted = false;
-    private float gameTimer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +18,7 @@ public class LobbyCanvasManager : MonoBehaviour
         howToPlayCanvas.SetActive(false);
         creditsCanvas.SetActive(false);
         gameProgressCanvas.SetActive(false);
+        playGameCanvas.SetActive(false);
         lobbyHomeCanvas.SetActive(true);
     }
 
@@ -32,11 +28,10 @@ public class LobbyCanvasManager : MonoBehaviour
         howToPlayCanvas.SetActive(true);
     }
 
-    public void OnStartGameButtonPressed()
+    public void OnPlayGameButtonPressed()
     {
-        startGameText.text = "Continue Game";
-        gameStarted = true;
-        SceneManager.LoadSceneAsync(mainMenu, LoadSceneMode.Single);
+        lobbyHomeCanvas.SetActive(false);
+        playGameCanvas.SetActive(true);
     }
 
     public void OnQuitButtonPressed()
@@ -55,8 +50,6 @@ public class LobbyCanvasManager : MonoBehaviour
     {
         lobbyHomeCanvas.SetActive(false);
         gameProgressCanvas.SetActive(true);
-
-
     }
 
     public void OnGoBackButtonPressed()
@@ -64,6 +57,7 @@ public class LobbyCanvasManager : MonoBehaviour
         howToPlayCanvas.SetActive(false);
         creditsCanvas.SetActive(false);
         gameProgressCanvas.SetActive(false);
+        playGameCanvas.SetActive(false);
         lobbyHomeCanvas.SetActive(true);
     }
 }
