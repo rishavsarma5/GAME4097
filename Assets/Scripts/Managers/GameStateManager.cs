@@ -123,6 +123,8 @@ public class GameStateManager : MonoBehaviour
         FloatingTextSpawner.Instance.SpawnFloatingTextWithTimedDestroy("Press L Trigger To Spawn the Dice in Front of You!", 5f);
         yield return WaitForPlayerToSpawnDice();
 
+        diceSpawner.ResetDiceSpawner();
+
         Debug.Log("Dice has been spawned.");
 
         // Wait for teleport distance boxes to spawn
@@ -139,7 +141,10 @@ public class GameStateManager : MonoBehaviour
 
     private IEnumerator WaitForPlayerToSpawnDice()
     {
-        yield return new WaitUntil(() => diceSpawner.DiceSpawned());
+        yield return new WaitUntil(() =>
+        {
+            return diceSpawner.DiceSpawned();
+        });
     }
 
     private IEnumerator WaitForTeleportDistanceBoxesToSpawn()
@@ -183,6 +188,8 @@ public class GameStateManager : MonoBehaviour
             // reset end of turn button
             endTurnMenu.ResetEndTurn();
             numTurnsText.text = $"Num Turns: {numTurnsInGame}";
+
+            diceSpawner.enabled = false;
 
             /*
             // move all npcs and reset interactions

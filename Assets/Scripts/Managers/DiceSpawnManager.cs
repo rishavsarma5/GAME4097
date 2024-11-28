@@ -47,12 +47,17 @@ public class DiceSpawnManager : MonoBehaviour
         Instantiate(diceToSpawn, spawnPosition, spawnRotation);
         diceSpawned = true;
         Debug.Log("dice spawned set to true");
-        this.enabled = false;
     }
 
     public bool DiceSpawned()
     {
         return diceSpawned;
+    }
+
+    public void ResetDiceSpawner()
+    {
+        diceSpawned = false;
+        this.enabled = false;
     }
 
 }

@@ -34,6 +34,8 @@ public class NPCInteract : MonoBehaviour
     [SerializeField] InputActionReference continueActionRef;
     [SerializeField] InputActionReference closeActionRef;
 
+    [SerializeField] private Transform cameraTransform;
+
     private int scriptLength = 0;
     private NPCDialogue currQuestionDialogue;
     private int lineIndex = 0;
@@ -45,6 +47,7 @@ public class NPCInteract : MonoBehaviour
     {
         continueActionRef.action.started += UpdateDialogueText;
         closeActionRef.action.started += CloseDialoguePanel;
+        cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
 
         if (!npcInfo)
         {
@@ -77,6 +80,8 @@ public class NPCInteract : MonoBehaviour
             npcNameText.fontSize = 27;
             promptHeaderCoroutine = StartCoroutine(DisplayPromptChangeText());
         }
+
+        this.transform.LookAt(cameraTransform);
     }
 
     private IEnumerator DisplayPromptChangeText()
