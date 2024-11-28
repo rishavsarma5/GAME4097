@@ -132,10 +132,13 @@ public class DiceRolling : MonoBehaviour
         Quaternion topFaceRotation = Quaternion.FromToRotation(topFace.up, Vector3.up);
         transform.rotation = topFaceRotation * transform.rotation;
 
-        Vector3 forwardDirection = Vector3.ProjectOnPlane(playerDirection, Vector3.up).normalized;
-        Quaternion facePlayerRotation = Quaternion.LookRotation(forwardDirection, Vector3.up);
+        playerDirection = (cameraTransform.position - transform.position).normalized;
 
-        // Rotate the dice so that the top face points toward the player
+        // Project the player direction onto the horizontal plane to avoid tilting
+        Vector3 horizontalDirection = Vector3.ProjectOnPlane(playerDirection, Vector3.up).normalized;
+
+        // Rotate the dice to face the player while keeping the top face upward
+        Quaternion facePlayerRotation = Quaternion.FromToRotation(transform.forward, horizontalDirection);
         transform.rotation = facePlayerRotation * transform.rotation;
     }
 

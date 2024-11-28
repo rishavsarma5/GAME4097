@@ -41,10 +41,11 @@ public class ClueGameManager : MonoBehaviour
         if (!Instance)
         {
             Instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
-            throw new System.Exception("Can't be two Clue Game Managers!");
+            Destroy(this.gameObject);
         }
 
         // get all clues and weapons from the scene

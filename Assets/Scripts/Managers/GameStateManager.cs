@@ -30,11 +30,11 @@ public class GameStateManager : MonoBehaviour
         if (!Instance)
         {
             Instance = this;
+            DontDestroyOnLoad(this.gameObject);
         } else
         {
-            throw new System.Exception("Can't be two Game State Managers!");
+            Destroy(this.gameObject);
         }
-
 
         var allTPs = GameObject.FindGameObjectsWithTag("TeleportAnchor");
         diceSpawner = GetComponent<DiceSpawnManager>();

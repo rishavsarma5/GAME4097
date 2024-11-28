@@ -46,6 +46,7 @@ public class DiceSpawnManager : MonoBehaviour
         Quaternion spawnRotation = Quaternion.LookRotation(-cameraTransform.forward, Vector3.up);
         Instantiate(diceToSpawn, spawnPosition, spawnRotation);
         diceSpawned = true;
+        Debug.Log("dice spawned set to true");
         this.enabled = false;
     }
 
