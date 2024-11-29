@@ -15,6 +15,7 @@ TagManager:
   - Clue3Interactable
   - MovementDistanceBox
   - Dice
+  - NotepadUI
   layers:
   - Default
   - TransparentFX

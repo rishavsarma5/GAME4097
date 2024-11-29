@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class NotepadUI : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class NotepadUI : MonoBehaviour
 
 	public GameObject inventoryPage;
 	public GameObject itemPage;
+	public GameObject changeScenesPage;
+	public GameObject endTurnPage;
 
 	public AudioClip newItemSound;
 	public AudioClip clickSound;
@@ -20,10 +23,25 @@ public class NotepadUI : MonoBehaviour
 
 	private List<string> clueAndWeaponList;
 
+	public TextMeshProUGUI promptHeader;
+	public TextMeshProUGUI promptFooter;
+
+	[Header("Tabs")]
+	public GameObject scenePageTab;
+	public GameObject endTurnTab;
+
+	public bool endTurnPressed = false;
+	public bool areTurnsLimited = true;
+
 	void Awake()
 	{
-		inventoryPage.SetActive(true);
 		itemPage.SetActive(false);
+		changeScenesPage.SetActive(false);
+		endTurnPage.SetActive(false);
+		inventoryPage.SetActive(true);
+		
+		promptHeader.text = "CLUES";
+		promptFooter.text = "click a space for info\n[MENU] to close";
 		InventorySpaces = new InventorySpace[RowCollection.Length][];
 		InventorySpace[] itemsList;
 		for (int row = 0; row < RowCollection.Length; row++)
@@ -35,6 +53,9 @@ public class NotepadUI : MonoBehaviour
 				InventorySpaces[row][item] = itemsList[item];
 			}
 		}
+
+		scenePageTab.SetActive(false);
+		endTurnTab.SetActive(false);
 	}
 
 	public void AddClue(Clue clue)
@@ -77,6 +98,8 @@ public class NotepadUI : MonoBehaviour
 		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
 		itemDisplayPage.Display(clue.description, clue.icon);
 		inventoryPage.SetActive(false);
+		endTurnPage.SetActive(false);
+		changeScenesPage.SetActive(false);
 		itemPage.SetActive(true);
 	}
 
@@ -85,6 +108,8 @@ public class NotepadUI : MonoBehaviour
 		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
 		itemDisplayPage.Display(weapon.weaponFoundText, weapon.icon);
 		inventoryPage.SetActive(false);
+		endTurnPage.SetActive(false);
+		changeScenesPage.SetActive(false);
 		itemPage.SetActive(true);
 	}
 
@@ -92,6 +117,77 @@ public class NotepadUI : MonoBehaviour
 	{
 		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
 		itemPage.SetActive(false);
+		endTurnPage.SetActive(false);
+		changeScenesPage.SetActive(false);
 		inventoryPage.SetActive(true);
 	}
+
+	public void GoToEndTurnPage()
+	{
+		if (endTurnPage.activeSelf)
+		{
+			return;
+		}
+		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
+		itemPage.SetActive(false);
+		changeScenesPage.SetActive(false);
+		inventoryPage.SetActive(false);
+		endTurnPage.SetActive(true);
+	}
+
+	public void GoToChangeScenesPage()
+	{
+		if (changeScenesPage.activeSelf)
+		{
+			return;
+		}
+		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
+		itemPage.SetActive(false);
+		endTurnPage.SetActive(false);
+		inventoryPage.SetActive(false);
+		changeScenesPage.SetActive(true);
+	}
+
+	public void GoToCluesPage()
+	{
+		if (inventoryPage.activeSelf)
+        {
+			return;
+        }
+		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
+		endTurnPage.SetActive(false);
+		changeScenesPage.SetActive(false);
+		itemPage.SetActive(false);
+		inventoryPage.SetActive(true);
+		promptHeader.text = "CLUES";
+		promptFooter.text = "click a space for info\n[MENU] to close";
+	}
+
+	public void TurnOnOtherTabs()
+    {
+		scenePageTab.SetActive(true);
+		endTurnTab.SetActive(true);
+	}
+
+	public void TurnOffOtherTabs()
+	{
+		scenePageTab.SetActive(false);
+		endTurnTab.SetActive(false);
+	}
+
+	public void ResetToBase()
+	{
+		endTurnPressed = false;
+		endTurnPage.SetActive(false);
+		changeScenesPage.SetActive(false);
+		itemPage.SetActive(false);
+		inventoryPage.SetActive(true);
+		promptHeader.text = "CLUES";
+		promptFooter.text = "click a space for info\n[MENU] to close";
+	}
+
+	public bool GetEndTurnPressed()
+    {
+		return endTurnPressed;
+    }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class ClueGameManager : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class ClueGameManager : MonoBehaviour
     [Space(10)]
     [SerializeField] private int numWeaponsToSpawn = 2;
     [SerializeField] private bool actionCompleted = false;
+
+    [SerializeField] private string mainRoom = "MainRoom";
 
 	public NotepadUI inventoryNotepad;
 	public InputActionReference menuButton;
@@ -69,6 +72,30 @@ public class ClueGameManager : MonoBehaviour
     private void OnDestroy()
     {
         menuButton.action.started -= ToggleMenu;
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == mainRoom)
+        {
+            firstClueGameObjects = GameObject.FindGameObjectsWithTag("Clue1Interactable").ToList();
+            //Debug.Log($"{firstClueGameObjects.Count} First Clue Objects found!");
+            secondClueGameObjects = GameObject.FindGameObjectsWithTag("Clue2Interactable").ToList();
+            //Debug.Log($"{secondClueGameObjects.Count} Second Clue Objects found!");
+            weaponGameObjects = GameObject.FindGameObjectsWithTag("WeaponInteractable").ToList();
+
+            inventoryNotepad = GameObject.FindGameObjectWithTag("NotepadUI").GetComponent<NotepadUI>();
+        }
     }
 
     void ToggleMenu(InputAction.CallbackContext context)

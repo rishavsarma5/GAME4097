@@ -40,7 +40,7 @@ public class RoomEntranceTrigger : MonoBehaviour
             playerLeftControllerLocoMove.gameObject.SetActive(true);
             inputActionManager.smoothMotionEnabled = true;
             outsideRoom = false;
-            GameStateManager.Instance.SetPlayerInsideRoom(true);
+            //GameStateManager.Instance.SetPlayerInsideRoom(true);
         } else
         {
             player.transform.position = tpHallwaySpot.position;
@@ -48,7 +48,7 @@ public class RoomEntranceTrigger : MonoBehaviour
             playerLeftControllerLocoMove.gameObject.SetActive(false);
             inputActionManager.smoothMotionEnabled = false;
             outsideRoom = true;
-            GameStateManager.Instance.SetPlayerInsideRoom(false);
+            //GameStateManager.Instance.SetPlayerInsideRoom(false);
         }
     }
 }

@@ -13,7 +13,6 @@ public class DiceMovementTriggerHandler : MonoBehaviour
         {
             Debug.Log("trigger for teleport anchors hit!");
             TurnOnTeleportAnchor();
-            GameStateManager.Instance.AddActiveTeleportAnchor(this);
         }
     }
 

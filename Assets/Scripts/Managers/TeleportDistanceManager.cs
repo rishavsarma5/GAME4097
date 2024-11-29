@@ -32,11 +32,6 @@ public class TeleportDistanceManager : MonoBehaviour
         allRollsCompleted = new List<bool>();
     }
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         if (diceMovementStageActive && !coroutineRunning)
@@ -80,6 +75,16 @@ public class TeleportDistanceManager : MonoBehaviour
         {
             allRollsCompleted[dicePlayerIndex] = true;
         }
+    }
+
+    public void CreateTeleportDistanceBoxAfterReturnFromRoom(Vector3 oldPlayerPos)
+    {
+        GameObject distanceBox = Instantiate(diceMovementBoxPrefab, oldPlayerPos, Quaternion.identity);
+        distanceBox.transform.localScale *= size * 2;
+        Vector3 newPosition = distanceBox.transform.position;
+        newPosition.y = 2f;
+        distanceBox.transform.position = newPosition;
+        Destroy(distanceBox, 0.5f);
     }
 
     public bool GetAllBoxesSpawned()

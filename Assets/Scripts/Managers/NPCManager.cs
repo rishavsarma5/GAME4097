@@ -25,6 +25,7 @@ public class NPCManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         if (npcs.Count == 0)
         {
             npcs = new List<GameObject>(GameObject.FindGameObjectsWithTag("NPCInteractable"));
@@ -35,6 +36,7 @@ public class NPCManager : MonoBehaviour
             nPCInteractionDistances.Add(npc.GetComponent<InteractionDistanceHandler>());
             //nPCController.Add(npc.GetComponent<NPCController>());
         }
+        
     }
 
     public void MoveNPCsToNewWaypoint()

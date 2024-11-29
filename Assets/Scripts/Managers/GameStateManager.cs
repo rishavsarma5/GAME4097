@@ -14,18 +14,16 @@ public class GameStateManager : MonoBehaviour
     [Header("Player Specific Values Needed")]
     [SerializeField] private GameObject player;
     [SerializeField] private DiceSpawnManager diceSpawner;
-    [SerializeField] private EndTurnMenu endTurnMenu;
-    [SerializeField] private TextMeshProUGUI numTurnsText;
-    [SerializeField] private bool playerInsideRoom = false;
+    [SerializeField] private NotepadUI notepadUI;
 
     [SerializeField] private string mainRoom = "MainRoom";
     [SerializeField] private string suspectSelectRoom = "SuspectSelectRoom";
 
-    [SerializeField] private Camera mainCamera;
-    [SerializeField] private int numTurnsInGame = 5;
+    [SerializeField] private int numTurnsInGame = 10;
+    [SerializeField] private int numTurnsPlayed = 0;
+    [SerializeField] private Vector3 playerStartExplorationPosition;
 
     [SerializeField] private List<DiceMovementTriggerHandler> teleportAnchors = new();
-    [SerializeField] private List<DiceMovementTriggerHandler> activeTeleportAnchors = new();
 
     private void Awake()
     {
@@ -39,6 +37,7 @@ public class GameStateManager : MonoBehaviour
         }
 
         var allTPs = GameObject.FindGameObjectsWithTag("TeleportAnchor");
+        notepadUI = GameObject.FindGameObjectWithTag("NotepadUI").GetComponent<NotepadUI>();
         diceSpawner = GetComponent<DiceSpawnManager>();
 
         foreach (var tp in allTPs)
@@ -51,6 +50,51 @@ public class GameStateManager : MonoBehaviour
     {
         diceSpawner.enabled = false;
         UpdateGameState(GameState.InitializeGame);
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Repopulate teleport anchors if back in the relevant scene
+        if (scene.name == mainRoom)
+        {
+            var gameProgress = GameProgressManager.Instance.gameProgress;
+            if (gameProgress.continueGame)
+            {
+                Debug.Log("Game state manager met in continue");
+                gameProgress.continueGame = false;
+
+                GameProgressManager.Instance.gameProgress.LoadGameProgress();
+                RestoreGameState();
+                return;
+            }
+
+            player = GameObject.FindGameObjectWithTag("Player");
+            diceSpawner = GetComponent<DiceSpawnManager>();
+            notepadUI = GameObject.FindGameObjectWithTag("NotepadUI").GetComponent<NotepadUI>();
+            notepadUI.TurnOnOtherTabs();
+
+            teleportAnchors.Clear();
+            var allTPs = GameObject.FindGameObjectsWithTag("TeleportAnchor");
+            foreach (var tp in allTPs)
+            {
+                var handler = tp.GetComponentInChildren<DiceMovementTriggerHandler>();
+                if (handler)
+                    teleportAnchors.Add(handler);
+            }
+
+            // Restore active anchors
+            TeleportDistanceManager.Instance.CreateTeleportDistanceBoxAfterReturnFromRoom(playerStartExplorationPosition);
+        }
     }
 
     public void UpdateGameState(GameState newState)
@@ -97,8 +141,8 @@ public class GameStateManager : MonoBehaviour
             tp.ResetTeleportAnchor();
         }
 
-        endTurnMenu.ResetEndTurn();
-        numTurnsText.text = $"Num Turns: {numTurnsInGame}";
+        notepadUI.TurnOffOtherTabs();
+
         GameProgressManager.Instance.SaveTotalTurns(numTurnsInGame);
 
         UpdateGameState(GameState.MovementDiceRolling);
@@ -160,21 +204,28 @@ public class GameStateManager : MonoBehaviour
     private void HandleExploration()
     {
         Debug.Log("Entered Exploration State");
+        Debug.Log($"Exploration Position: {player.transform.position}");
+        playerStartExplorationPosition = player.transform.position;
+        notepadUI.TurnOnOtherTabs();
         FloatingTextSpawner.Instance.SpawnFloatingTextWithTimedDestroy("Visit rooms to search for clues/weapons or talk to NPCs in range.", 5f);
-        endTurnMenu.TurnOnCanvas();
         StartCoroutine(WaitForEndTurnPress());
     }
 
     private IEnumerator WaitForEndTurnPress()
     {
-        yield return new WaitUntil(() => endTurnMenu.GetEndTurnPressed());
+        yield return new WaitUntil(() => notepadUI.GetEndTurnPressed());
         UpdateGameState(GameState.EndRoundUpdates);
     }
 
     private void HandleEndOfRoundUpdates()
     {
         Debug.Log("Entered End of Round State");
-        numTurnsInGame--;
+
+        if (notepadUI.areTurnsLimited)
+        {
+            numTurnsInGame--;
+            numTurnsPlayed++;
+        }
 
         if (numTurnsInGame <= 0)
         {
@@ -188,14 +239,12 @@ public class GameStateManager : MonoBehaviour
                 tp.ResetTeleportAnchor();
             }
 
-            activeTeleportAnchors.Clear();
-
             // reset end of turn button
-            endTurnMenu.ResetEndTurn();
-            numTurnsText.text = $"Num Turns: {numTurnsInGame}";
+            notepadUI.ResetToBase();
+            notepadUI.TurnOffOtherTabs();
 
             // update game progress
-            GameProgressManager.Instance.SaveTurnsPlayed(numTurnsInGame);
+            SaveNumTurnsPlayed();
             ClueGameManager.Instance.SaveCluesAndWeaponsFound();
             GameProgressManager.Instance.SavePlayerPosition(player.transform.position);
 
@@ -228,21 +277,11 @@ public class GameStateManager : MonoBehaviour
     private void HandleSuspectSelection()
     {
         Debug.Log("Entered Suspect Selection State");
-        endTurnMenu.ResetEndTurn();
+        notepadUI.ResetToBase();
         List<Weapon> weaponsList = ClueGameManager.Instance.foundWeapons;
 		FindObjectOfType<SuspectGuessUI>().setUp(weaponsList);
 
         SceneManager.LoadSceneAsync(suspectSelectRoom, LoadSceneMode.Single);
-    }
-
-    public void SetPlayerInsideRoom(bool inside)
-    {
-        playerInsideRoom = inside;
-    }
-
-    public bool IsPlayerInsideRoom()
-    {
-        return playerInsideRoom;
     }
 
     private void RestoreGameState()
@@ -255,39 +294,24 @@ public class GameStateManager : MonoBehaviour
         // Restore number of turns
         numTurnsInGame = gameProgress.numTurnsPlayed;
 
-        // turn on all active anchors
-        TurnOnAllActiveTeleportAnchors();
-
         // Update current state
         UpdateGameState(GameState.Exploration);
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void SkipToSuspectSelect()
     {
-        if (scene.name == mainRoom)
-        {
-            var gameProgress = GameProgressManager.Instance.gameProgress;
-            if (gameProgress.continueGame)
-            {
-                gameProgress.continueGame = false;
-
-                GameProgressManager.Instance.gameProgress.LoadGameProgress();
-                RestoreGameState();
-            }
-        }
+        numTurnsInGame = 0;
+        UpdateGameState(GameState.EndRoundUpdates);
     }
 
-    public void AddActiveTeleportAnchor(DiceMovementTriggerHandler activeTrigger)
+    public void SaveNumTurnsPlayed()
     {
-        activeTeleportAnchors.Add(activeTrigger);
+        GameProgressManager.Instance.SaveTurnsPlayed(numTurnsPlayed);
     }
 
-    public void TurnOnAllActiveTeleportAnchors()
+    public int GetNumTurnsLeft()
     {
-        foreach(var anchor in activeTeleportAnchors)
-        {
-            anchor.TurnOnTeleportAnchor();
-        }
+        return numTurnsInGame;
     }
 
 }

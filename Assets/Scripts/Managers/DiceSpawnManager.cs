@@ -14,15 +14,10 @@ public class DiceSpawnManager : MonoBehaviour
 
     private bool diceSpawned = false;
 
-    private void Awake()
-    {
-        cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
-        diceSpawned = false;
-    }
-
     private void OnEnable()
     {
         LC_TriggerRef.action.started += LC_TriggerCustomAction;
+        cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
         diceSpawned = false;
     }
 

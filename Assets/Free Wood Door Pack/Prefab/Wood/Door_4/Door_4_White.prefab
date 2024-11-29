@@ -216,7 +216,6 @@ GameObject:
   - component: {fileID: 1090449683479649199}
   - component: {fileID: 6116443994713573793}
   - component: {fileID: 1594274652025771102}
-  - component: {fileID: 5274687617902914306}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -559,25 +558,6 @@ MonoBehaviour:
   player: {fileID: 0}
   audioSource: {fileID: 82697407254320668}
   doorClose: {fileID: 8300000, guid: b88b6ac5af3284b4a829aa45d034e4dc, type: 3}
---- !u!114 &5274687617902914306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975789379832626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b108c655a2d104a4789bfd20d3e4b139, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tpHallwaySpot: {fileID: 0}
-  tpRoomSpot: {fileID: 0}
-  outsideRoom: 0
-  player: {fileID: 0}
-  leftController: {fileID: 0}
-  playerLeftControllerLocoTurn: {fileID: 0}
-  playerLeftControllerLocoMove: {fileID: 0}
 --- !u!1 &4508083327905687519
 GameObject:
   m_ObjectHideFlags: 0

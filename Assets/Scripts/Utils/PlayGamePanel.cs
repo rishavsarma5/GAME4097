@@ -10,6 +10,7 @@ public class PlayGamePanel : MonoBehaviour
     [SerializeField] private GameObject continueButton;
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameObject restartButton;
+    [SerializeField] private LobbyCanvasManager lobbyCanvasManager;
 
     private void OnEnable()
     {
@@ -25,6 +26,11 @@ public class PlayGamePanel : MonoBehaviour
         } else
         {
             startButton.SetActive(true);
+        }
+
+        if (lobbyCanvasManager == null)
+        {
+            Debug.LogError("Did not set lobby canvas manager");
         }
     }
 
@@ -44,7 +50,8 @@ public class PlayGamePanel : MonoBehaviour
     {
         GameProgressManager.Instance.gameProgress.ResetGame();
         DestroyDontDestroyOnLoadObjects();
-        SceneManager.LoadSceneAsync(introCutscene, LoadSceneMode.Single);
+        //SceneManager.LoadSceneAsync(introCutscene, LoadSceneMode.Single);
+        lobbyCanvasManager.OnGoBackButtonPressed();
     }
 
     private void DestroyDontDestroyOnLoadObjects()
