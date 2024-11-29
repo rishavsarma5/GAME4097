@@ -46,6 +46,8 @@ public class RoomChangeManager : MonoBehaviour
                 player.transform.Rotate(0, 180f, 0);
             }
 
+            GameStateManager.Instance.TurnOnAllActiveTeleportAnchors();
+
             // save game state
             ClueGameManager.Instance.SaveCluesAndWeaponsFound();
             GameProgressManager.Instance.SavePlayerPosition(player.transform.position);

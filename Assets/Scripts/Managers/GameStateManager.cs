@@ -25,6 +25,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private int numTurnsInGame = 5;
 
     [SerializeField] private List<DiceMovementTriggerHandler> teleportAnchors = new();
+    [SerializeField] private List<DiceMovementTriggerHandler> activeTeleportAnchors = new();
 
     private void Awake()
     {
@@ -187,6 +188,8 @@ public class GameStateManager : MonoBehaviour
                 tp.ResetTeleportAnchor();
             }
 
+            activeTeleportAnchors.Clear();
+
             // reset end of turn button
             endTurnMenu.ResetEndTurn();
             numTurnsText.text = $"Num Turns: {numTurnsInGame}";
@@ -252,6 +255,9 @@ public class GameStateManager : MonoBehaviour
         // Restore number of turns
         numTurnsInGame = gameProgress.numTurnsPlayed;
 
+        // turn on all active anchors
+        TurnOnAllActiveTeleportAnchors();
+
         // Update current state
         UpdateGameState(GameState.Exploration);
     }
@@ -268,6 +274,19 @@ public class GameStateManager : MonoBehaviour
                 GameProgressManager.Instance.gameProgress.LoadGameProgress();
                 RestoreGameState();
             }
+        }
+    }
+
+    public void AddActiveTeleportAnchor(DiceMovementTriggerHandler activeTrigger)
+    {
+        activeTeleportAnchors.Add(activeTrigger);
+    }
+
+    public void TurnOnAllActiveTeleportAnchors()
+    {
+        foreach(var anchor in activeTeleportAnchors)
+        {
+            anchor.TurnOnTeleportAnchor();
         }
     }
 
