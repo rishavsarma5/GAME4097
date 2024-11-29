@@ -19,10 +19,12 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private string mainRoom = "MainRoom";
     [SerializeField] private string suspectSelectRoom = "SuspectSelectRoom";
 
-    [SerializeField] private int numTurnsInGame = 10;
+    [SerializeField] private int totalTurnsInGame = 10;
+    [SerializeField] private int turnsLeft = 0;
     [SerializeField] private int numTurnsPlayed = 0;
     [SerializeField] private Vector3 playerStartExplorationPosition;
     [SerializeField] private int savedDiceRoll;
+    
 
     [SerializeField] private List<DiceMovementTriggerHandler> teleportAnchors = new();
 
@@ -45,6 +47,8 @@ public class GameStateManager : MonoBehaviour
         {
             teleportAnchors.Add(tp.GetComponentInChildren<DiceMovementTriggerHandler>());
         }
+
+        turnsLeft = totalTurnsInGame;
     }
 
     private void Start()
@@ -133,7 +137,7 @@ public class GameStateManager : MonoBehaviour
 
         notepadUI.TurnOffOtherTabs();
 
-        GameProgressManager.Instance.SaveTotalTurns(numTurnsInGame);
+        GameProgressManager.Instance.SaveTotalTurns(totalTurnsInGame);
 
         UpdateGameState(GameState.MovementDiceRolling);
     }
@@ -214,11 +218,12 @@ public class GameStateManager : MonoBehaviour
 
         if (notepadUI.areTurnsLimited)
         {
-            numTurnsInGame--;
+            turnsLeft--;
+            GameProgressManager.Instance.SaveTurnsLeft(turnsLeft);
             numTurnsPlayed++;
         }
 
-        if (numTurnsInGame <= 0)
+        if (turnsLeft <= 0)
         {
             FloatingTextSpawner.Instance.SpawnFloatingTextWithTimedDestroy("Transitioning to suspect select stage...", 5f);
             StartCoroutine(PauseBeforeSuspectSelection());
@@ -284,8 +289,9 @@ public class GameStateManager : MonoBehaviour
         player.transform.position = gameProgress.currentPlayerPosition;
 
         // Restore number of turns
-        numTurnsInGame = gameProgress.totalTurns;
+        totalTurnsInGame = gameProgress.totalTurns;
         numTurnsPlayed = gameProgress.numTurnsPlayed;
+        turnsLeft = gameProgress.turnsLeft;
 
         // Update current state
         UpdateGameState(GameState.Exploration);
@@ -293,7 +299,7 @@ public class GameStateManager : MonoBehaviour
 
     public void SkipToSuspectSelect()
     {
-        numTurnsInGame = 0;
+        turnsLeft = 0;
         UpdateGameState(GameState.EndRoundUpdates);
     }
 
@@ -302,9 +308,14 @@ public class GameStateManager : MonoBehaviour
         GameProgressManager.Instance.SaveTurnsPlayed(numTurnsPlayed);
     }
 
+    public void SaveTurnsLeft()
+    {
+        GameProgressManager.Instance.SaveTurnsLeft(turnsLeft);
+    }
+
     public int GetNumTurnsLeft()
     {
-        return numTurnsInGame;
+        return turnsLeft;
     }
 
     private void ReInitializeMainRoom()

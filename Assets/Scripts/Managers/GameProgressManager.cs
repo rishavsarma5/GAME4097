@@ -76,6 +76,14 @@ public class GameProgressManager : MonoBehaviour
         }
     }
 
+    public void SaveTurnsLeft(int turnCount)
+    {
+        if (gameProgress.turnsLeft != turnCount)
+        {
+            gameProgress.SaveTurnsLeft(turnCount);
+        }
+    }
+
     public void SaveTurnsPlayed(int numsTurnsPlayed)
     {
         if (gameProgress.numTurnsPlayed != numsTurnsPlayed)

@@ -22,6 +22,7 @@ public class ChangeScenesPage : MonoBehaviour
     {
         // update game progress
         GameStateManager.Instance.SaveNumTurnsPlayed();
+        GameStateManager.Instance.SaveTurnsLeft();
         ClueGameManager.Instance.SaveCluesAndWeaponsFound();
         GameProgressManager.Instance.SavePlayerPosition(player.transform.position);
 
@@ -32,6 +33,7 @@ public class ChangeScenesPage : MonoBehaviour
     {
         // update game progress
         GameStateManager.Instance.SaveNumTurnsPlayed();
+        GameStateManager.Instance.SaveTurnsLeft();
         ClueGameManager.Instance.SaveCluesAndWeaponsFound();
         GameProgressManager.Instance.SavePlayerPosition(player.transform.position);
 

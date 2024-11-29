@@ -106,30 +106,14 @@ public class ClueGameManager : MonoBehaviour
     public void OnClue1Found(Clue clue)
     {
         // if clue found is actually a clue 1
-        if (firstClues.Contains(clue))
+        if (firstClues.Contains(clue) && !foundClues.Contains(clue))
         {
             // get the second clue of the related NPC for found Clue 1
+            Debug.Log($"Clue {clue} added to found clues");
             foundClues.Add(clue);
             clue.isFound = true;
 
 			inventoryNotepad.AddClue(clue);
-            /*
-
-			Clue clue2 = clue.relatedNPC.clues[1];
-
-            // if second clue is actually a clue 2
-            if (secondClues.Contains(clue2))
-            {
-                // set clue 2 game object to active in the scene and add to active clues
-                GameObject clue2Object = listOfClues[clue2];
-                clue2Object.SetActive(true);
-                activeClues.Add(clue2Object);
-            } else
-            {
-                throw new System.Exception("next clue fetched is not a second clue");
-            }
-            */
-            
         } else
         {
             throw new System.Exception("this clue is not a first clue");
@@ -138,11 +122,11 @@ public class ClueGameManager : MonoBehaviour
 
     public void OnClue2Found(Clue clue)
     {
-        if (secondClues.Contains(clue))
+        if (secondClues.Contains(clue) && !foundClues.Contains(clue))
         {
             foundClues.Add(clue);
             clue.isFound = true;
-
+            Debug.Log($"Clue {clue} added to found clues");
             //inventoryNotepad.AddClue(clue);
         }
         else
@@ -153,10 +137,13 @@ public class ClueGameManager : MonoBehaviour
 
     public void OnWeaponFound(Weapon weapon)
     {
-        foundWeapons.Add(weapon);
-        weapon.isFound = true;
-
-		inventoryNotepad.AddWeapon(weapon);
+        if (!foundWeapons.Contains(weapon))
+        {
+            foundWeapons.Add(weapon);
+            weapon.isFound = true;
+            Debug.Log($"Weapon {weapon} added to found weapons");
+            inventoryNotepad.AddWeapon(weapon);
+        }
     }
 
     public void InitializeStartingWeapons()

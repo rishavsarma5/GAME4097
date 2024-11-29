@@ -13,6 +13,7 @@ public class GameProgress : ScriptableObject
     public int numWeaponsFound;
     public int numTurnsPlayed;
     public int totalTurns;
+    public int turnsLeft;
 
     public Vector3 currentPlayerPosition;
     public Vector3 diceRollPlayerPosition;
@@ -79,6 +80,7 @@ public class GameProgress : ScriptableObject
 
         numTurnsPlayed = PlayerPrefs.GetInt("TurnsPlayed", 0);
         totalTurns = PlayerPrefs.GetInt("TotalTurns", 0);
+        turnsLeft = PlayerPrefs.GetInt("TurnsLeft", 0);
         lastDiceRoll = PlayerPrefs.GetInt("LastDiceRoll", 1);
 
         // Set default or saved player position
@@ -151,6 +153,12 @@ public class GameProgress : ScriptableObject
     {
         totalTurns = turnCount;
         PlayerPrefs.SetInt("TotalTurns", totalTurns);
+    }
+
+    public void SaveTurnsLeft(int turnCount)
+    {
+        turnsLeft = turnCount;
+        PlayerPrefs.SetInt("TurnsLeft", turnsLeft);
     }
 
     public void SaveLastDiceRoll(int diceValue)
