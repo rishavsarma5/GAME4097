@@ -15,6 +15,8 @@ public class GameProgress : ScriptableObject
     public int totalTurns;
 
     public Vector3 currentPlayerPosition;
+    public Vector3 diceRollPlayerPosition;
+    public int lastDiceRoll;
 
     public bool gameStarted = false;
     public bool continueGame = false;
@@ -49,10 +51,18 @@ public class GameProgress : ScriptableObject
 
     public void SavePlayerPosition(Vector3 playerPosition)
     {
-        currentPlayerPosition = playerPosition;
+        diceRollPlayerPosition = playerPosition;
         PlayerPrefs.SetFloat("PlayerPositionX", playerPosition.x);
         PlayerPrefs.SetFloat("PlayerPositionY", playerPosition.y);
         PlayerPrefs.SetFloat("PlayerPositionZ", playerPosition.z);
+    }
+
+    public void SaveDiceRollPosition(Vector3 playerPosition)
+    {
+        currentPlayerPosition = playerPosition;
+        PlayerPrefs.SetFloat("DiceRollPositionX", playerPosition.x);
+        PlayerPrefs.SetFloat("DiceRollPositionY", playerPosition.y);
+        PlayerPrefs.SetFloat("DiceRollPositionZ", playerPosition.z);
     }
 
     public void LoadGameProgress()
@@ -69,6 +79,7 @@ public class GameProgress : ScriptableObject
 
         numTurnsPlayed = PlayerPrefs.GetInt("TurnsPlayed", 0);
         totalTurns = PlayerPrefs.GetInt("TotalTurns", 0);
+        lastDiceRoll = PlayerPrefs.GetInt("LastDiceRoll", 1);
 
         // Set default or saved player position
         currentPlayerPosition = PlayerPrefs.HasKey("PlayerPositionX")
@@ -77,11 +88,20 @@ public class GameProgress : ScriptableObject
                 PlayerPrefs.GetFloat("PlayerPositionY"),
                 PlayerPrefs.GetFloat("PlayerPositionZ"))
             : Vector3.zero;
+
+        // Set default or saved player position
+        diceRollPlayerPosition = PlayerPrefs.HasKey("DiceRollPositionX")
+            ? new Vector3(
+                PlayerPrefs.GetFloat("DiceRollPositionX"),
+                PlayerPrefs.GetFloat("DiceRollPositionY"),
+                PlayerPrefs.GetFloat("DiceRollPositionZ"))
+            : Vector3.zero;
     }
 
     public void ResetGame()
     {
         gameStarted = false;
+        continueGame = false;
         startTime = 0;
         timeElapsed = 0;
         totalCluesCount = 0;
@@ -90,6 +110,9 @@ public class GameProgress : ScriptableObject
         numWeaponsFound = 0;
         numTurnsPlayed = 0;
         totalTurns = 0;
+        lastDiceRoll = 0;
+        currentPlayerPosition = Vector3.zero;
+        diceRollPlayerPosition = Vector3.zero;
 
         PlayerPrefs.DeleteAll();
     }
@@ -128,5 +151,11 @@ public class GameProgress : ScriptableObject
     {
         totalTurns = turnCount;
         PlayerPrefs.SetInt("TotalTurns", totalTurns);
+    }
+
+    public void SaveLastDiceRoll(int diceValue)
+    {
+        lastDiceRoll = diceValue;
+        PlayerPrefs.SetInt("LastDiceRoll", lastDiceRoll);
     }
 }

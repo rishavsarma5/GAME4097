@@ -66,6 +66,7 @@ public class TeleportDistanceManager : MonoBehaviour
     {
         Debug.Log($"teleport box size: {diceRollValue}");
         size = diceRollValue;
+        GameProgressManager.Instance.gameProgress.SaveLastDiceRoll(diceRollValue);
         GameObject distanceBox = Instantiate(diceMovementBoxPrefab, playerPosition.position, Quaternion.identity);
         distanceBox.transform.localScale *= size * 2;
         Destroy(distanceBox, 0.5f);
@@ -77,12 +78,12 @@ public class TeleportDistanceManager : MonoBehaviour
         }
     }
 
-    public void CreateTeleportDistanceBoxAfterReturnFromRoom(Vector3 oldPlayerPos)
+    public void CreateTeleportDistanceBoxAfterReturnFromRoom(Vector3 oldPlayerPos, int lastDiceRoll)
     {
+        Debug.Log("Called to create teleport distance box after reloading!");
         GameObject distanceBox = Instantiate(diceMovementBoxPrefab, oldPlayerPos, Quaternion.identity);
-        distanceBox.transform.localScale *= size * 2;
-        Vector3 newPosition = distanceBox.transform.position;
-        newPosition.y = 2f;
+        distanceBox.transform.localScale *= lastDiceRoll * 2;
+        Vector3 newPosition = new(distanceBox.transform.position.x, 0.5f, distanceBox.transform.position.z);
         distanceBox.transform.position = newPosition;
         Destroy(distanceBox, 0.5f);
     }

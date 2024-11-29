@@ -189,6 +189,8 @@ public class NPCInteract : MonoBehaviour
         npcDialogueCanvas.SetActive(false);
         dialogueTextBox.text = string.Empty;
         lineIndex = 0;
+        npcNameText.fontSize = 30;
+        npcNameText.text = npcInfo.npcName;
     }
 
     private void UpdateDialogueDisplay()

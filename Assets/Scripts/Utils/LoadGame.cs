@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LoadGame : MonoBehaviour
 {
-    [SerializeField] private string mainRoom = "_Prototype_StateScene";
+    [SerializeField] private string lobby = "Lobby";
     private void OnEnable()
     {
-        SceneManager.LoadSceneAsync(mainRoom, LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync(lobby, LoadSceneMode.Single);
     }
 }

@@ -22,6 +22,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private int numTurnsInGame = 10;
     [SerializeField] private int numTurnsPlayed = 0;
     [SerializeField] private Vector3 playerStartExplorationPosition;
+    [SerializeField] private int savedDiceRoll;
 
     [SerializeField] private List<DiceMovementTriggerHandler> teleportAnchors = new();
 
@@ -74,26 +75,15 @@ public class GameStateManager : MonoBehaviour
                 gameProgress.continueGame = false;
 
                 GameProgressManager.Instance.gameProgress.LoadGameProgress();
+                Debug.Log("loaded game progress");
+                Debug.Log("Re initializing room in continue");
+                ReInitializeMainRoom();
                 RestoreGameState();
                 return;
             }
 
-            player = GameObject.FindGameObjectWithTag("Player");
-            diceSpawner = GetComponent<DiceSpawnManager>();
-            notepadUI = GameObject.FindGameObjectWithTag("NotepadUI").GetComponent<NotepadUI>();
-            notepadUI.TurnOnOtherTabs();
-
-            teleportAnchors.Clear();
-            var allTPs = GameObject.FindGameObjectsWithTag("TeleportAnchor");
-            foreach (var tp in allTPs)
-            {
-                var handler = tp.GetComponentInChildren<DiceMovementTriggerHandler>();
-                if (handler)
-                    teleportAnchors.Add(handler);
-            }
-
-            // Restore active anchors
-            TeleportDistanceManager.Instance.CreateTeleportDistanceBoxAfterReturnFromRoom(playerStartExplorationPosition);
+            Debug.Log("Re initializing room outside of continue");
+            ReInitializeMainRoom();
         }
     }
 
@@ -198,6 +188,7 @@ public class GameStateManager : MonoBehaviour
     {
         yield return new WaitUntil(() => TeleportDistanceManager.Instance.GetAllBoxesSpawned());
         TeleportDistanceManager.Instance.ResetTeleportDistanceManager();
+        GameProgressManager.Instance.gameProgress.SaveDiceRollPosition(player.transform.position);
         UpdateGameState(GameState.Exploration);
     }
 
@@ -286,13 +277,15 @@ public class GameStateManager : MonoBehaviour
 
     private void RestoreGameState()
     {
+        Debug.Log("restoring game state to explore");
         var gameProgress = GameProgressManager.Instance.gameProgress;
 
         // Restore player's position
         player.transform.position = gameProgress.currentPlayerPosition;
 
         // Restore number of turns
-        numTurnsInGame = gameProgress.numTurnsPlayed;
+        numTurnsInGame = gameProgress.totalTurns;
+        numTurnsPlayed = gameProgress.numTurnsPlayed;
 
         // Update current state
         UpdateGameState(GameState.Exploration);
@@ -312,6 +305,30 @@ public class GameStateManager : MonoBehaviour
     public int GetNumTurnsLeft()
     {
         return numTurnsInGame;
+    }
+
+    private void ReInitializeMainRoom()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        diceSpawner = GetComponent<DiceSpawnManager>();
+        notepadUI = GameObject.FindGameObjectWithTag("NotepadUI").GetComponent<NotepadUI>();
+        notepadUI.TurnOnOtherTabs();
+
+        playerStartExplorationPosition = GameProgressManager.Instance.gameProgress.diceRollPlayerPosition;
+        savedDiceRoll = GameProgressManager.Instance.gameProgress.lastDiceRoll;
+
+        teleportAnchors.Clear();
+        var allTPs = GameObject.FindGameObjectsWithTag("TeleportAnchor");
+        foreach (var tp in allTPs)
+        {
+            var handler = tp.GetComponentInChildren<DiceMovementTriggerHandler>();
+            if (handler)
+                teleportAnchors.Add(handler);
+        }
+
+        // Restore active anchors
+        Debug.Log("got to restoring active anchors");
+        TeleportDistanceManager.Instance.CreateTeleportDistanceBoxAfterReturnFromRoom(playerStartExplorationPosition, savedDiceRoll);
     }
 
 }
