@@ -17,6 +17,7 @@ public class GameProgress : ScriptableObject
     public Vector3 currentPlayerPosition;
 
     public bool gameStarted = false;
+    public bool continueGame = false;
 
     public float GetRunTime()
     {

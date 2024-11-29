@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SaturnPalmy_Clue1
   m_EditorClassIdentifier: 
   relatedNPC: {fileID: 11400000, guid: 1c923ca10504b7e4fbf53cf9f96df4c4, type: 2}
+  clueName: Love Letters
   icon: {fileID: 21300000, guid: db3e7b7c8db355e499429545071a0321, type: 3}
   isFound: 0
   description: He said someone found out about us and would dump me soon. Ugghhh.

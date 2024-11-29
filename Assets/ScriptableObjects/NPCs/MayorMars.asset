@@ -17,4 +17,5 @@ MonoBehaviour:
   clues:
   - {fileID: 11400000, guid: 327b717fa1101aa4bbe5c011d5e43824, type: 2}
   - {fileID: 11400000, guid: 08b192122875b6d4da2f870a9251908b, type: 2}
+  whatUnlocksNPCQuestion: Clue2
   npcInteractInfo: {fileID: 11400000, guid: 78f95455a8b81bd478e39dbfe2d75640, type: 2}

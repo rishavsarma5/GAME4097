@@ -8,5 +8,6 @@ public class GameNPC : ScriptableObject
     public string npcName;
     public Weapon weapon;
     public List<Clue> clues;
+    public string whatUnlocksNPCQuestion;
     public NPCInteractable npcInteractInfo;
 }

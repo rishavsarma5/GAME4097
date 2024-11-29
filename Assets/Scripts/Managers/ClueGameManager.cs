@@ -19,10 +19,12 @@ public class ClueGameManager : MonoBehaviour
     private Dictionary<Clue, GameObject> listOfClues = new Dictionary<Clue, GameObject>();
     private Dictionary<Weapon, GameObject> listOfWeapons = new Dictionary<Weapon, GameObject>();
 
+    /*
     [Space(5)]
     [Header("Active Clues and Weapons")]
     public List<GameObject> activeClues;
     public List<GameObject> activeWeapons;
+    */
 
     [Space(5)]
     [Header("Clues and Weapons Found")]
@@ -84,6 +86,7 @@ public class ClueGameManager : MonoBehaviour
             clue.isFound = true;
 
 			inventoryNotepad.AddClue(clue);
+            /*
 
 			Clue clue2 = clue.relatedNPC.clues[1];
 
@@ -98,6 +101,7 @@ public class ClueGameManager : MonoBehaviour
             {
                 throw new System.Exception("next clue fetched is not a second clue");
             }
+            */
             
         } else
         {
@@ -109,23 +113,10 @@ public class ClueGameManager : MonoBehaviour
     {
         if (secondClues.Contains(clue))
         {
-            //secondClues.Remove(clue);
             foundClues.Add(clue);
             clue.isFound = true;
-            //StartCoroutine(TransitionToSuspectSelect());
-            /*
-            Clue clue3 = clue.relatedNPC.clues[2];
-            if (secondClues.Contains(clue3))
-            {
-                //secondClues.Remove(clue3);
-                activeClues.Add(clue3);
-                Instantiate(clue3.clueObject, clue3.clueObject.transform.position, Quaternion.identity);
-            }
-            else
-            {
-                throw new System.Exception("next clue fetched is not a third clue");
-            }
-            */
+
+            //inventoryNotepad.AddClue(clue);
         }
         else
         {
@@ -137,13 +128,13 @@ public class ClueGameManager : MonoBehaviour
     {
         foundWeapons.Add(weapon);
         weapon.isFound = true;
+
 		inventoryNotepad.AddWeapon(weapon);
     }
 
     public void InitializeStartingWeapons()
     {
         foundWeapons.Clear();
-        activeWeapons.Clear();
 
         // Shuffle initialWeaponList in place
         ShuffleList(weaponGameObjects);
@@ -155,19 +146,25 @@ public class ClueGameManager : MonoBehaviour
             Weapon weaponSO = weaponToSpawn.GetComponent<WeaponController>().weapon;
             weaponSO.isFound = false;
             listOfWeapons.Add(weaponSO, weaponToSpawn);
-            activeWeapons.Add(weaponToSpawn);
+            //activeWeapons.Add(weaponToSpawn);
             Debug.Log($"Weapon {weaponSO.weaponName} spawned.");
         }
     }
-    public void InitializeAllFirstClues()
+    public void InitializeAllClues()
     {
         foundClues.Clear();
 
         foreach(GameObject clue in firstClueGameObjects) {
             clue.SetActive(true);
-            activeClues.Add(clue);
+            //activeClues.Add(clue);
         }
-        Debug.Log($"All first clues spawned!");
+
+        foreach (GameObject clue in secondClueGameObjects)
+        {
+            clue.SetActive(true);
+            //activeClues.Add(clue);
+        }
+        Debug.Log($"All clues spawned!");
     }
 
     public void SaveInitialization()

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Clue : ScriptableObject
 {
     public GameNPC relatedNPC;
+    public string clueName;
 	public Sprite icon;
     public bool isFound = false;
 

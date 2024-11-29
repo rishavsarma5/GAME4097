@@ -36,6 +36,7 @@ public class PlayGamePanel : MonoBehaviour
 
     public void OnContinueGameButtonPressed()
     {
+        GameProgressManager.Instance.gameProgress.continueGame = true;
         SceneManager.LoadSceneAsync(mainMenu, LoadSceneMode.Single);
     }
 

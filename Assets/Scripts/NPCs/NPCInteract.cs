@@ -117,18 +117,54 @@ public class NPCInteract : MonoBehaviour
 
     public void UpdateSpecialButton()
     {
-        if (npcInfo.weapon.isFound)
+        if (npcInfo.whatUnlocksNPCQuestion == "Clue1")
         {
-            specialQuestionLockedButton.gameObject.SetActive(false);
-            specialQuestionUnlockedButton.gameObject.SetActive(true);
-            specialQuestionUnlockedButtonText.text = $"Confront about {npcInfo.weapon.weaponName}";
+            if (npcInfo.clues[0].isFound)
+            {
+                specialQuestionLockedButton.gameObject.SetActive(false);
+                specialQuestionUnlockedButton.gameObject.SetActive(true);
+                specialQuestionUnlockedButtonText.text = $"Confront about {npcInfo.clues[0].clueName}";
 
-        }
-        else
+            }
+            else
+            {
+                specialQuestionLockedButton.gameObject.SetActive(true);
+                specialQuestionUnlockedButton.gameObject.SetActive(false);
+                specialQuestionLockedButtonText.text = $"Locked: {npcInfo.clues[0].clueName} Not Found";
+            }
+        } else if (npcInfo.whatUnlocksNPCQuestion == "Clue2")
         {
-            specialQuestionLockedButton.gameObject.SetActive(true);
-            specialQuestionUnlockedButton.gameObject.SetActive(false);
-            specialQuestionLockedButtonText.text = $"Locked: {npcInfo.weapon.weaponName} Not Found";
+            if (npcInfo.weapon.isFound)
+            {
+                specialQuestionLockedButton.gameObject.SetActive(false);
+                specialQuestionUnlockedButton.gameObject.SetActive(true);
+                specialQuestionUnlockedButtonText.text = $"Confront about {npcInfo.clues[1].clueName}";
+
+            }
+            else
+            {
+                specialQuestionLockedButton.gameObject.SetActive(true);
+                specialQuestionUnlockedButton.gameObject.SetActive(false);
+                specialQuestionLockedButtonText.text = $"Locked: {npcInfo.clues[1].clueName} Not Found";
+            }
+        } else if (npcInfo.whatUnlocksNPCQuestion == "Weapon")
+        {
+            if (npcInfo.weapon.isFound)
+            {
+                specialQuestionLockedButton.gameObject.SetActive(false);
+                specialQuestionUnlockedButton.gameObject.SetActive(true);
+                specialQuestionUnlockedButtonText.text = $"Confront about {npcInfo.weapon.weaponName}";
+
+            }
+            else
+            {
+                specialQuestionLockedButton.gameObject.SetActive(true);
+                specialQuestionUnlockedButton.gameObject.SetActive(false);
+                specialQuestionLockedButtonText.text = $"Locked: {npcInfo.weapon.weaponName} Not Found";
+            }
+        } else
+        {
+            Debug.LogError("Unknown param for npcInfo: what unlocks special question: should be either Clue1, Clue2, or Weapon");
         }
     }
 

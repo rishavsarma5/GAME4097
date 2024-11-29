@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: CassandraVenus_Clue2
   m_EditorClassIdentifier: 
   relatedNPC: {fileID: 11400000, guid: 54d12899e7151954895c99a1328a0f3e, type: 2}
+  clueName: Dartboard
   icon: {fileID: 21300000, guid: db3e7b7c8db355e499429545071a0321, type: 3}
   isFound: 0
   description: 'There''s a plaque underneath it that states:

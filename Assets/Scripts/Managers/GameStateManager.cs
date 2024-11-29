@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -15,15 +16,15 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private DiceSpawnManager diceSpawner;
     [SerializeField] private EndTurnMenu endTurnMenu;
     [SerializeField] private TextMeshProUGUI numTurnsText;
-    [SerializeField] private Transform player1SuspectSelectLocation;
     [SerializeField] private bool playerInsideRoom = false;
+
+    [SerializeField] private string mainRoom = "MainRoom";
+    [SerializeField] private string suspectSelectRoom = "SuspectSelectRoom";
 
     [SerializeField] private Camera mainCamera;
     [SerializeField] private int numTurnsInGame = 5;
 
     [SerializeField] private List<DiceMovementTriggerHandler> teleportAnchors = new();
-
-    //public static event Action<GameState> onGameStateChanged;
 
     private void Awake()
     {
@@ -35,15 +36,6 @@ public class GameStateManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
-        /*
-        // Load progress if continuing game
-        if (GameProgressManager.Instance.gameProgress.gameStarted)
-        {
-            GameProgressManager.Instance.gameProgress.LoadGameProgress();
-            RestoreGameState();
-        }
-        */
 
         var allTPs = GameObject.FindGameObjectsWithTag("TeleportAnchor");
         diceSpawner = GetComponent<DiceSpawnManager>();
@@ -58,15 +50,11 @@ public class GameStateManager : MonoBehaviour
     {
         diceSpawner.enabled = false;
         UpdateGameState(GameState.InitializeGame);
-        //player = GameObject.FindGameObjectWithTag("Player") as GameObject;
     }
 
     public void UpdateGameState(GameState newState)
     {
         currentState = newState;
-
-        // Save the game state
-        GameProgressManager.Instance.SavePlayerPosition(player.transform.position);
 
         switch (newState)
         {
@@ -99,7 +87,7 @@ public class GameStateManager : MonoBehaviour
     private void HandleInitializeGame()
     {
         Debug.Log("Entered Initialize Game State");
-        ClueGameManager.Instance.InitializeAllFirstClues();
+        ClueGameManager.Instance.InitializeAllClues();
         ClueGameManager.Instance.InitializeStartingWeapons();
         ClueGameManager.Instance.SaveInitialization();
 
@@ -206,6 +194,9 @@ public class GameStateManager : MonoBehaviour
             // update game progress
             GameProgressManager.Instance.SaveTurnsPlayed(numTurnsInGame);
             ClueGameManager.Instance.SaveCluesAndWeaponsFound();
+            GameProgressManager.Instance.SavePlayerPosition(player.transform.position);
+
+            Debug.Log("Game Progress saved in end of round!");
 
             diceSpawner.enabled = false;
 
@@ -238,7 +229,7 @@ public class GameStateManager : MonoBehaviour
         List<Weapon> weaponsList = ClueGameManager.Instance.foundWeapons;
 		FindObjectOfType<SuspectGuessUI>().setUp(weaponsList);
 
-		player.transform.position = player1SuspectSelectLocation.position;
+        SceneManager.LoadSceneAsync(suspectSelectRoom, LoadSceneMode.Single);
     }
 
     public void SetPlayerInsideRoom(bool inside)
@@ -262,11 +253,24 @@ public class GameStateManager : MonoBehaviour
         numTurnsInGame = gameProgress.numTurnsPlayed;
 
         // Update current state
-        currentState = (GameState)PlayerPrefs.GetInt("CurrentGameState", (int)GameState.InitializeGame);
-        UpdateGameState(currentState);
-
-        // Restore other elements as necessary
+        UpdateGameState(GameState.Exploration);
     }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == mainRoom)
+        {
+            var gameProgress = GameProgressManager.Instance.gameProgress;
+            if (gameProgress.continueGame)
+            {
+                gameProgress.continueGame = false;
+
+                GameProgressManager.Instance.gameProgress.LoadGameProgress();
+                RestoreGameState();
+            }
+        }
+    }
+
 }
 
 public enum GameState

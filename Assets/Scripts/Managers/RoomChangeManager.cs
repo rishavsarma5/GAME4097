@@ -45,6 +45,10 @@ public class RoomChangeManager : MonoBehaviour
                 player.transform.position = savedPlayerPosition;
                 player.transform.Rotate(0, 180f, 0);
             }
+
+            // save game state
+            ClueGameManager.Instance.SaveCluesAndWeaponsFound();
+            GameProgressManager.Instance.SavePlayerPosition(player.transform.position);
         }
 
         SceneManager.sceneLoaded -= OnSceneLoaded;
