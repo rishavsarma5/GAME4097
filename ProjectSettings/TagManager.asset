@@ -12,10 +12,10 @@ TagManager:
   - AudioLocation
   - Clue1Interactable
   - Clue2Interactable
-  - Clue3Interactable
   - MovementDistanceBox
   - Dice
   - NotepadUI
+  - PropInteractable
   layers:
   - Default
   - TransparentFX

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e1f673fc386a64d9909a7319b3fe37, type: 3}
+  m_Name: LionelJupiter
+  m_EditorClassIdentifier: 
+  npcName: Lionel Jupiter
+  weapon: {fileID: 11400000, guid: 2b42aac5e26133b4686c82e1286e4c86, type: 2}
+  clues:
+  - {fileID: 0}
+  - {fileID: 0}
+  whatUnlocksNPCQuestion: Clue2
+  npcInteractInfo: {fileID: 11400000, guid: 3020870ad7972384895e3f5a855393fb, type: 2}

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c121df8ac1033324bb723198c94d9798, type: 3}
+  m_Name: NellyNeptuneNPCInfo
+  m_EditorClassIdentifier: 
+  promptCanvasHeaderText: Are you asking mee for a scoop?
+  dialoguePrompts:
+  - textLines:
+    - Doesn't everyone know him..
+    - I've written a few articles about him!
+    - He's great.
+  - textLines:
+    - I was right here, in the lounge!
+    - I was trying to get Cassy to talk to me!
+    - Oh I wish I could be interviewing everyone like you.
+  - textLines:
+    - Ok, maybe it was a bit illegal but not as bad as killing someone!!
+    - I would neeever do that.
+  hasPlayed: 0
