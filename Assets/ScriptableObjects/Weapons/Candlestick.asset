@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95e302761d9e544448692df9db3ad2db, type: 3}
-  m_Name: Chalice
+  m_Name: Candlestick
   m_EditorClassIdentifier: 
-  weaponName: Chalice
+  weaponName: Candlestick
   icon: {fileID: 21300000, guid: db3e7b7c8db355e499429545071a0321, type: 3}
-  relatedNPC: {fileID: 11400000, guid: a778573117ac18c4c9171c886b82d7f3, type: 2}
+  relatedNPC: {fileID: 11400000, guid: e79dafb6ac5afc543bb3339c7975c950, type: 2}
   isFound: 0
-  weaponFoundText: There's an empty bottle next to the chalice...which smells of
-    bitter almonds.
+  weaponFoundText: A candlestick that seems to have a caved in surface around its
+    rim.
