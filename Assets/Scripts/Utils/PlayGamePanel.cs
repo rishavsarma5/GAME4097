@@ -19,7 +19,7 @@ public class PlayGamePanel : MonoBehaviour
         startButton.SetActive(false);
         restartButton.SetActive(false);
 
-        if (gameProgress.gameStarted)
+        if (gameProgress.GetGameStarted())
         {
             continueButton.SetActive(true);
             restartButton.SetActive(true);
@@ -37,12 +37,14 @@ public class PlayGamePanel : MonoBehaviour
     public void OnStartGameButtonPressed()
     {
         GameProgressManager.Instance.gameProgress.gameStarted = true;
+        GameProgressManager.Instance.gameProgress.SaveGameStarted();
         SceneManager.LoadSceneAsync(mainMenu, LoadSceneMode.Single);
     }
 
     public void OnContinueGameButtonPressed()
     {
         GameProgressManager.Instance.gameProgress.continueGame = true;
+        GameProgressManager.Instance.gameProgress.SaveGameContinued();
         SceneManager.LoadSceneAsync(mainMenu, LoadSceneMode.Single);
     }
 

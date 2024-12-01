@@ -48,6 +48,8 @@ public class RoomChangeManager : MonoBehaviour
 
             // save game state
             ClueGameManager.Instance.SaveCluesAndWeaponsFound();
+            GameStateManager.Instance.SaveNumTurnsPlayed();
+            GameStateManager.Instance.SaveTurnsLeft();
             GameProgressManager.Instance.SavePlayerPosition(player.transform.position);
         }
 

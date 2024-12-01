@@ -10,7 +10,7 @@ public class GameProgressPanel : MonoBehaviour
     private void OnEnable()
     {
         var gameProgress = GameProgressManager.Instance.gameProgress;
-        if (!gameProgress.gameStarted)
+        if (!gameProgress.GetGameStarted())
         {
             gameProgressText.text = "No Game Started.";
         } else

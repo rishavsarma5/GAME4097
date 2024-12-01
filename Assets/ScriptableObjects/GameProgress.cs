@@ -34,7 +34,23 @@ public class GameProgress : ScriptableObject
         PlayerPrefs.SetFloat("TimeStarted", startTime);
     }
 
-    
+    public void SaveGameStarted()
+    {
+        int gameStartedState = gameStarted ? 1 : 0;
+        PlayerPrefs.SetInt("GameStarted", gameStartedState);
+    }
+
+    public bool GetGameStarted()
+    {
+        return PlayerPrefs.GetInt("GameStarted", 0) == 1;
+    }
+
+    public void SaveGameContinued()
+    {
+        int gameContinuedState = continueGame ? 1 : 0;
+        PlayerPrefs.SetInt("GameContinued", gameContinuedState);
+    }
+
     /*
     public void SaveAllGameProgress()
     {
@@ -48,7 +64,7 @@ public class GameProgress : ScriptableObject
         SaveTurns();
     }
     */
-    
+
 
     public void SavePlayerPosition(Vector3 playerPosition)
     {
@@ -69,6 +85,7 @@ public class GameProgress : ScriptableObject
     public void LoadGameProgress()
     {
         gameStarted = PlayerPrefs.GetInt("GameStarted", 0) == 1;
+        continueGame = PlayerPrefs.GetInt("GameContinued", 0) == 1;
         startTime = PlayerPrefs.GetFloat("TimeStarted", 0);
         timeElapsed = PlayerPrefs.GetFloat("ElapsedTime", 0);
 
@@ -111,6 +128,7 @@ public class GameProgress : ScriptableObject
         totalWeaponsCount = 0;
         numWeaponsFound = 0;
         numTurnsPlayed = 0;
+        turnsLeft = 0;
         totalTurns = 0;
         lastDiceRoll = 0;
         currentPlayerPosition = Vector3.zero;

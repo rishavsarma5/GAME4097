@@ -77,6 +77,7 @@ public class GameStateManager : MonoBehaviour
             {
                 Debug.Log("Game state manager met in continue");
                 gameProgress.continueGame = false;
+                GameProgressManager.Instance.gameProgress.SaveGameContinued();
 
                 GameProgressManager.Instance.gameProgress.LoadGameProgress();
                 Debug.Log("loaded game progress");
