@@ -295,6 +295,10 @@ PrefabInstance:
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SwitchToMainRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 1594274652025771102, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
+      propertyPath: targetSceneName
+      value: Hall
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6116443994713573793, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
     m_RemovedGameObjects:
@@ -307,6 +311,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4227889827151656, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
   m_PrefabInstance: {fileID: 29116459}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &44515794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 44515795}
+  - component: {fileID: 44515796}
+  m_Layer: 0
+  m_Name: OutsideDoorCollider (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &44515795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44515794}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 2.911, y: 0, z: -2.305}
+  m_LocalScale: {x: 5, y: 2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1536430751}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!65 &44515796
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44515794}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &80989245
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,6 +1049,10 @@ PrefabInstance:
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SwitchToMainRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 1594274652025771102, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
+      propertyPath: targetSceneName
+      value: Hall
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6116443994713573793, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
     m_RemovedGameObjects:
@@ -1632,6 +1693,59 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 320018645}
   m_Mesh: {fileID: -4201355388588041947, guid: 9e628ead544930d4cb9756b1f48dd2b0, type: 3}
+--- !u!1 &340815818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 340815819}
+  - component: {fileID: 340815820}
+  m_Layer: 0
+  m_Name: OutsideDoorCollider (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &340815819
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340815818}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.248, y: 0, z: -4.887}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1536430751}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &340815820
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340815818}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &342397723
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2178,13 +2292,42 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 138928, guid: ccff292c41659b54fa364f963d99e439, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 534211638}
   m_SourcePrefab: {fileID: 100100000, guid: ccff292c41659b54fa364f963d99e439, type: 3}
 --- !u!4 &534211636 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 457916, guid: ccff292c41659b54fa364f963d99e439, type: 3}
   m_PrefabInstance: {fileID: 534211635}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &534211637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 138928, guid: ccff292c41659b54fa364f963d99e439, type: 3}
+  m_PrefabInstance: {fileID: 534211635}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &534211638
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534211637}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.284659, y: 1.7241192, z: 1.284921}
+  m_Center: {x: 0, y: 0.8620596, z: 0}
 --- !u!1 &575323799
 GameObject:
   m_ObjectHideFlags: 0
@@ -2290,6 +2433,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1226653668}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &579142350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 579142351}
+  - component: {fileID: 579142352}
+  m_Layer: 0
+  m_Name: OutsideDoorCollider (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &579142351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579142350}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.385, y: 0, z: -5.011}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1536430751}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &579142352
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579142350}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &598119223
 GameObject:
   m_ObjectHideFlags: 0
@@ -9076,6 +9272,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 985333002}
+  - {fileID: 340815819}
+  - {fileID: 579142351}
+  - {fileID: 44515795}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1563030808
@@ -14766,6 +14965,10 @@ PrefabInstance:
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SwitchToMainRoom
       objectReference: {fileID: 0}
+    - target: {fileID: 1594274652025771102, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
+      propertyPath: targetSceneName
+      value: Hall
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6116443994713573793, guid: 4ef963e0884b85747ae4641402f3ab74, type: 3}
     m_RemovedGameObjects:
@@ -15169,13 +15372,42 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 138928, guid: ccff292c41659b54fa364f963d99e439, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2090012977}
   m_SourcePrefab: {fileID: 100100000, guid: ccff292c41659b54fa364f963d99e439, type: 3}
 --- !u!4 &2090012975 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 457916, guid: ccff292c41659b54fa364f963d99e439, type: 3}
   m_PrefabInstance: {fileID: 2090012974}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2090012976 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 138928, guid: ccff292c41659b54fa364f963d99e439, type: 3}
+  m_PrefabInstance: {fileID: 2090012974}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2090012977
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090012976}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.284659, y: 1.7241192, z: 1.284921}
+  m_Center: {x: 0, y: 0.8620596, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

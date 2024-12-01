@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c121df8ac1033324bb723198c94d9798, type: 3}
+  m_Name: PlutoMcJonesNPCInfo
+  m_EditorClassIdentifier: 
+  promptCanvasHeaderText: What can I do for ya?
+  dialoguePrompts:
+  - textLines:
+    - Oh my boss is-was amazing.
+    - He gave me and my family so much.
+    - I've been his house attendant for many long years.
+  - textLines:
+    - Oh I was in the Dining Room, getting ready for supper.
+    - Lot of busy work, cooking and getting drinks at the same time.
+    - I was too busy to do anything I'll have you know!
+  - textLines:
+    - Well, you got me.
+    - 'You see, I''m a PI at your service. '
+    - A man Robert hired to look for anyone conspiring against him.
+    - And boi have they won.
+  hasPlayed: 0
