@@ -20,6 +20,30 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Room Scenes/Kitchen.unity
     guid: 3a0018e828190f84a92cadfedba900a6
+  - enabled: 1
+    path: Assets/Scenes/Room Scenes/BallRoom.unity
+    guid: cb75026c16d05464c89edacfad756f05
+  - enabled: 1
+    path: Assets/Scenes/Room Scenes/BilliardRoom.unity
+    guid: f42d43571e8674540861bb46b1442777
+  - enabled: 1
+    path: Assets/Scenes/Room Scenes/Conservatory.unity
+    guid: b0485458c0ab1bf4ba049820c5e05d17
+  - enabled: 1
+    path: Assets/Scenes/Room Scenes/Hall.unity
+    guid: 21f4a5a26c9daa841b27587e61d2da6c
+  - enabled: 1
+    path: Assets/Scenes/Room Scenes/Library.unity
+    guid: dbfa328562660c74499de409f227b8ff
+  - enabled: 1
+    path: Assets/Scenes/Room Scenes/Lounge.unity
+    guid: 9e093856a4567e04f921b1340d117292
+  - enabled: 1
+    path: Assets/Scenes/Room Scenes/Study.unity
+    guid: e7ea4ed404d74624eb3a00713bc55a1b
+  - enabled: 1
+    path: Assets/Scenes/SuspectSelect.unity
+    guid: c0a4e577b0e650741943ed10013609ea
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b5713d1c6a181ca458b62c8c790370fe, type: 2}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 8de80ad7761583c459d86d3810efdb4d, type: 2}

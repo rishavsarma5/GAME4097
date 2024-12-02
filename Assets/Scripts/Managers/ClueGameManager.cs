@@ -11,14 +11,14 @@ public class ClueGameManager : MonoBehaviour
 
     [Header("Initial Clues and Weapons")]
     public List<Clue> firstClues;
-    [SerializeField] private List<GameObject> firstClueGameObjects;
+    //[SerializeField] private List<GameObject> firstClueGameObjects;
     public List<Clue> secondClues;
-    [SerializeField] private List<GameObject> secondClueGameObjects;
+    //[SerializeField] private List<GameObject> secondClueGameObjects;
     public List<Weapon> initialWeapons;
-    [SerializeField] private List<GameObject> weaponGameObjects;
+    //[SerializeField] private List<GameObject> weaponGameObjects;
 
-    private Dictionary<Clue, GameObject> listOfClues = new Dictionary<Clue, GameObject>();
-    private Dictionary<Weapon, GameObject> listOfWeapons = new Dictionary<Weapon, GameObject>();
+    //private Dictionary<Clue, GameObject> listOfClues = new Dictionary<Clue, GameObject>();
+    //private Dictionary<Weapon, GameObject> listOfWeapons = new Dictionary<Weapon, GameObject>();
 
     /*
     [Space(5)]
@@ -33,7 +33,7 @@ public class ClueGameManager : MonoBehaviour
     [SerializeField] public List<Weapon> foundWeapons;
 
     [Space(10)]
-    [SerializeField] private int numWeaponsToSpawn = 2;
+    //[SerializeField] private int numWeaponsToSpawn = 2;
     [SerializeField] private bool actionCompleted = false;
 
     [SerializeField] private string mainRoom = "MainRoom";
@@ -54,14 +54,14 @@ public class ClueGameManager : MonoBehaviour
         }
 
         // get all clues and weapons from the scene
-        firstClueGameObjects = GameObject.FindGameObjectsWithTag("Clue1Interactable").ToList();
+        //firstClueGameObjects = GameObject.FindGameObjectsWithTag("Clue1Interactable").ToList();
         //Debug.Log($"{firstClueGameObjects.Count} First Clue Objects found!");
-        secondClueGameObjects = GameObject.FindGameObjectsWithTag("Clue2Interactable").ToList();
+        //secondClueGameObjects = GameObject.FindGameObjectsWithTag("Clue2Interactable").ToList();
         //Debug.Log($"{secondClueGameObjects.Count} Second Clue Objects found!");
-        weaponGameObjects = GameObject.FindGameObjectsWithTag("WeaponInteractable").ToList();
+        //weaponGameObjects = GameObject.FindGameObjectsWithTag("WeaponInteractable").ToList();
         //Debug.Log($"{weaponGameObjects.Count} Weapon Objects found!");
 
-        AddAllCluesToDict();
+        //AddAllCluesToDict();
     }
     // Start is called before the first frame update
     void Start()
@@ -88,11 +88,11 @@ public class ClueGameManager : MonoBehaviour
     {
         if (scene.name == mainRoom)
         {
-            firstClueGameObjects = GameObject.FindGameObjectsWithTag("Clue1Interactable").ToList();
+            //firstClueGameObjects = GameObject.FindGameObjectsWithTag("Clue1Interactable").ToList();
             //Debug.Log($"{firstClueGameObjects.Count} First Clue Objects found!");
-            secondClueGameObjects = GameObject.FindGameObjectsWithTag("Clue2Interactable").ToList();
+            //secondClueGameObjects = GameObject.FindGameObjectsWithTag("Clue2Interactable").ToList();
             //Debug.Log($"{secondClueGameObjects.Count} Second Clue Objects found!");
-            weaponGameObjects = GameObject.FindGameObjectsWithTag("WeaponInteractable").ToList();
+            //weaponGameObjects = GameObject.FindGameObjectsWithTag("WeaponInteractable").ToList();
 
             inventoryNotepad = GameObject.FindGameObjectWithTag("NotepadUI").GetComponent<NotepadUI>();
         }
@@ -150,6 +150,12 @@ public class ClueGameManager : MonoBehaviour
     {
         foundWeapons.Clear();
 
+        foreach(Weapon weapon in initialWeapons)
+        {
+            weapon.isFound = false;
+        }
+
+        /*
         // Shuffle initialWeaponList in place
         ShuffleList(weaponGameObjects);
 
@@ -163,11 +169,23 @@ public class ClueGameManager : MonoBehaviour
             //activeWeapons.Add(weaponToSpawn);
             Debug.Log($"Weapon {weaponSO.weaponName} spawned.");
         }
+        */
     }
     public void InitializeAllClues()
     {
         foundClues.Clear();
 
+        foreach(Clue clue in firstClues)
+        {
+            clue.isFound = false;
+        }
+
+        foreach (Clue clue in secondClues)
+        {
+            clue.isFound = false;
+        }
+
+        /*
         foreach(GameObject clue in firstClueGameObjects) {
             clue.SetActive(true);
             //activeClues.Add(clue);
@@ -179,12 +197,15 @@ public class ClueGameManager : MonoBehaviour
             //activeClues.Add(clue);
         }
         Debug.Log($"All clues spawned!");
+        */
     }
 
     public void SaveInitialization()
     {
-        GameProgressManager.Instance.SaveTotalClues(listOfClues.Count);
-        GameProgressManager.Instance.SaveTotalWeapons(listOfWeapons.Count);
+        GameProgressManager.Instance.SaveTotalClues(firstClues.Count + secondClues.Count);
+        //GameProgressManager.Instance.SaveTotalClues(listOfClues.Count);
+        GameProgressManager.Instance.SaveTotalWeapons(initialWeapons.Count);
+        //GameProgressManager.Instance.SaveTotalWeapons(listOfWeapons.Count);
     }
 
     public void SaveCluesAndWeaponsFound()
@@ -215,6 +236,7 @@ public class ClueGameManager : MonoBehaviour
         SetActionCompleted();
     }
 
+    /*
     private void AddAllCluesToDict()
     {
         foreach (GameObject clue1 in firstClueGameObjects)
@@ -231,6 +253,7 @@ public class ClueGameManager : MonoBehaviour
             listOfClues.Add(clueSO, clue2);
         }
     }
+    
 
     private void ShuffleList<T>(List<T> list)
     {
@@ -240,4 +263,5 @@ public class ClueGameManager : MonoBehaviour
             (list[i], list[j]) = (list[j], list[i]);
         }
     }
+    */
 }

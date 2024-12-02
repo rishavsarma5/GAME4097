@@ -40,7 +40,7 @@ public class FloatingTextSpawner : MonoBehaviour
 
         textObject.GetComponent<FloatingTextController>().textField.text = text;
 
-        textObject.transform.position = playerTransform.position + playerTransform.TransformDirection(offset);
+        //textObject.transform.position = playerTransform.position + playerTransform.TransformDirection(offset);
         Debug.Log($"floating text spawned at {textObject.transform.position}");
 
         return textObject;
@@ -52,7 +52,7 @@ public class FloatingTextSpawner : MonoBehaviour
 
         textObject.GetComponent<FloatingTextController>().textField.text = text;
 
-        textObject.transform.position = playerTransform.position + playerTransform.TransformDirection(offset);
+        //textObject.transform.position = playerTransform.position + playerTransform.TransformDirection(offset);
         Debug.Log($"floating text spawned at {textObject.transform.position}");
 
         Destroy(textObject, destroyTimer);
