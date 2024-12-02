@@ -17,7 +17,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private NotepadUI notepadUI;
 
     [SerializeField] private string mainRoom = "MainRoom";
-    [SerializeField] private string suspectSelectRoom = "SuspectSelectRoom";
+    [SerializeField] private string suspectSelectRoom = "SuspectSelect";
 
     [SerializeField] private int totalTurnsInGame = 10;
     [SerializeField] private int turnsLeft = 0;

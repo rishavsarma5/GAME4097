@@ -114,10 +114,7 @@ public class ClueGameManager : MonoBehaviour
             clue.isFound = true;
 
 			inventoryNotepad.AddClue(clue);
-        } else
-        {
-            throw new System.Exception("this clue is not a first clue");
-        }
+        } 
     }
 
     public void OnClue2Found(Clue clue)
@@ -127,11 +124,8 @@ public class ClueGameManager : MonoBehaviour
             foundClues.Add(clue);
             clue.isFound = true;
             Debug.Log($"Clue {clue} added to found clues");
-            //inventoryNotepad.AddClue(clue);
-        }
-        else
-        {
-            throw new System.Exception("this clue is not a second clue");
+            
+            inventoryNotepad.AddClue(clue);
         }
     }
 
