@@ -15,7 +15,7 @@ MonoBehaviour:
   npcName: Nelly Neptune
   weapon: {fileID: 11400000, guid: 2a8bc50bf6fbe3d45ad50f98ce5bb0fb, type: 2}
   clues:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: e58b1ca7d303e52498f124164463fbaa, type: 2}
   - {fileID: 11400000, guid: 04e1e6ef5513a71478a714259dc2a280, type: 2}
   whatUnlocksNPCQuestion: Clue1
   npcInteractInfo: {fileID: 11400000, guid: e6bcddd099828454aa74f8dfbfe051ef, type: 2}

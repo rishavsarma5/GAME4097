@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e302761d9e544448692df9db3ad2db, type: 3}
+  m_Name: Cocaine
+  m_EditorClassIdentifier: 
+  weaponName: Cocaine
+  icon: {fileID: 21300000, guid: db3e7b7c8db355e499429545071a0321, type: 3}
+  relatedNPC: {fileID: 11400000, guid: 957ad4813f8960043a62c1bdd6913cc2, type: 2}
+  isFound: 0
+  weaponFoundText: A bag of cocaine! You definitely need to talk to the house servant
+    about this!

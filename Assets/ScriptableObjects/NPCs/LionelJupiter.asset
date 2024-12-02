@@ -16,6 +16,6 @@ MonoBehaviour:
   weapon: {fileID: 11400000, guid: 2b42aac5e26133b4686c82e1286e4c86, type: 2}
   clues:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 58e262b456c60ae4e870173d6a107dac, type: 2}
   whatUnlocksNPCQuestion: Clue2
   npcInteractInfo: {fileID: 11400000, guid: 3020870ad7972384895e3f5a855393fb, type: 2}

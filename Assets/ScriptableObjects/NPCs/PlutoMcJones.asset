@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlutoMcJones
   m_EditorClassIdentifier: 
   npcName: Pluto McJones
-  weapon: {fileID: 0}
+  weapon: {fileID: 11400000, guid: d87dd62dffb2d9c45ad4a748c17fb090, type: 2}
   clues:
   - {fileID: 0}
   - {fileID: 11400000, guid: 5d1e9c9b72c994d49aac810a0bceee69, type: 2}
