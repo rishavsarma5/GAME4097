@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class FloatingTextSpawner : MonoBehaviour
 {
@@ -17,11 +18,24 @@ public class FloatingTextSpawner : MonoBehaviour
         if (!Instance)
         {
             Instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
-            throw new System.Exception("Can't be two FloatingTextSpawners!");
+            Destroy(this.gameObject);
         }
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        playerTransform = GameObject.FindWithTag("Player").transform;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        playerTransform = GameObject.FindWithTag("Player").transform;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public void SpawnFloatingText(string text)
@@ -30,7 +44,7 @@ public class FloatingTextSpawner : MonoBehaviour
 
         textObject.GetComponent<FloatingTextController>().textField.text = text;
 
-        //textObject.transform.position = playerTransform.position + playerTransform.TransformDirection(offset);
+        textObject.transform.position = playerTransform.position + playerTransform.TransformDirection(offset);
         Debug.Log($"floating text spawned at {textObject.transform.position}");
     }
 
@@ -40,7 +54,7 @@ public class FloatingTextSpawner : MonoBehaviour
 
         textObject.GetComponent<FloatingTextController>().textField.text = text;
 
-        //textObject.transform.position = playerTransform.position + playerTransform.TransformDirection(offset);
+        textObject.transform.position = playerTransform.position + playerTransform.TransformDirection(offset);
         Debug.Log($"floating text spawned at {textObject.transform.position}");
 
         return textObject;
@@ -52,7 +66,7 @@ public class FloatingTextSpawner : MonoBehaviour
 
         textObject.GetComponent<FloatingTextController>().textField.text = text;
 
-        //textObject.transform.position = playerTransform.position + playerTransform.TransformDirection(offset);
+        textObject.transform.position = playerTransform.position + playerTransform.TransformDirection(offset);
         Debug.Log($"floating text spawned at {textObject.transform.position}");
 
         Destroy(textObject, destroyTimer);

@@ -21,7 +21,7 @@ public class NotepadUI : MonoBehaviour
 
 	public ItemDisplay itemDisplayPage;
 
-	private List<string> clueAndWeaponList;
+	private List<string> clueAndWeaponList = new();
 
 	public TextMeshProUGUI promptHeader;
 	public TextMeshProUGUI promptFooter;
