@@ -51866,11 +51866,11 @@ PrefabInstance:
       objectReference: {fileID: 2009399108}
     - target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
       propertyPath: firstClues.Array.size
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
       propertyPath: secondClues.Array.size
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
       propertyPath: foundWeapons.Array.size
@@ -51889,8 +51889,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 515f01d067ebd294db9a0a2b14feffea, type: 2}
     - target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
+      propertyPath: firstClues.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: e58b1ca7d303e52498f124164463fbaa, type: 2}
+    - target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
+      propertyPath: firstClues.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7bd435125b5137b4fba1e46f69c553c2, type: 2}
+    - target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
+      propertyPath: firstClues.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e26e5bfbeb9eac4ab06d665a947dd8c, type: 2}
+    - target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
       propertyPath: initialWeapons.Array.size
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
       propertyPath: secondClues.Array.data[0]
@@ -51904,6 +51916,18 @@ PrefabInstance:
       propertyPath: secondClues.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: 93df8176ecba1ae47b035327169ec0df, type: 2}
+    - target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
+      propertyPath: secondClues.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 04e1e6ef5513a71478a714259dc2a280, type: 2}
+    - target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
+      propertyPath: secondClues.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d1e9c9b72c994d49aac810a0bceee69, type: 2}
+    - target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
+      propertyPath: secondClues.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 58e262b456c60ae4e870173d6a107dac, type: 2}
     - target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
       propertyPath: foundWeapons.Array.data[0]
       value: 
@@ -51923,7 +51947,15 @@ PrefabInstance:
     - target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
       propertyPath: initialWeapons.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: 293748802d794e9419771cd098b1a17c, type: 2}
+      objectReference: {fileID: 11400000, guid: 8027bff02b598c34bb08ffb5bc94191a, type: 2}
+    - target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
+      propertyPath: initialWeapons.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2b42aac5e26133b4686c82e1286e4c86, type: 2}
+    - target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
+      propertyPath: initialWeapons.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: d87dd62dffb2d9c45ad4a748c17fb090, type: 2}
     - target: {fileID: 5308732214506273224, guid: d7c33add416a9d5498d610cf0f9c30b9, type: 3}
       propertyPath: firstClueGameObjects.Array.size
       value: 0

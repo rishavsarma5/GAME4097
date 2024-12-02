@@ -15,7 +15,7 @@ MonoBehaviour:
   npcName: Pluto McJones
   weapon: {fileID: 11400000, guid: d87dd62dffb2d9c45ad4a748c17fb090, type: 2}
   clues:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 7bd435125b5137b4fba1e46f69c553c2, type: 2}
   - {fileID: 11400000, guid: 5d1e9c9b72c994d49aac810a0bceee69, type: 2}
   whatUnlocksNPCQuestion: Weapon
   npcInteractInfo: {fileID: 11400000, guid: 8bfee6dca4b2c834dbec338b7c0a65da, type: 2}
