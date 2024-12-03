@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Room Scenes/Kitchen.unity
     guid: 3a0018e828190f84a92cadfedba900a6
   - enabled: 1
-    path: Assets/Scenes/Room Scenes/BallRoom.unity
+    path: Assets/Scenes/Room Scenes/Ballroom.unity
     guid: cb75026c16d05464c89edacfad756f05
   - enabled: 1
     path: Assets/Scenes/Room Scenes/BilliardRoom.unity
