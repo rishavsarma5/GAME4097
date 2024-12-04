@@ -7,12 +7,14 @@ using UnityEngine;
 public class ItemDisplay : MonoBehaviour
 {
 	public TMP_Text description;
+	public TMP_Text nameHeader;
 	public UnityEngine.UI.Image icon;
 
-	public void Display(string text, Sprite label)
+	public void Display(string desc, Sprite label, string name)
 	{
 		icon.sprite = label;
-		description.text = text;
+		description.text = desc;
+		nameHeader.text = name;
 	}
 
 }

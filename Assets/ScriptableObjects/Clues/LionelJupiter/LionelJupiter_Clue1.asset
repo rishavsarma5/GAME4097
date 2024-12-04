@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   relatedNPC: {fileID: 11400000, guid: a778573117ac18c4c9171c886b82d7f3, type: 2}
   clueName: Handbell
-  icon: {fileID: 21300000, guid: db3e7b7c8db355e499429545071a0321, type: 3}
-  isFound: 0
+  icon: {fileID: 21300000, guid: 5fcda67ce0c1c4e419332d6e88173aee, type: 3}
+  isFound: 1
   description: 'Etched in fine print is "Lionel''s Bell". Seems like something he
     would to fetch house staff on orders of food and beverage. '

@@ -11,10 +11,12 @@ public class NotepadUI : MonoBehaviour
 
 	private InventorySpace[][] InventorySpaces;
 
-	public GameObject inventoryPage;
+	public GameObject cluesPage;
+	public GameObject weaponsPage;
 	public GameObject itemPage;
 	public GameObject changeScenesPage;
 	public GameObject endTurnPage;
+	public GameObject mapPage;
 
 	public AudioClip newItemSound;
 	public AudioClip clickSound;
@@ -22,9 +24,6 @@ public class NotepadUI : MonoBehaviour
 	public ItemDisplay itemDisplayPage;
 
 	private List<string> clueAndWeaponList = new();
-
-	public TextMeshProUGUI promptHeader;
-	public TextMeshProUGUI promptFooter;
 
 	[Header("Tabs")]
 	public GameObject scenePageTab;
@@ -38,10 +37,9 @@ public class NotepadUI : MonoBehaviour
 		itemPage.SetActive(false);
 		changeScenesPage.SetActive(false);
 		endTurnPage.SetActive(false);
-		inventoryPage.SetActive(true);
+		cluesPage.SetActive(true);
+		weaponsPage.SetActive(false);
 		
-		promptHeader.text = "CLUES";
-		promptFooter.text = "click a space for info\n[MENU] to close";
 		InventorySpaces = new InventorySpace[RowCollection.Length][];
 		InventorySpace[] itemsList;
 		for (int row = 0; row < RowCollection.Length; row++)
@@ -62,9 +60,9 @@ public class NotepadUI : MonoBehaviour
 	{
 		if (!clueAndWeaponList.Contains(clue.name))
 		{
-			for (int row = 0; row < RowCollection.Length; row++)
+			for (int row = 0; row < 3; row++)
 			{
-				for (int space = 0; space < 2; space++)
+				for (int space = 0; space < 3; space++)
 				{
 					if (InventorySpaces[row][space].fillWithClue(clue))
 					{
@@ -81,13 +79,16 @@ public class NotepadUI : MonoBehaviour
 	{
 		if (!clueAndWeaponList.Contains(weapon.name))
 		{
-			for (int row = 0; row < RowCollection.Length; row++)
+			for (int row = 3; row < 6; row++)
 			{
-				if (InventorySpaces[row][2].fillWithWeapon(weapon))
+				for (int space = 0; space < 3; space++)
 				{
-					AudioSource.PlayClipAtPoint(newItemSound, Camera.main.transform.position);
-					clueAndWeaponList.Add(weapon.name);
-					return;
+					if (InventorySpaces[row][space].fillWithWeapon(weapon))
+					{
+						AudioSource.PlayClipAtPoint(newItemSound, Camera.main.transform.position);
+						clueAndWeaponList.Add(weapon.name);
+						return;
+					}
 				}
 			}
 		}
@@ -96,30 +97,24 @@ public class NotepadUI : MonoBehaviour
 	public void goToItemPage(Clue clue)
 	{
 		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
-		itemDisplayPage.Display(clue.description, clue.icon);
-		inventoryPage.SetActive(false);
+		itemDisplayPage.Display(clue.description, clue.icon, clue.clueName);
+		cluesPage.SetActive(false);
+		weaponsPage.SetActive(false);
 		endTurnPage.SetActive(false);
 		changeScenesPage.SetActive(false);
 		itemPage.SetActive(true);
+		mapPage.SetActive(false);
 	}
 
 	public void goToItemPage(Weapon weapon)
 	{
 		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
-		itemDisplayPage.Display(weapon.weaponFoundText, weapon.icon);
-		inventoryPage.SetActive(false);
+		itemDisplayPage.Display(weapon.weaponFoundText, weapon.icon, weapon.weaponName);
+		cluesPage.SetActive(false);
+		weaponsPage.SetActive(false);
 		endTurnPage.SetActive(false);
 		changeScenesPage.SetActive(false);
 		itemPage.SetActive(true);
-	}
-
-	public void goToInvPage()
-	{
-		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
-		itemPage.SetActive(false);
-		endTurnPage.SetActive(false);
-		changeScenesPage.SetActive(false);
-		inventoryPage.SetActive(true);
 	}
 
 	public void GoToEndTurnPage()
@@ -131,8 +126,25 @@ public class NotepadUI : MonoBehaviour
 		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
 		itemPage.SetActive(false);
 		changeScenesPage.SetActive(false);
-		inventoryPage.SetActive(false);
+		cluesPage.SetActive(false);
+		weaponsPage.SetActive(false);
 		endTurnPage.SetActive(true);
+		mapPage.SetActive(false);
+	}
+
+	public void GoToMapPage()
+	{
+		if (mapPage.activeSelf)
+		{
+			return;
+		}
+		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
+		itemPage.SetActive(false);
+		changeScenesPage.SetActive(false);
+		cluesPage.SetActive(false);
+		weaponsPage.SetActive(false);
+		endTurnPage.SetActive(true);
+		mapPage.SetActive(true);
 	}
 
 	public void GoToChangeScenesPage()
@@ -144,13 +156,15 @@ public class NotepadUI : MonoBehaviour
 		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
 		itemPage.SetActive(false);
 		endTurnPage.SetActive(false);
-		inventoryPage.SetActive(false);
+		cluesPage.SetActive(false);
+		weaponsPage.SetActive(false);
 		changeScenesPage.SetActive(true);
+		mapPage.SetActive(false);
 	}
 
 	public void GoToCluesPage()
 	{
-		if (inventoryPage.activeSelf)
+		if (cluesPage.activeSelf)
         {
 			return;
         }
@@ -158,9 +172,24 @@ public class NotepadUI : MonoBehaviour
 		endTurnPage.SetActive(false);
 		changeScenesPage.SetActive(false);
 		itemPage.SetActive(false);
-		inventoryPage.SetActive(true);
-		promptHeader.text = "CLUES";
-		promptFooter.text = "click a space for info\n[MENU] to close";
+		cluesPage.SetActive(true);
+		weaponsPage.SetActive(false);
+		mapPage.SetActive(false);
+	}
+
+	public void GoToWeaponsPage()
+	{
+		if (weaponsPage.activeSelf)
+		{
+			return;
+		}
+		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
+		endTurnPage.SetActive(false);
+		changeScenesPage.SetActive(false);
+		itemPage.SetActive(false);
+		cluesPage.SetActive(false);
+		weaponsPage.SetActive(true);
+		mapPage.SetActive(false);
 	}
 
 	public void TurnOnOtherTabs()
@@ -181,9 +210,9 @@ public class NotepadUI : MonoBehaviour
 		endTurnPage.SetActive(false);
 		changeScenesPage.SetActive(false);
 		itemPage.SetActive(false);
-		inventoryPage.SetActive(true);
-		promptHeader.text = "CLUES";
-		promptFooter.text = "click a space for info\n[MENU] to close";
+		cluesPage.SetActive(true);
+		weaponsPage.SetActive(false);
+		mapPage.SetActive(false);
 	}
 
 	public bool GetEndTurnPressed()
