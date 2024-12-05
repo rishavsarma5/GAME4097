@@ -6777,6 +6777,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1606098102}
     m_Modifications:
+    - target: {fileID: 233774839211767145, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
+      propertyPath: m_DirtyAABB
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 256235705447886917, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
       propertyPath: m_Size.y
       value: 1.4217438
@@ -7332,6 +7336,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 492098375535776365, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
+    - {fileID: 8110298098693845335, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1580894872338093855, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
       insertIndex: -1
