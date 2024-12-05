@@ -43,7 +43,7 @@ public class RoomChangeManager : MonoBehaviour
             if (player != null)
             {
                 player.transform.position = savedPlayerPosition;
-                player.transform.Rotate(0, 180f, 0);
+                //player.transform.Rotate(0, 180f, 0);
             }
 
             // save game state

@@ -180,6 +180,7 @@ public class NPCInteract : MonoBehaviour
 
     private void UpdateDialogueText(InputAction.CallbackContext context)
     {
+        Debug.Log("Skipped text");
         UpdateDialogueDisplay();
     }
 
@@ -196,17 +197,22 @@ public class NPCInteract : MonoBehaviour
 
     private void UpdateDialogueDisplay()
     {
+        Debug.Log($"this is line index in update dialogue display {lineIndex}");
         if (dialogueTextBox.text == currQuestionDialogue.textLines[lineIndex])
         {
+            Debug.Log("Got after if in update dialogue display");
             nextLineIndicator.gameObject.SetActive(false);
             DisplayNextPrompt();
         }
         else
         {
+            Debug.Log("Got after else in update dialogue display");
             StopAllCoroutines();
             dialogueTextBox.text = currQuestionDialogue.textLines[lineIndex];
             nextLineIndicator.gameObject.SetActive(true);
         }
+
+        Debug.Log("Got after ifelse in update dialogue display");
     }
 
     public void PlayDialogueForQuestion(int question)

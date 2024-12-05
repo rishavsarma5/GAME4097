@@ -113,7 +113,7 @@ public class ClueGameManager : MonoBehaviour
             foundClues.Add(clue);
             clue.isFound = true;
 
-			inventoryNotepad.AddClue(clue);
+			//inventoryNotepad.AddClue(clue);
         } 
     }
 
@@ -125,7 +125,7 @@ public class ClueGameManager : MonoBehaviour
             clue.isFound = true;
             Debug.Log($"Clue {clue} added to found clues");
             
-            inventoryNotepad.AddClue(clue);
+            //inventoryNotepad.AddClue(clue);
         }
     }
 
@@ -136,7 +136,7 @@ public class ClueGameManager : MonoBehaviour
             foundWeapons.Add(weapon);
             weapon.isFound = true;
             Debug.Log($"Weapon {weapon} added to found weapons");
-            inventoryNotepad.AddWeapon(weapon);
+            //inventoryNotepad.AddWeapon(weapon);
         }
     }
 

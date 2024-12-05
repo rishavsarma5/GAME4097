@@ -18,7 +18,7 @@ public class EndTurnPage : MonoBehaviour
         if (!player) player = GameObject.FindGameObjectWithTag("Player");
         if (!notepadUI) notepadUI = GameObject.FindGameObjectWithTag("NotepadUI").GetComponent<NotepadUI>();
         promptHeader.text = "End Turn";
-        promptFooter.text = "End Your Current Turn by clicking above.";
+        promptFooter.text = "Click button to end turn.";
         DisplayNumTurnsText();
     }
 

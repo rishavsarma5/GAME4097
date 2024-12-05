@@ -15,7 +15,7 @@ public class ChangeScenesPage : MonoBehaviour
     {
         if (!player) player = GameObject.FindGameObjectWithTag("Player");
         promptHeader.text = "Change Scenes";
-        promptFooter.text = "Click one of the buttons above.";
+        promptFooter.text = "Click an option above.";
     }
 
     public void OnReturnToLobbyPressed()

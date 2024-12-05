@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class NotepadUI : MonoBehaviour
 {
@@ -37,8 +38,9 @@ public class NotepadUI : MonoBehaviour
 		itemPage.SetActive(false);
 		changeScenesPage.SetActive(false);
 		endTurnPage.SetActive(false);
-		cluesPage.SetActive(true);
+		cluesPage.SetActive(false);
 		weaponsPage.SetActive(false);
+		mapPage.SetActive(true);
 		
 		InventorySpaces = new InventorySpace[RowCollection.Length][];
 		InventorySpace[] itemsList;
@@ -102,8 +104,8 @@ public class NotepadUI : MonoBehaviour
 		weaponsPage.SetActive(false);
 		endTurnPage.SetActive(false);
 		changeScenesPage.SetActive(false);
-		itemPage.SetActive(true);
 		mapPage.SetActive(false);
+		itemPage.SetActive(true);
 	}
 
 	public void goToItemPage(Weapon weapon)
@@ -113,6 +115,7 @@ public class NotepadUI : MonoBehaviour
 		cluesPage.SetActive(false);
 		weaponsPage.SetActive(false);
 		endTurnPage.SetActive(false);
+		mapPage.SetActive(false);
 		changeScenesPage.SetActive(false);
 		itemPage.SetActive(true);
 	}
@@ -128,8 +131,8 @@ public class NotepadUI : MonoBehaviour
 		changeScenesPage.SetActive(false);
 		cluesPage.SetActive(false);
 		weaponsPage.SetActive(false);
-		endTurnPage.SetActive(true);
 		mapPage.SetActive(false);
+		endTurnPage.SetActive(true);
 	}
 
 	public void GoToMapPage()
@@ -143,7 +146,7 @@ public class NotepadUI : MonoBehaviour
 		changeScenesPage.SetActive(false);
 		cluesPage.SetActive(false);
 		weaponsPage.SetActive(false);
-		endTurnPage.SetActive(true);
+		endTurnPage.SetActive(false);
 		mapPage.SetActive(true);
 	}
 
@@ -158,8 +161,8 @@ public class NotepadUI : MonoBehaviour
 		endTurnPage.SetActive(false);
 		cluesPage.SetActive(false);
 		weaponsPage.SetActive(false);
-		changeScenesPage.SetActive(true);
 		mapPage.SetActive(false);
+		changeScenesPage.SetActive(true);
 	}
 
 	public void GoToCluesPage()
@@ -172,9 +175,9 @@ public class NotepadUI : MonoBehaviour
 		endTurnPage.SetActive(false);
 		changeScenesPage.SetActive(false);
 		itemPage.SetActive(false);
-		cluesPage.SetActive(true);
 		weaponsPage.SetActive(false);
 		mapPage.SetActive(false);
+		cluesPage.SetActive(true);
 	}
 
 	public void GoToWeaponsPage()
@@ -188,8 +191,8 @@ public class NotepadUI : MonoBehaviour
 		changeScenesPage.SetActive(false);
 		itemPage.SetActive(false);
 		cluesPage.SetActive(false);
-		weaponsPage.SetActive(true);
 		mapPage.SetActive(false);
+		weaponsPage.SetActive(true);
 	}
 
 	public void TurnOnOtherTabs()
@@ -208,11 +211,11 @@ public class NotepadUI : MonoBehaviour
 	{
 		endTurnPressed = false;
 		endTurnPage.SetActive(false);
-		changeScenesPage.SetActive(false);
 		itemPage.SetActive(false);
-		cluesPage.SetActive(true);
+		changeScenesPage.SetActive(false);
 		weaponsPage.SetActive(false);
-		mapPage.SetActive(false);
+		cluesPage.SetActive(false);
+		mapPage.SetActive(true);
 	}
 
 	public bool GetEndTurnPressed()

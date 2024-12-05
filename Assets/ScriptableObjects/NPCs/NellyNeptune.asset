@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NellyNeptune
   m_EditorClassIdentifier: 
   npcName: Nelly Neptune
-  weapon: {fileID: 11400000, guid: 2a8bc50bf6fbe3d45ad50f98ce5bb0fb, type: 2}
+  weapon: {fileID: 11400000, guid: 8027bff02b598c34bb08ffb5bc94191a, type: 2}
   clues:
   - {fileID: 11400000, guid: e58b1ca7d303e52498f124164463fbaa, type: 2}
   - {fileID: 11400000, guid: 04e1e6ef5513a71478a714259dc2a280, type: 2}
