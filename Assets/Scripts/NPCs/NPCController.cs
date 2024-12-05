@@ -5,26 +5,26 @@ using UnityEngine.AI;
 
 public class NPCController : MonoBehaviour
 {
-    [SerializeField] private List<Transform> pathingWaypoints;
+    //[SerializeField] private List<Transform> pathingWaypoints;
     [SerializeField] private Animator _animator;
-    [SerializeField] private NavMeshAgent _agent;
+    //[SerializeField] private NavMeshAgent _agent;
 
     [Header("Idle Animation Info")]
     [SerializeField] private float minTimeToWait = 5f;
     [SerializeField] private float maxTimeToWait = 20f;
     [SerializeField] private bool isDefaultIdling = true;
 
-    private int nextWaypointIndex = 0;
-    private bool npcMoving = false;
+    //private int nextWaypointIndex = 0;
+    //private bool npcMoving = false;
     private Coroutine idleCoroutine;
 
     // Start is called before the first frame update
     void Start()
     {
         isDefaultIdling = true;
-        nextWaypointIndex = 0;
+        //nextWaypointIndex = 0;
         _animator = GetComponentInChildren<Animator>();
-        _agent = GetComponent<NavMeshAgent>();
+        //_agent = GetComponent<NavMeshAgent>();
 
         // play random idle animation
         idleCoroutine = StartCoroutine(PlayRandomIdleAnim());
@@ -32,6 +32,12 @@ public class NPCController : MonoBehaviour
 
     private void Update()
     {
+        // Restart the idle animation coroutine after reaching waypoint
+        if (idleCoroutine == null)
+        {
+            idleCoroutine = StartCoroutine(PlayRandomIdleAnim());
+        }
+        /*
         if (npcMoving)
         {
             // Check if the agent has reached its destination
@@ -43,13 +49,10 @@ public class NPCController : MonoBehaviour
                 FaceWaypoint();
                 npcMoving = false;
 
-                // Restart the idle animation coroutine after reaching waypoint
-                if (idleCoroutine == null)
-                {
-                    idleCoroutine = StartCoroutine(PlayRandomIdleAnim());
-                }
+                
             }
         }
+        */
     }
 
     private IEnumerator PlayRandomIdleAnim()
@@ -57,13 +60,8 @@ public class NPCController : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(minTimeToWait, maxTimeToWait));
-
-            // Only change idle animation if the NPC is not moving
-            if (!npcMoving)
-            {
-                ChangeIdleAnim(isDefaultIdling);
-                isDefaultIdling = !isDefaultIdling;
-            }
+            ChangeIdleAnim(isDefaultIdling);
+            isDefaultIdling = !isDefaultIdling;
         }
     }
 
@@ -78,6 +76,7 @@ public class NPCController : MonoBehaviour
         }
     }
 
+    /*
     public bool IsMoving()
     {
         return npcMoving;
@@ -112,6 +111,6 @@ public class NPCController : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
         transform.rotation = targetRotation;
     }
-
+    */
 
 }

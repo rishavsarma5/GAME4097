@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SaturnPalmy_Clue2
   m_EditorClassIdentifier: 
   relatedNPC: {fileID: 11400000, guid: 1c923ca10504b7e4fbf53cf9f96df4c4, type: 2}
-  clueName: Images
+  clueName: Blackmail Letter
   icon: {fileID: 21300000, guid: db3e7b7c8db355e499429545071a0321, type: 3}
   isFound: 0
-  description: He said someone found out about us and would dump me soon. Ugghhh.
-    I can't believe I spent all this time on a failed prospect. I'm sorry babe. He
-    did tell me he would give me a special present if I talked to him today, so I'll
-    see if I can at least get something.
+  description: A folder containing polaroid images of what appears to be Robert Jupiter
+    entering a known strip club. The dates are circles in red indicating this was
+    a year after what happened with his wife...

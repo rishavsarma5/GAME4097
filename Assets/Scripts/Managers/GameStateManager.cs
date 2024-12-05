@@ -265,11 +265,13 @@ public class GameStateManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         UpdateGameState(GameState.SuspectSelection);
     }
-
+    
+    /*
     private IEnumerator WaitForNPCFinishMoving()
     {
         yield return new WaitUntil(() => NPCManager.Instance.GetAllNPCSFinishedMoving());
     }
+    */
 
     private void HandleSuspectSelection()
     {

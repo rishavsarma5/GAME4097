@@ -39,6 +39,7 @@ public class NPCManager : MonoBehaviour
         
     }
 
+    /*
     public void MoveNPCsToNewWaypoint()
     {
         foreach(var movement in nPCController)
@@ -58,6 +59,7 @@ public class NPCManager : MonoBehaviour
         }
         return true;
     }
+    */
 
     public void ResetAllNPCInteractionDistances()
     {

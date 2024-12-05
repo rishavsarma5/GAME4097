@@ -1018,6 +1018,7 @@ GameObject:
   - component: {fileID: 407156699}
   - component: {fileID: 407156701}
   - component: {fileID: 407156700}
+  - component: {fileID: 407156702}
   m_Layer: 0
   m_Name: Doorways/Shelves
   m_TagString: Untagged
@@ -1089,6 +1090,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407156698}
+  m_Mesh: {fileID: 4300000, guid: 0dff2a80a1d1ba345b74e01df0a38c74, type: 2}
+--- !u!64 &407156702
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407156698}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 0dff2a80a1d1ba345b74e01df0a38c74, type: 2}
 --- !u!1001 &461558357
 PrefabInstance:
