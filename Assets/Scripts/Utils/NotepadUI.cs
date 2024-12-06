@@ -103,7 +103,10 @@ public class NotepadUI : MonoBehaviour
 			clueItemsList = ClueCollection[row].GetComponentsInChildren<InventorySpace>();
 			for (int item = 0; item < 3; item++)
 			{
-				ClueInventorySpaces[row][item] = clueItemsList[item].FillWithClueFromList(cluesFoundList, row, item);
+				int index = row * 3 + item;
+				if (index == cluesFoundList.Count) break;
+
+				ClueInventorySpaces[row][item] = clueItemsList[item].FillWithClueFromList(cluesFoundList, index);
 			}
 		}
 
@@ -114,7 +117,10 @@ public class NotepadUI : MonoBehaviour
 			weaponItemsList = WeaponCollection[row].GetComponentsInChildren<InventorySpace>();
 			for (int item = 0; item < 3; item++)
 			{
-				ClueInventorySpaces[row][item] = weaponItemsList[item].FillWithWeaponFromList(weaponsFoundList, row, item);
+				int index = row * 3 + item;
+				if (index == weaponsFoundList.Count) break;
+
+				WeaponInventorySpaces[row][item] = weaponItemsList[item].FillWithWeaponFromList(weaponsFoundList, index);
 			}
 		}
 	}
