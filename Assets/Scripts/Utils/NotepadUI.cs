@@ -114,7 +114,7 @@ public class NotepadUI : MonoBehaviour
 
 	public void AddClue(Clue clue)
 	{
-		for (int row = 0; row < 3; row++)
+		for (int row = 0; row < ClueCollection.Length; row++)
 		{
 			for (int space = 0; space < 3; space++)
 			{
@@ -129,7 +129,7 @@ public class NotepadUI : MonoBehaviour
 
 	public void AddWeapon(Weapon weapon)
 	{
-		for (int row = 3; row < 6; row++)
+		for (int row = 0; row < WeaponCollection.Length; row++)
 		{
 			for (int space = 0; space < 3; space++)
 			{
