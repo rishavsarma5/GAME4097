@@ -77,7 +77,7 @@ public class GameStateManager : MonoBehaviour
         if (turnsLeft == totalTurnsInGame)
         {
             GameProgressManager.Instance.gameProgress.ResetGame();
-        } else
+        } else if (player != null)
         {
             SaveNumTurnsPlayed();
             ClueGameManager.Instance.SaveCluesAndWeaponsFound();
@@ -360,6 +360,8 @@ public class GameStateManager : MonoBehaviour
 
         // Restore active anchors
         Debug.Log("got to restoring active anchors");
+        Debug.Log($"player start pos: {playerStartExplorationPosition}");
+        Debug.Log($"last dice roll: {savedDiceRoll}");
         TeleportDistanceManager.Instance.CreateTeleportDistanceBoxAfterReturnFromRoom(playerStartExplorationPosition, savedDiceRoll);
     }
 

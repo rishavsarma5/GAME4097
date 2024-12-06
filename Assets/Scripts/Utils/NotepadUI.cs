@@ -77,30 +77,37 @@ public class NotepadUI : MonoBehaviour
 
 	public void InitializeInventory()
     {
-		if (ClueGameManager.Instance.foundClues.Count == 0 || ClueGameManager.Instance.foundWeapons.Count == 0) return;
-
-		// re-add clues 
-		for (int row = 0; row < ClueCollection.Length; row++)
-		{
-			for (int item = 0; item < 3; item++)
+		// re-add clues
+		if (ClueGameManager.Instance.foundClues.Count != 0) {
+			Debug.Log("got to initialize inventory");
+			Debug.Log($"printing clue collection: {ClueCollection}");
+			Debug.Log($"printing clue inventory: {ClueInventorySpaces}");
+			// re-add clues 
+			for (int row = 0; row < ClueCollection.Length; row++)
 			{
-				int index = row * 3 + item;
-				Debug.Log($"Index: {index}");
-				if (index == ClueGameManager.Instance.foundClues.Count) break;
+				for (int item = 0; item < 3; item++)
+				{
+					int index = row * 3 + item;
+					Debug.Log($"Index: {index}");
+					if (index >= ClueGameManager.Instance.foundClues.Count) break;
 
-				ClueInventorySpaces[row][item].FillWithClueFromList(ClueGameManager.Instance.foundClues, index);
+					ClueInventorySpaces[row][item].FillWithClueFromList(ClueGameManager.Instance.foundClues, index);
+				}
 			}
 		}
 
 		// re-add weapons 
-		for (int row = 0; row < WeaponCollection.Length; row++)
-		{
-			for (int item = 0; item < 3; item++)
+		if (ClueGameManager.Instance.foundWeapons.Count != 0)
+        {
+			for (int row = 0; row < WeaponCollection.Length; row++)
 			{
-				int index = row * 3 + item;
-				if (index == ClueGameManager.Instance.foundWeapons.Count) break;
+				for (int item = 0; item < 3; item++)
+				{
+					int index = row * 3 + item;
+					if (index >= ClueGameManager.Instance.foundWeapons.Count) break;
 
-				WeaponInventorySpaces[row][item].FillWithWeaponFromList(ClueGameManager.Instance.foundWeapons, index);
+					WeaponInventorySpaces[row][item].FillWithWeaponFromList(ClueGameManager.Instance.foundWeapons, index);
+				}
 			}
 		}
 	}
@@ -137,6 +144,7 @@ public class NotepadUI : MonoBehaviour
 
 	public void goToItemPage(Clue clue)
 	{
+		Debug.Log("displaying item page");
 		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
 		itemDisplayPage.Display(clue.description, clue.icon, clue.clueName);
 		cluesPage.SetActive(false);

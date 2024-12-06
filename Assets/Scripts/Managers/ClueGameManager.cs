@@ -96,12 +96,12 @@ public class ClueGameManager : MonoBehaviour
 
         inventoryNotepad = GameObject.FindGameObjectWithTag("NotepadUI").GetComponent<NotepadUI>();
 
-            //firstClueGameObjects = GameObject.FindGameObjectsWithTag("Clue1Interactable").ToList();
-            //Debug.Log($"{firstClueGameObjects.Count} First Clue Objects found!");
-            //secondClueGameObjects = GameObject.FindGameObjectsWithTag("Clue2Interactable").ToList();
-            //Debug.Log($"{secondClueGameObjects.Count} Second Clue Objects found!");
-            //weaponGameObjects = GameObject.FindGameObjectsWithTag("WeaponInteractable").ToList();
-            
+        //firstClueGameObjects = GameObject.FindGameObjectsWithTag("Clue1Interactable").ToList();
+        //Debug.Log($"{firstClueGameObjects.Count} First Clue Objects found!");
+        //secondClueGameObjects = GameObject.FindGameObjectsWithTag("Clue2Interactable").ToList();
+        //Debug.Log($"{secondClueGameObjects.Count} Second Clue Objects found!");
+        //weaponGameObjects = GameObject.FindGameObjectsWithTag("WeaponInteractable").ToList();
+        Debug.Log($"inventory notepad found {inventoryNotepad} by clue game manager");
         inventoryNotepad.InitializeInventory();
     }
 

@@ -4,10 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using Unity.XR.CoreUtils;
 using UnityEngine;
-using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
-using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class InventorySpace : MonoBehaviour
 {
@@ -21,11 +18,14 @@ public class InventorySpace : MonoBehaviour
 
 	private bool filled;
 
+	public Image icon;
+
 	private Clue clueInfo;
 	private Weapon weaponInfo;
 
 	private void Awake()
 	{
+		Debug.Log("Called on each inventory spaces");
 		filled = false;
 	}
 
@@ -34,9 +34,8 @@ public class InventorySpace : MonoBehaviour
         if (!filled && type == Type.Clue) 
         {
             clueInfo = clue;
-			//item = itemObject;
 			filled = true;
-			DisplayIcon();
+			icon.sprite = clueInfo.icon;
 			return true;
         }
 		return false;
@@ -47,42 +46,23 @@ public class InventorySpace : MonoBehaviour
 		if (!filled && type == Type.Weapon)
 		{
 			weaponInfo = weapon;
-			//item = itemObject;
 			filled = true;
-			DisplayIcon();
+			icon.sprite = weaponInfo.icon;
 			return true;
 		}
 		return false;
 	}
 
-	public InventorySpace FillWithClueFromList(List<Clue> clues, int index)
+	public void FillWithClueFromList(List<Clue> clues, int index)
     {
 		Debug.Log($"Filling with clue {clues[index]}");
-		InventorySpace newClue = new();
-		newClue.fillWithClue(clues[index]);
-
-		return newClue;
+		fillWithClue(clues[index]);
     }
 
-	public InventorySpace FillWithWeaponFromList(List<Weapon> weapons, int index)
+	public void FillWithWeaponFromList(List<Weapon> weapons, int index)
 	{
-		InventorySpace newWeapon = new();
-		newWeapon.fillWithWeapon(weapons[index]);
-
-		return newWeapon;
-	}
-	
-	private void DisplayIcon()
-	{
-		if (type == Type.Clue)
-		{
-			GetComponentsInChildren<UnityEngine.UI.Image>()[1].sprite = clueInfo.icon;
-			Debug.Log($"Setting icon to {clueInfo.icon}");
-		}
-		else if (type == Type.Weapon)
-		{
-			GetComponentsInChildren<UnityEngine.UI.Image>()[1].sprite = weaponInfo.icon;
-		}
+		Debug.Log($"Filling with weapon {weapons[index]}");
+		fillWithWeapon(weapons[index]);
 	}
 
 	public void clicktoItemPage()

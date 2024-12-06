@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   relatedNPC: {fileID: 11400000, guid: 1c923ca10504b7e4fbf53cf9f96df4c4, type: 2}
   clueName: Blackmail Letter
-  icon: {fileID: 21300000, guid: db3e7b7c8db355e499429545071a0321, type: 3}
+  icon: {fileID: 21300000, guid: 5fcda67ce0c1c4e419332d6e88173aee, type: 3}
   isFound: 0
   description: A folder containing polaroid images of what appears to be Robert Jupiter
     entering a known strip club. The dates are circles in red indicating this was
