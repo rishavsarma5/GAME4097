@@ -225,7 +225,7 @@ public class ClueGameManager : MonoBehaviour
 
     public IEnumerator TransitionToSuspectSelect()
     {
-        FloatingTextSpawner.Instance.SpawnFloatingText("Directing to Guessing Area...");
+        FloatingTextSpawner.Instance.SpawnFloatingTextWithTimedDestroy("Directing to Guessing Area...", 3f);
         yield return new WaitForSeconds(2f);
         SetActionCompleted();
     }

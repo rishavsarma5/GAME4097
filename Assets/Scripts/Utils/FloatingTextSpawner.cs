@@ -14,6 +14,7 @@ public class FloatingTextSpawner : MonoBehaviour
 
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float spawnDistance = 1.5f;
+    [SerializeField] private float spawnObjectDistance = 1f;
     
 
     private void Awake()
@@ -56,7 +57,7 @@ public class FloatingTextSpawner : MonoBehaviour
 
         textObject.GetComponent<FloatingTextController>().textField.text = text;
 
-        textObject.transform.position = cameraTransform.position + cameraTransform.forward * spawnDistance;
+        textObject.transform.position = cameraTransform.position + cameraTransform.forward * spawnObjectDistance;
         Debug.Log($"floating text spawned at {textObject.transform.position}");
 
         return textObject;
