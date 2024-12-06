@@ -79,6 +79,16 @@ public class NotepadUI : MonoBehaviour
 		isInitialized = true;
 	}
 
+	private void OnEnable()
+	{
+		SceneManager.sceneLoaded += OnSceneLoaded;
+	}
+
+	private void OnDisable()
+	{
+		SceneManager.sceneLoaded -= OnSceneLoaded;
+	}
+
 	public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
 		if (isInitialized) ReInitializeInventory();
