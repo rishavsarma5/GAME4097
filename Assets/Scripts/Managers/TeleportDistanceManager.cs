@@ -13,7 +13,7 @@ public class TeleportDistanceManager : MonoBehaviour
     [SerializeField] private Transform playerPosition;
     [SerializeField] private GameObject diceMovementBoxPrefab;
     [SerializeField] private List<GameObject> dice;
-    [SerializeField] private float boxScale = 2.5f;
+    [SerializeField] private float boxScale = 2f;
     private List<bool> allRollsCompleted;
     private bool allBoxesSpawned = false;
     private bool coroutineRunning = false;
@@ -83,9 +83,9 @@ public class TeleportDistanceManager : MonoBehaviour
     {
         Debug.Log("Called to create teleport distance box after reloading!");
         GameObject distanceBox = Instantiate(diceMovementBoxPrefab, oldPlayerPos, Quaternion.identity);
-        distanceBox.transform.localScale *= lastDiceRoll * boxScale;
         Vector3 newPosition = new(distanceBox.transform.position.x, 0.5f, distanceBox.transform.position.z);
         distanceBox.transform.position = newPosition;
+        distanceBox.transform.localScale *= lastDiceRoll * boxScale;
         Destroy(distanceBox, 0.5f);
     }
 

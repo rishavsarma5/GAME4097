@@ -57,6 +57,7 @@ public class InventorySpace : MonoBehaviour
 
 	public InventorySpace FillWithClueFromList(List<Clue> clues, int index)
     {
+		Debug.Log($"Filling with clue {clues[index]}");
 		InventorySpace newClue = new();
 		newClue.fillWithClue(clues[index]);
 
@@ -70,12 +71,13 @@ public class InventorySpace : MonoBehaviour
 
 		return newWeapon;
 	}
-
+	
 	private void DisplayIcon()
 	{
 		if (type == Type.Clue)
 		{
 			GetComponentsInChildren<UnityEngine.UI.Image>()[1].sprite = clueInfo.icon;
+			Debug.Log($"Setting icon to {clueInfo.icon}");
 		}
 		else if (type == Type.Weapon)
 		{

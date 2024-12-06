@@ -29,14 +29,16 @@ public class ClueGameManager : MonoBehaviour
 
     [Space(5)]
     [Header("Clues and Weapons Found")]
-    [SerializeField] private List<Clue> foundClues;
-    [SerializeField] public List<Weapon> foundWeapons;
+    public List<Clue> foundClues;
+    public List<Weapon> foundWeapons;
 
     [Space(10)]
     //[SerializeField] private int numWeaponsToSpawn = 2;
     [SerializeField] private bool actionCompleted = false;
 
     [SerializeField] private string mainRoom = "MainRoom";
+
+    [SerializeField] private AudioClip newItemSound;
 
 	public NotepadUI inventoryNotepad;
 	public InputActionReference menuButton;
@@ -47,6 +49,7 @@ public class ClueGameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -69,33 +72,37 @@ public class ClueGameManager : MonoBehaviour
 		menuButton.action.started += ToggleMenu;
     }
 
-    private void OnDestroy()
-    {
-        menuButton.action.started -= ToggleMenu;
-    }
-
     private void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        Application.quitting += OnApplicationQuit;
     }
 
     private void OnDisable()
     {
+        Application.quitting -= OnApplicationQuit;
+    }
+
+    private void OnApplicationQuit()
+    {
+        Debug.Log("Application is quitting, unsubscribing events.");
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        menuButton.action.started -= ToggleMenu;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == mainRoom)
-        {
+        Debug.Log("re-initilizing inventory");
+        if (scene.name == "Lobby") return;
+
+        inventoryNotepad = GameObject.FindGameObjectWithTag("NotepadUI").GetComponent<NotepadUI>();
+
             //firstClueGameObjects = GameObject.FindGameObjectsWithTag("Clue1Interactable").ToList();
             //Debug.Log($"{firstClueGameObjects.Count} First Clue Objects found!");
             //secondClueGameObjects = GameObject.FindGameObjectsWithTag("Clue2Interactable").ToList();
             //Debug.Log($"{secondClueGameObjects.Count} Second Clue Objects found!");
             //weaponGameObjects = GameObject.FindGameObjectsWithTag("WeaponInteractable").ToList();
-
-            inventoryNotepad = GameObject.FindGameObjectWithTag("NotepadUI").GetComponent<NotepadUI>();
-        }
+            
+        inventoryNotepad.InitializeInventory();
     }
 
     void ToggleMenu(InputAction.CallbackContext context)
@@ -112,8 +119,8 @@ public class ClueGameManager : MonoBehaviour
             Debug.Log($"Clue {clue} added to found clues");
             foundClues.Add(clue);
             clue.isFound = true;
-
-			//inventoryNotepad.AddClue(clue);
+            AudioSource.PlayClipAtPoint(newItemSound, Camera.main.transform.position);
+            inventoryNotepad.AddClue(clue);
         } 
     }
 
@@ -123,9 +130,9 @@ public class ClueGameManager : MonoBehaviour
         {
             foundClues.Add(clue);
             clue.isFound = true;
+            AudioSource.PlayClipAtPoint(newItemSound, Camera.main.transform.position);
             Debug.Log($"Clue {clue} added to found clues");
-            
-            //inventoryNotepad.AddClue(clue);
+            inventoryNotepad.AddClue(clue);
         }
     }
 
@@ -135,8 +142,9 @@ public class ClueGameManager : MonoBehaviour
         {
             foundWeapons.Add(weapon);
             weapon.isFound = true;
+            AudioSource.PlayClipAtPoint(newItemSound, Camera.main.transform.position);
+            inventoryNotepad.AddWeapon(weapon);
             Debug.Log($"Weapon {weapon} added to found weapons");
-            //inventoryNotepad.AddWeapon(weapon);
         }
     }
 
