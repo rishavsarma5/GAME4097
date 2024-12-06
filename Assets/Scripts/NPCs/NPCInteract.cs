@@ -181,7 +181,7 @@ public class NPCInteract : MonoBehaviour
     private void UpdateDialogueText(InputAction.CallbackContext context)
     {
         Debug.Log("Skipped text");
-        UpdateDialogueDisplay();
+        if (npcDialogueCanvas.activeSelf) UpdateDialogueDisplay();
     }
 
     private void CloseDialoguePanel(InputAction.CallbackContext context)
@@ -197,22 +197,17 @@ public class NPCInteract : MonoBehaviour
 
     private void UpdateDialogueDisplay()
     {
-        Debug.Log($"this is line index in update dialogue display {lineIndex}");
         if (dialogueTextBox.text == currQuestionDialogue.textLines[lineIndex])
         {
-            Debug.Log("Got after if in update dialogue display");
-            nextLineIndicator.gameObject.SetActive(false);
+            nextLineIndicator.SetActive(false);
             DisplayNextPrompt();
         }
         else
         {
-            Debug.Log("Got after else in update dialogue display");
             StopAllCoroutines();
             dialogueTextBox.text = currQuestionDialogue.textLines[lineIndex];
-            nextLineIndicator.gameObject.SetActive(true);
+            nextLineIndicator.SetActive(true);
         }
-
-        Debug.Log("Got after ifelse in update dialogue display");
     }
 
     public void PlayDialogueForQuestion(int question)
@@ -226,8 +221,8 @@ public class NPCInteract : MonoBehaviour
         {
             throw new System.Exception("NPC Info needs text lines for each question");
         }
-        npcPromptCanvas.gameObject.SetActive(false);
-        npcDialogueCanvas.gameObject.SetActive(true);
+        npcPromptCanvas.SetActive(false);
+        npcDialogueCanvas.SetActive(true);
         StartCoroutine(DisplayCurrentQuestionLine(currQuestionDialogue));
     }
 
@@ -242,7 +237,7 @@ public class NPCInteract : MonoBehaviour
 
         if (dialogueTextBox.text == prompt.textLines[lineIndex])
         {
-            nextLineIndicator.gameObject.SetActive(true);
+            nextLineIndicator.SetActive(true);
         }
     }
 
@@ -257,7 +252,7 @@ public class NPCInteract : MonoBehaviour
         else
         {
             //npcInfo.SetHasBeenPlayed();
-            npcDialogueCanvas.gameObject.SetActive(false);
+            npcDialogueCanvas.SetActive(false);
         }
     }
     #endregion
