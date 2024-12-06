@@ -15,5 +15,6 @@ MonoBehaviour:
   relatedNPC: {fileID: 11400000, guid: a778573117ac18c4c9171c886b82d7f3, type: 2}
   clueName: Menu
   icon: {fileID: 21300000, guid: db3e7b7c8db355e499429545071a0321, type: 3}
-  isFound: 0
-  description: 'This '
+  isFound: 1
+  description: This menu boasts a list of class and high-caliber food... except there
+    is a scribbled out line indicating the wine was changed last minute...

@@ -34,6 +34,7 @@ public class GameStateManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         } else
         {
             Destroy(this.gameObject);
@@ -59,16 +60,34 @@ public class GameStateManager : MonoBehaviour
 
     private void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        Application.quitting += OnApplicationQuit;
     }
 
     private void OnDisable()
     {
+        Application.quitting -= OnApplicationQuit;
+    }
+
+    private void OnApplicationQuit()
+    {
+        Debug.Log("Application is quitting, unsubscribing events.");
         SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        // update game progress
+        if (turnsLeft == totalTurnsInGame)
+        {
+            GameProgressManager.Instance.gameProgress.ResetGame();
+        } else if (player != null)
+        {
+            SaveNumTurnsPlayed();
+            ClueGameManager.Instance.SaveCluesAndWeaponsFound();
+            GameProgressManager.Instance.SavePlayerPosition(player.transform.position);
+        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("Game state manager on scene loaded called!");
         // Repopulate teleport anchors if back in the relevant scene
         if (scene.name == mainRoom)
         {
@@ -78,16 +97,15 @@ public class GameStateManager : MonoBehaviour
                 Debug.Log("Game state manager met in continue");
                 gameProgress.continueGame = false;
                 GameProgressManager.Instance.gameProgress.SaveGameContinued();
-
                 GameProgressManager.Instance.gameProgress.LoadGameProgress();
-                Debug.Log("loaded game progress");
-                Debug.Log("Re initializing room in continue");
-                ReInitializeMainRoom();
                 RestoreGameState();
+                ReInitializeMainRoom();
                 return;
             }
 
-            Debug.Log("Re initializing room outside of continue");
+            
+            Debug.Log("loaded game progress");
+            
             ReInitializeMainRoom();
         }
     }
@@ -342,6 +360,8 @@ public class GameStateManager : MonoBehaviour
 
         // Restore active anchors
         Debug.Log("got to restoring active anchors");
+        Debug.Log($"player start pos: {playerStartExplorationPosition}");
+        Debug.Log($"last dice roll: {savedDiceRoll}");
         TeleportDistanceManager.Instance.CreateTeleportDistanceBoxAfterReturnFromRoom(playerStartExplorationPosition, savedDiceRoll);
     }
 

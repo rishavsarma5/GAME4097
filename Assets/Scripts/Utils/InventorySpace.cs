@@ -4,10 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using Unity.XR.CoreUtils;
 using UnityEngine;
-using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
-using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class InventorySpace : MonoBehaviour
 {
@@ -21,11 +18,14 @@ public class InventorySpace : MonoBehaviour
 
 	private bool filled;
 
+	public Image icon;
+
 	private Clue clueInfo;
 	private Weapon weaponInfo;
 
 	private void Awake()
 	{
+		Debug.Log("Called on each inventory spaces");
 		filled = false;
 	}
 
@@ -34,9 +34,8 @@ public class InventorySpace : MonoBehaviour
         if (!filled && type == Type.Clue) 
         {
             clueInfo = clue;
-			//item = itemObject;
 			filled = true;
-			DisplayIcon();
+			icon.sprite = clueInfo.icon;
 			return true;
         }
 		return false;
@@ -47,24 +46,23 @@ public class InventorySpace : MonoBehaviour
 		if (!filled && type == Type.Weapon)
 		{
 			weaponInfo = weapon;
-			//item = itemObject;
 			filled = true;
-			DisplayIcon();
+			icon.sprite = weaponInfo.icon;
 			return true;
 		}
 		return false;
 	}
 
-	private void DisplayIcon()
+	public void FillWithClueFromList(List<Clue> clues, int index)
+    {
+		Debug.Log($"Filling with clue {clues[index]}");
+		fillWithClue(clues[index]);
+    }
+
+	public void FillWithWeaponFromList(List<Weapon> weapons, int index)
 	{
-		if (type == Type.Clue)
-		{
-			GetComponentsInChildren<UnityEngine.UI.Image>()[1].sprite = clueInfo.icon;
-		}
-		else if (type == Type.Weapon)
-		{
-			GetComponentsInChildren<UnityEngine.UI.Image>()[1].sprite = weaponInfo.icon;
-		}
+		Debug.Log($"Filling with weapon {weapons[index]}");
+		fillWithWeapon(weapons[index]);
 	}
 
 	public void clicktoItemPage()

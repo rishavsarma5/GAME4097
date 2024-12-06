@@ -38,6 +38,7 @@ public class RoomChangeManager : MonoBehaviour
     {
         if (scene.name == lastSavedScene)
         {
+            Debug.Log("Switched back to main room");
             // Find the player and set their position
             GameObject player = GameObject.FindWithTag("Player");
             if (player != null)

@@ -34,11 +34,23 @@ public class FloatingTextSpawner : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("Called on scene loaded in floating text spawner");
         cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
     }
 
-    private void OnDestroy()
+    private void OnEnable()
     {
+        Application.quitting += OnApplicationQuit;
+    }
+
+    private void OnDisable()
+    {
+        Application.quitting -= OnApplicationQuit;
+    }
+
+    private void OnApplicationQuit()
+    {
+        Debug.Log("Application is quitting, unsubscribing events.");
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
