@@ -55,6 +55,24 @@ public class InventorySpace : MonoBehaviour
 		return false;
 	}
 
+	public InventorySpace FillWithClueFromList(List<Clue> clues, int row, int col)
+    {
+		int index = row * 3 + col;
+		InventorySpace newClue = new();
+		newClue.fillWithClue(clues[index]);
+
+		return newClue;
+    }
+
+	public InventorySpace FillWithWeaponFromList(List<Weapon> weapons, int row, int col)
+	{
+		int index = row * 3 + col;
+		InventorySpace newWeapon = new();
+		newWeapon.fillWithWeapon(weapons[index]);
+
+		return newWeapon;
+	}
+
 	private void DisplayIcon()
 	{
 		if (type == Type.Clue)

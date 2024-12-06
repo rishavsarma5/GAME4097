@@ -8,9 +8,11 @@ using UnityEngine.SceneManagement;
 
 public class NotepadUI : MonoBehaviour
 {
-	public GameObject[] RowCollection;
+	public GameObject[] ClueCollection;
+	public GameObject[] WeaponCollection;
 
-	private InventorySpace[][] InventorySpaces;
+	private InventorySpace[][] ClueInventorySpaces;
+	private InventorySpace[][] WeaponInventorySpaces;
 
 	public GameObject cluesPage;
 	public GameObject weaponsPage;
@@ -24,7 +26,10 @@ public class NotepadUI : MonoBehaviour
 
 	public ItemDisplay itemDisplayPage;
 
-	private List<string> clueAndWeaponList = new();
+	private List<Clue> cluesFoundList = new();
+	private List<Weapon> weaponsFoundList = new();
+
+	private bool isInitialized = false;
 
 	[Header("Tabs")]
 	public GameObject scenePageTab;
@@ -42,34 +47,80 @@ public class NotepadUI : MonoBehaviour
 		weaponsPage.SetActive(false);
 		mapPage.SetActive(true);
 		
-		InventorySpaces = new InventorySpace[RowCollection.Length][];
-		InventorySpace[] itemsList;
-		for (int row = 0; row < RowCollection.Length; row++)
+		// initialize clues inventory
+		ClueInventorySpaces = new InventorySpace[ClueCollection.Length][];
+		InventorySpace[] clueItemsList;
+		for (int row = 0; row < ClueCollection.Length; row++)
 		{
-			InventorySpaces[row] = new InventorySpace[3];
-			itemsList = RowCollection[row].GetComponentsInChildren<InventorySpace>();
+			ClueInventorySpaces[row] = new InventorySpace[3];
+			clueItemsList = ClueCollection[row].GetComponentsInChildren<InventorySpace>();
 			for (int item = 0; item < 3; item++)
 			{
-				InventorySpaces[row][item] = itemsList[item];
+				ClueInventorySpaces[row][item] = clueItemsList[item];
+			}
+		}
+
+		// initialize weapons inventory
+		WeaponInventorySpaces = new InventorySpace[WeaponCollection.Length][];
+		InventorySpace[] weaponItemsList;
+		for (int row = 0; row < WeaponCollection.Length; row++)
+		{
+			WeaponInventorySpaces[row] = new InventorySpace[3];
+			weaponItemsList = WeaponCollection[row].GetComponentsInChildren<InventorySpace>();
+			for (int item = 0; item < 3; item++)
+			{
+				WeaponInventorySpaces[row][item] = weaponItemsList[item];
 			}
 		}
 
 		scenePageTab.SetActive(false);
 		endTurnTab.SetActive(false);
+
+		isInitialized = true;
+	}
+
+	public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+		if (isInitialized) ReInitializeInventory();
+	}
+
+	public void ReInitializeInventory()
+    {
+		// re-add clues 
+		InventorySpace[] clueItemsList;
+		for (int row = 0; row < ClueCollection.Length; row++)
+		{
+			clueItemsList = ClueCollection[row].GetComponentsInChildren<InventorySpace>();
+			for (int item = 0; item < 3; item++)
+			{
+				ClueInventorySpaces[row][item] = clueItemsList[item].FillWithClueFromList(cluesFoundList, row, item);
+			}
+		}
+
+		// re-add weapons 
+		InventorySpace[] weaponItemsList;
+		for (int row = 0; row < WeaponCollection.Length; row++)
+		{
+			weaponItemsList = WeaponCollection[row].GetComponentsInChildren<InventorySpace>();
+			for (int item = 0; item < 3; item++)
+			{
+				ClueInventorySpaces[row][item] = weaponItemsList[item].FillWithWeaponFromList(weaponsFoundList, row, item);
+			}
+		}
 	}
 
 	public void AddClue(Clue clue)
 	{
-		if (!clueAndWeaponList.Contains(clue.name))
+		if (!cluesFoundList.Contains(clue))
 		{
 			for (int row = 0; row < 3; row++)
 			{
 				for (int space = 0; space < 3; space++)
 				{
-					if (InventorySpaces[row][space].fillWithClue(clue))
+					if (ClueInventorySpaces[row][space].fillWithClue(clue))
 					{
 						AudioSource.PlayClipAtPoint(newItemSound, Camera.main.transform.position);
-						clueAndWeaponList.Add(clue.name);
+						cluesFoundList.Add(clue);
 						return;
 					}
 				}
@@ -79,16 +130,16 @@ public class NotepadUI : MonoBehaviour
 
 	public void AddWeapon(Weapon weapon)
 	{
-		if (!clueAndWeaponList.Contains(weapon.name))
+		if (!weaponsFoundList.Contains(weapon))
 		{
 			for (int row = 3; row < 6; row++)
 			{
 				for (int space = 0; space < 3; space++)
 				{
-					if (InventorySpaces[row][space].fillWithWeapon(weapon))
+					if (WeaponInventorySpaces[row][space].fillWithWeapon(weapon))
 					{
 						AudioSource.PlayClipAtPoint(newItemSound, Camera.main.transform.position);
-						clueAndWeaponList.Add(weapon.name);
+						weaponsFoundList.Add(weapon);
 						return;
 					}
 				}
