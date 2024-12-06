@@ -1,100 +1,73 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class SuspectGuessUI : MonoBehaviour
 {
-	public GameObject suspectPanel;
-	public GameObject weaponPanel;
-	public GameObject spoonButton;
-	public GameObject golfButton;
-	public GameObject dartButton;
+	public GameObject selectionSpace;
 
-	public GameObject winPanel;
-	public GameObject partialWinPanel;
-	public GameObject partialLossPanel;
-	public GameObject lossPanel;
+	public GuessWeaponSpace[] weaponSpaces;
+	public GuessSuspectSpace[] suspectSpaces;
 
-	private int suspectGuess = 0;
-	private int weaponGuess = 0;
+	public TMP_Text suspectBlank;
+	public TMP_Text weaponBlank;
 
-	private List<int> foundWeapons;
+	private List<Weapon> foundWeapons;
+	private List<string> suspectOrder;
 
-	private void Start() {
-		foundWeapons = new List<int>();
-		suspectPanel.SetActive(true);
-		suspectGuess = 0;
-		weaponGuess = 0;
+	private Weapon weaponGuess;
+	private string suspectGuess;
 
-		weaponPanel.SetActive(true);
-		spoonButton.SetActive(false);
-		golfButton.SetActive(false);
-		dartButton.SetActive(false);
+	private void Start()
+	{
+		foundWeapons = ClueGameManager.Instance.foundWeapons;
+
+		int i = 0;
+		foreach(Weapon weapon in foundWeapons)
+		{
+			weaponSpaces[i].Init(i, weapon.icon);
+			i++;
+		}
+		foreach(GuessSuspectSpace space in suspectSpaces)
+		{
+			suspectOrder.Add(space.subject);
+		}
 
 
-		winPanel.SetActive(false);
-		partialWinPanel.SetActive(false);
-		partialLossPanel.SetActive(false);
-		lossPanel.SetActive(false);
 	}
 
-	public void setUp(List<Weapon> weaponsFound)
+	public void HandleGuess(int index)
 	{
-		foreach (Weapon w in weaponsFound)
-		{
-			if (w.weaponName.Equals("Bar Spoon"))
-			{
-				spoonButton.SetActive(true);
-				foundWeapons.Add(1);
+		weaponSpaces[foundWeapons.IndexOf(weaponGuess)].Deselect();
+		weaponGuess = foundWeapons[index];
+		weaponBlank.text = weaponGuess.weaponName;
+		weaponSpaces[index].SetSelected();
+	}
 
-			} 
-			else if (w.weaponName.Equals("Poison Dart"))
-			{
-				dartButton.SetActive(true);
-				foundWeapons.Add(2);
-			} 
-			else if (w.weaponName.Equals("Golf Club"))
-			{
-				golfButton.SetActive(true);
-				foundWeapons.Add(3);
-			}
-			weaponPanel.SetActive(false);
+	public void HandleGuess(string subject)
+	{
+		suspectSpaces[suspectOrder.IndexOf(suspectGuess)].Deselect();
+		suspectGuess = subject;
+		suspectBlank.text = suspectGuess;
+		suspectSpaces[suspectOrder.IndexOf(subject)].SetSelected();
+	}
+
+	public void FinalGuess()
+	{
+		selectionSpace.SetActive(false);
+		if (weaponGuess.relatedNPC.npcName == suspectGuess)
+		{
+			Debug.Log("Win");
+		} else
+		{
+			Debug.Log("Loss");
 		}
 	}
+	
 
-	public void suspectChoice(int characterNum)
-	{
-		this.suspectGuess = characterNum;
-	}
 
-	public void continueToWeapon()
-	{
-		if (suspectGuess != 0)
-		{
-			suspectPanel.SetActive(false);
-			weaponPanel.SetActive(true);
-		}
-	}
-
-	public void weaponChoice(int characterNum)
-	{
-		this.weaponGuess = characterNum;
-	}
-
-	public void endScreen()
-	{
-			if (suspectGuess == weaponGuess)
-			{
-				winPanel.SetActive(true);
-			}
-			else if (foundWeapons.Contains(suspectGuess))
-			{
-				partialWinPanel.SetActive(true);
-			}
-			else
-			{
-				lossPanel.SetActive(true);
-			}
-	}
 }
