@@ -59,6 +59,7 @@ public class FloatingTextSpawner : MonoBehaviour
         GameObject textObject = Instantiate(floatingTextPrefab);
 
         textObject.GetComponent<FloatingTextController>().textField.text = text;
+
         textObject.transform.position = cameraTransform.position + cameraTransform.forward * spawnDistance;
         Debug.Log($"floating text spawned at {textObject.transform.position}");
     }
@@ -68,6 +69,7 @@ public class FloatingTextSpawner : MonoBehaviour
         GameObject textObject = Instantiate(floatingTextPrefab);
 
         textObject.GetComponent<FloatingTextController>().textField.text = text;
+
 
         textObject.transform.position = cameraTransform.position + cameraTransform.forward * spawnObjectDistance;
         Debug.Log($"floating text spawned at {textObject.transform.position}");
@@ -81,6 +83,11 @@ public class FloatingTextSpawner : MonoBehaviour
 
         textObject.GetComponent<FloatingTextController>().textField.text = text;
 
+        if (cameraTransform == null)
+        {
+            Destroy(textObject, destroyTimer);
+            return;
+        }
         textObject.transform.position = cameraTransform.position + cameraTransform.forward * spawnDistance;
         Debug.Log($"floating text spawned at {textObject.transform.position}");
 
