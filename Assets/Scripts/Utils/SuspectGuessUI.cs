@@ -29,6 +29,10 @@ public class SuspectGuessUI : MonoBehaviour
 		foundWeapons = ClueGameManager.Instance.foundWeapons;
 		suspectOrder = new List<string>();
 
+		if (foundWeapons.Count == 0)
+		{
+			winManager.LoseGame();
+		}
 		int i = 0;
 		foreach(Weapon weapon in foundWeapons)
 		{
