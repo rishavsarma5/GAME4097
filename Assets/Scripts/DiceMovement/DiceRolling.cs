@@ -36,6 +36,7 @@ public class DiceRolling : MonoBehaviour
     private Vector3 startPos;
     [SerializeField] private int dicePlayerIndex = -1;
     [SerializeField] private DiceController _diceController;
+    [SerializeField] private AudioClip hitSFX;
 
     private Coroutine floatingCoroutine;
     private bool isActive = false;
@@ -173,7 +174,7 @@ public class DiceRolling : MonoBehaviour
             Vector3 punchDir = (this.transform.position - other.transform.position).normalized;
             rb.AddForce(punchDir * punchForce, ForceMode.Impulse);
 
-            
+            AudioSource.PlayClipAtPoint(hitSFX, Camera.main.transform.position);
             float randX = Random.Range(0f, 1f);
             float randY = Random.Range(0f, 1f);
             float randZ = Random.Range(0f, 1f);

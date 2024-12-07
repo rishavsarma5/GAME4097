@@ -5,8 +5,6 @@ using TMPro;
 
 public class EndTurnPage : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI promptHeader;
-    [SerializeField] private TextMeshProUGUI promptFooter;
     [SerializeField] private TextMeshProUGUI numTurnsText;
     [SerializeField] private GameObject turnLimitCheckmark;
     [SerializeField] private GameObject player;
@@ -17,8 +15,6 @@ public class EndTurnPage : MonoBehaviour
     {
         if (!player) player = GameObject.FindGameObjectWithTag("Player");
         if (!notepadUI) notepadUI = GameObject.FindGameObjectWithTag("NotepadUI").GetComponent<NotepadUI>();
-        promptHeader.text = "End Turn";
-        promptFooter.text = "Click button to end turn.";
         DisplayNumTurnsText();
     }
 

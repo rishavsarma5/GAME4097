@@ -444,6 +444,7 @@ MonoBehaviour:
     Trigger to confirm Dice Position.
   moveDiceSpeed: 2
   cameraTransform: {fileID: 0}
+  triggerClickClip: {fileID: 8300000, guid: 70a2432f6f6a4464bb057b7b6038c144, type: 3}
   LC_JoystickRef: {fileID: 3877662917853032162, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   LC_TriggerRef: {fileID: 6102845611691782862, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &8112896260603028534
@@ -655,6 +656,7 @@ MonoBehaviour:
   boxCollider: {fileID: 8464687818388933721}
   dicePlayerIndex: 0
   _diceController: {fileID: 1937755171010407920}
+  hitSFX: {fileID: 8300000, guid: 70b91498f4b942c48be367abb1ab143d, type: 3}
   OnDiceRollValue:
     m_PersistentCalls:
       m_Calls: []

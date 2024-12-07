@@ -14,6 +14,8 @@ public class DiceController : MonoBehaviour
 
     [SerializeField] private Transform cameraTransform;
 
+    [SerializeField] private AudioClip triggerClickClip;
+
     public InputActionReference LC_JoystickRef;
     public InputActionReference LC_TriggerRef;
 
@@ -112,6 +114,7 @@ public class DiceController : MonoBehaviour
         if (!dicePositionLocked) // lock dice position
         {
             // lock the position so the player can adjust the dice's position
+            AudioSource.PlayClipAtPoint(triggerClickClip, Camera.main.transform.position);
             dicePositionLocked = true;
         }
     }
