@@ -87,6 +87,7 @@ public class ClueGameManager : MonoBehaviour
         Debug.Log("Application is quitting, unsubscribing events.");
         SceneManager.sceneLoaded -= OnSceneLoaded;
         menuButton.action.started -= ToggleMenu;
+        SaveCluesAndWeaponsFound();
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)

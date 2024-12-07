@@ -82,6 +82,7 @@ public class GameStateManager : MonoBehaviour
             SaveNumTurnsPlayed();
             ClueGameManager.Instance.SaveCluesAndWeaponsFound();
             GameProgressManager.Instance.SavePlayerPosition(player.transform.position);
+            SaveTurnsLeft();
         }
     }
 
@@ -321,6 +322,7 @@ public class GameStateManager : MonoBehaviour
     public void SkipToSuspectSelect()
     {
         turnsLeft = 0;
+        SaveTurnsLeft();
         UpdateGameState(GameState.EndRoundUpdates);
     }
 
