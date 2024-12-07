@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   relatedNPC: {fileID: 11400000, guid: 54d12899e7151954895c99a1328a0f3e, type: 2}
   clueName: Watch
-  icon: {fileID: 21300000, guid: db3e7b7c8db355e499429545071a0321, type: 3}
+  icon: {fileID: 21300000, guid: 5fcda67ce0c1c4e419332d6e88173aee, type: 3}
   isFound: 0
   description: A watch gifted to Robert by his old business partner Cassandra Venus.
     Teh engraving on the back reads "Our time went by so fast Rob - Cassandra, April
