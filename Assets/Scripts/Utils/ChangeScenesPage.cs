@@ -6,16 +6,12 @@ using TMPro;
 
 public class ChangeScenesPage : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI promptHeader;
-    [SerializeField] private TextMeshProUGUI promptFooter;
     [SerializeField] private GameObject player;
     [SerializeField] private string lobby = "Lobby";
 
     private void OnEnable()
     {
         if (!player) player = GameObject.FindGameObjectWithTag("Player");
-        promptHeader.text = "Change Scenes";
-        promptFooter.text = "Click an option above.";
     }
 
     public void OnReturnToLobbyPressed()

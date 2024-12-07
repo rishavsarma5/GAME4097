@@ -15,7 +15,7 @@ MonoBehaviour:
   promptCanvasHeaderText: What you want to talk about sugar?
   dialoguePrompts:
   - textLines:
-    - Moseby and I are... were familiar with each other.
+    - Robby and I are... were familiar with each other.
     - We knew things about each other that most others don't.
     - And shared some secrets I would never tell ya', sugar.
   - textLines:
@@ -26,6 +26,6 @@ MonoBehaviour:
     - The liquor here was absolutely dreadful.
   - textLines:
     - 'W-where did you find that? '
-    - I did use it sugar but I wouldn't kill Moseby!
+    - I did use it sugar but I wouldn't kill Robby!
     - I loved him!
   hasPlayed: 0
