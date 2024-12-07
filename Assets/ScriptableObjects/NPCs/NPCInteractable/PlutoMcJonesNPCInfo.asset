@@ -20,11 +20,11 @@ MonoBehaviour:
     - I've been his house attendant for many long years.
   - textLines:
     - Oh I was in the Dining Room, getting ready for supper.
-    - Lot of busy work, cooking and getting drinks at the same time.
+    - Lot of busy work, cooking, and getting drinks at the same time.
     - I was too busy to do anything I'll have you know!
   - textLines:
     - Well, you got me.
-    - 'You see, I''m a PI at your service. '
-    - A man Robert hired to look for anyone conspiring against him.
-    - And boi have they won.
+    - 'You see, I''m a PI. '
+    - I'm looking into some illegal business Robert may have gotten into.
+    - But no, I did not kill him...
   hasPlayed: 0

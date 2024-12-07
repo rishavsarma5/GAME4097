@@ -15,10 +15,10 @@ MonoBehaviour:
   relatedNPC: {fileID: 11400000, guid: e79dafb6ac5afc543bb3339c7975c950, type: 2}
   clueName: Nelly Notes
   icon: {fileID: 21300000, guid: 5fcda67ce0c1c4e419332d6e88173aee, type: 3}
-  isFound: 0
+  isFound: 1
   description: 'There are some excerpts from an interview:
 
     Boss: "Why didn''t
     you ask him about his wife!?"
 
-    Nelly: "Look into Rob''s wife!!!'
+    Nelly: "Look into Rob''s wife!!!"'
