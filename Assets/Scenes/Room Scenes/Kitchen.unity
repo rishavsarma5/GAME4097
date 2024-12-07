@@ -13804,7 +13804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b8546c641e6bb458983ef6d455d81c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clue: {fileID: 0}
+  clue: {fileID: 11400000, guid: 04e1e6ef5513a71478a714259dc2a280, type: 2}
 --- !u!114 &840700170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16803,7 +16803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42635105b60fdc34db7e69e1da0340ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  weapon: {fileID: 11400000, guid: 2b42aac5e26133b4686c82e1286e4c86, type: 2}
 --- !u!114 &1960401596
 MonoBehaviour:
   m_ObjectHideFlags: 0
