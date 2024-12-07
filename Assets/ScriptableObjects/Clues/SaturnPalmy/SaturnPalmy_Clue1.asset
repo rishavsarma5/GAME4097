@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   relatedNPC: {fileID: 11400000, guid: 1c923ca10504b7e4fbf53cf9f96df4c4, type: 2}
   clueName: Love Letters
-  icon: {fileID: 21300000, guid: 5fcda67ce0c1c4e419332d6e88173aee, type: 3}
+  icon: {fileID: 21300000, guid: 40ca90ee34f3caa40b9e1069da335a5a, type: 3}
   isFound: 0
   description: 'A package of love letters wafting with a distinct perfume. The utmost
     care was taken with the penmanship except for the fact that the sentences run

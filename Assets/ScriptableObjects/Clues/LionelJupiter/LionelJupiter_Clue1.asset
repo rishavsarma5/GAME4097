@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   relatedNPC: {fileID: 11400000, guid: a778573117ac18c4c9171c886b82d7f3, type: 2}
   clueName: Handbell
-  icon: {fileID: 21300000, guid: 5fcda67ce0c1c4e419332d6e88173aee, type: 3}
+  icon: {fileID: 21300000, guid: d47ac966d13f2fe4eb6765faf268f707, type: 3}
   isFound: 0
   description: 'Engraved into the brass is "To young master Lionel, for whenver you
     are in need, call on old Ganymede". Seems like something Lionel would ring to
