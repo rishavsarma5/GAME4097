@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   relatedNPC: {fileID: 11400000, guid: 67636957a05428a48a9ae9c0e4d91673, type: 2}
   clueName: Campaign Poster
-  icon: {fileID: 21300000, guid: 5fcda67ce0c1c4e419332d6e88173aee, type: 3}
+  icon: {fileID: 21300000, guid: a3b32fb40b6094b4da0bf501554e058c, type: 3}
   isFound: 0
   description: 'It seems to be a campaign poster for Mayor Mars'' re-election. One
     of his sponsors is displayed on the poster: Bryson Brightson.'

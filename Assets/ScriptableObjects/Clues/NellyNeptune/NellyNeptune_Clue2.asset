@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   relatedNPC: {fileID: 11400000, guid: e79dafb6ac5afc543bb3339c7975c950, type: 2}
   clueName: Magazine
-  icon: {fileID: 21300000, guid: 5fcda67ce0c1c4e419332d6e88173aee, type: 3}
+  icon: {fileID: 21300000, guid: 857033633600bae499cfa4ddaf11c4d2, type: 3}
   isFound: 0
   description: 'A magazine with the title: amateur journalist caught jumping into
     zoo pen for the latest scoop!'
