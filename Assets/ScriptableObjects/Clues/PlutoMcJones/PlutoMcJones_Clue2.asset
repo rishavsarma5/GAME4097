@@ -16,4 +16,10 @@ MonoBehaviour:
   clueName: Tape Recorder
   icon: {fileID: 21300000, guid: db3e7b7c8db355e499429545071a0321, type: 3}
   isFound: 0
-  description: 
+  description: A gruff voice comes from the compact device when you hit play. "Seems
+    like the uh, Jupiter business is tangled up in a drug ring. The evidence is undeniable.
+    Now I'm not usually one to hold sebtimental feelings, but the Jupiter I know
+    wouldn't be involved with something like this. Maybe he's changed. Or maybe this
+    is all happening under his nose... No Pun intended. Anyway, this bust was my
+    last lead, next best step is to pay a visit to Jupiter, measure his reaction...
+    Hopefully, this will be quite a suprise to him."

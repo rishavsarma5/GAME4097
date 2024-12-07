@@ -16,5 +16,5 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 0b8e0ca7732a0f846a11392347fc7d61, type: 3}
   relatedNPC: {fileID: 11400000, guid: a778573117ac18c4c9171c886b82d7f3, type: 2}
   isFound: 0
-  weaponFoundText: There's an empty bottle next to the chalice...which smells of
-    bitter almonds.
+  weaponFoundText: An intricatley faceted crystal chalice. The rim smells fainlty
+    of almonds. There is a bottle sitting nearby labeled "Roux Sauvignon."
