@@ -297,7 +297,7 @@ public class GameStateManager : MonoBehaviour
         Debug.Log("Entered Suspect Selection State");
         notepadUI.ResetToBase();
 
-        SceneManager.LoadSceneAsync(suspectSelectRoom, LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync("SuspectSelect", LoadSceneMode.Single);
     }
 
     private void RestoreGameState()

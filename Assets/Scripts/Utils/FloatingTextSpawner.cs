@@ -35,7 +35,7 @@ public class FloatingTextSpawner : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Called on scene loaded in floating text spawner");
-        cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        if (!cameraTransform) cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
     }
 
     private void OnEnable()

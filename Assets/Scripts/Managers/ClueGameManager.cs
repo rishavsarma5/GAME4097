@@ -93,7 +93,7 @@ public class ClueGameManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("re-initilizing inventory");
-        if (scene.name == "Lobby") return;
+        if (scene.name == "Lobby" || scene.name == "SuspectSelect") return;
 
         inventoryNotepad = GameObject.FindGameObjectWithTag("NotepadUI").GetComponent<NotepadUI>();
 
