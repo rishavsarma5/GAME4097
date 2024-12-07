@@ -82,6 +82,7 @@ public class GameStateManager : MonoBehaviour
             SaveNumTurnsPlayed();
             ClueGameManager.Instance.SaveCluesAndWeaponsFound();
             GameProgressManager.Instance.SavePlayerPosition(player.transform.position);
+            SaveTurnsLeft();
         }
     }
 
@@ -98,8 +99,8 @@ public class GameStateManager : MonoBehaviour
                 gameProgress.continueGame = false;
                 GameProgressManager.Instance.gameProgress.SaveGameContinued();
                 GameProgressManager.Instance.gameProgress.LoadGameProgress();
-                RestoreGameState();
                 ReInitializeMainRoom();
+                RestoreGameState();
                 return;
             }
 
@@ -312,6 +313,9 @@ public class GameStateManager : MonoBehaviour
         numTurnsPlayed = gameProgress.numTurnsPlayed;
         turnsLeft = gameProgress.turnsLeft;
 
+        // Restore clues/weapons found
+        ClueGameManager.Instance.AddAllFoundCluesAndWeaponsToList();
+
         // Update current state
         UpdateGameState(GameState.Exploration);
     }
@@ -319,6 +323,7 @@ public class GameStateManager : MonoBehaviour
     public void SkipToSuspectSelect()
     {
         turnsLeft = 0;
+        SaveTurnsLeft();
         UpdateGameState(GameState.EndRoundUpdates);
     }
 
@@ -358,7 +363,7 @@ public class GameStateManager : MonoBehaviour
 
         // Restore active anchors
         Debug.Log("got to restoring active anchors");
-        Debug.Log($"player start pos: {playerStartExplorationPosition}");
+        Debug.Log($"player start pos for tele distance box after return: {playerStartExplorationPosition}");
         Debug.Log($"last dice roll: {savedDiceRoll}");
         TeleportDistanceManager.Instance.CreateTeleportDistanceBoxAfterReturnFromRoom(playerStartExplorationPosition, savedDiceRoll);
     }

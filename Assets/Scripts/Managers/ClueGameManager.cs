@@ -87,6 +87,7 @@ public class ClueGameManager : MonoBehaviour
         Debug.Log("Application is quitting, unsubscribing events.");
         SceneManager.sceneLoaded -= OnSceneLoaded;
         menuButton.action.started -= ToggleMenu;
+        SaveCluesAndWeaponsFound();
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -200,6 +201,37 @@ public class ClueGameManager : MonoBehaviour
         }
         Debug.Log($"All clues spawned!");
         */
+    }
+
+    public void AddAllFoundCluesAndWeaponsToList()
+    {
+        if (GameProgressManager.Instance.gameProgress.numCluesFound > 0)
+        {
+            foundClues.Clear();
+
+            foreach(Clue clue in firstClues)
+            {
+                if (clue.isFound) foundClues.Add(clue);
+            }
+
+            foreach (Clue clue in secondClues)
+            {
+                if (clue.isFound) foundClues.Add(clue);
+            }
+        }
+
+        if (GameProgressManager.Instance.gameProgress.numWeaponsFound > 0)
+        {
+            foundWeapons.Clear();
+
+            foreach (Weapon weapon in initialWeapons)
+            {
+                if (weapon.isFound) foundWeapons.Add(weapon);
+            }
+        }
+
+        if (inventoryNotepad) inventoryNotepad.InitializeInventory(); 
+        
     }
 
     public void SaveInitialization()
