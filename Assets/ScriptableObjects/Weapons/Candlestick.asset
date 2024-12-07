@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Candlestick
   m_EditorClassIdentifier: 
   weaponName: Candlestick
-  icon: {fileID: 21300000, guid: db3e7b7c8db355e499429545071a0321, type: 3}
+  icon: {fileID: 21300000, guid: 93f88d61aacf72d48bd6b109f09ad1f3, type: 3}
   relatedNPC: {fileID: 11400000, guid: e79dafb6ac5afc543bb3339c7975c950, type: 2}
   isFound: 0
   weaponFoundText: A candlestick that seems to have a caved in surface around its

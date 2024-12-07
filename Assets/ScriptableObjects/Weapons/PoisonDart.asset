@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e302761d9e544448692df9db3ad2db, type: 3}
   m_Name: PoisonDart
   m_EditorClassIdentifier: 
-  weaponName: Poison Dart
-  icon: {fileID: 21300000, guid: db3e7b7c8db355e499429545071a0321, type: 3}
+  weaponName: Toxic Dart
+  icon: {fileID: 21300000, guid: 0746c010882126943b698b4821bf245e, type: 3}
   relatedNPC: {fileID: 11400000, guid: 54d12899e7151954895c99a1328a0f3e, type: 2}
   isFound: 0
   weaponFoundText: This dart is not with its neighbors in the lounge. And it seems

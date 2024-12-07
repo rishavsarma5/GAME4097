@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e302761d9e544448692df9db3ad2db, type: 3}
   m_Name: SafetyDepositKey
   m_EditorClassIdentifier: 
-  weaponName: SafetyDepositKey
-  icon: {fileID: 21300000, guid: db3e7b7c8db355e499429545071a0321, type: 3}
+  weaponName: Deposit Key
+  icon: {fileID: 21300000, guid: d80f6f71886a5ea4282bf34f476a52de, type: 3}
   relatedNPC: {fileID: 11400000, guid: 1c923ca10504b7e4fbf53cf9f96df4c4, type: 2}
   isFound: 0
   weaponFoundText: There seems to be blood on the tip of it after taking a closer
