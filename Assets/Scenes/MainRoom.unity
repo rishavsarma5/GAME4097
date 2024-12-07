@@ -12201,6 +12201,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1864425208253943391, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1941563282973966856, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -12455,6 +12459,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4805353641511316873, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950642668082939921, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4953965644399808993, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
@@ -20949,23 +20957,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 542109529761019015, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.358
+      value: 0.69
       objectReference: {fileID: 0}
     - target: {fileID: 542109529761019015, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.4476084
+      value: 0.09848499
       objectReference: {fileID: 0}
     - target: {fileID: 542109529761019015, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.8942297
+      value: -0.9951385
       objectReference: {fileID: 0}
     - target: {fileID: 542109529761019015, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.629
+      value: -0.185
       objectReference: {fileID: 0}
     - target: {fileID: 542109529761019015, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -126.819
+      value: -168.696
       objectReference: {fileID: 0}
     - target: {fileID: 579279314941324666, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
       propertyPath: m_Layer
@@ -22806,18 +22814,6 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 871474717}
-        m_TargetAssemblyTypeName: ChangeSceneToRoom, Assembly-CSharp
-        m_MethodName: SwitchRoom
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 871474720}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
@@ -22825,6 +22821,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: b88b6ac5af3284b4a829aa45d034e4dc, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 871474717}
+        m_TargetAssemblyTypeName: ChangeSceneToRoom, Assembly-CSharp
+        m_MethodName: SwitchRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -23087,18 +23095,6 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 872870306}
-        m_TargetAssemblyTypeName: ChangeSceneToRoom, Assembly-CSharp
-        m_MethodName: SwitchRoom
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 872870309}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
@@ -23106,6 +23102,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: b88b6ac5af3284b4a829aa45d034e4dc, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 872870306}
+        m_TargetAssemblyTypeName: ChangeSceneToRoom, Assembly-CSharp
+        m_MethodName: SwitchRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -25532,18 +25540,6 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1083947881}
-        m_TargetAssemblyTypeName: ChangeSceneToRoom, Assembly-CSharp
-        m_MethodName: SwitchRoom
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1083947884}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
@@ -25551,6 +25547,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: b88b6ac5af3284b4a829aa45d034e4dc, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1083947881}
+        m_TargetAssemblyTypeName: ChangeSceneToRoom, Assembly-CSharp
+        m_MethodName: SwitchRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -31163,18 +31171,6 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1593989732}
-        m_TargetAssemblyTypeName: ChangeSceneToRoom, Assembly-CSharp
-        m_MethodName: SwitchRoom
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1593989735}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
@@ -31182,6 +31178,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: b88b6ac5af3284b4a829aa45d034e4dc, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1593989732}
+        m_TargetAssemblyTypeName: ChangeSceneToRoom, Assembly-CSharp
+        m_MethodName: SwitchRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -43001,6 +43009,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1864425208253943391, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1941563282973966856, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -43255,6 +43267,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4805353641511316873, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950642668082939921, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4953965644399808993, guid: aef3bdc4f55e513449567377db4aae0a, type: 3}
@@ -43638,7 +43654,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3245065943949865286, guid: f943645a90f6ef94fbad45f773930b7c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.891
+      value: 11.3
       objectReference: {fileID: 0}
     - target: {fileID: 3245065943949865286, guid: f943645a90f6ef94fbad45f773930b7c, type: 3}
       propertyPath: m_LocalPosition.y
