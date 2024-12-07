@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GuessWeaponSpace : MonoBehaviour
 {
-	private Sprite icon;
+	private Image icon;
 	private Image buttonImage;
 	private Button button;
 	private int index;
@@ -15,7 +15,7 @@ public class GuessWeaponSpace : MonoBehaviour
 	private void Start()
 	{
 		manager = FindObjectOfType<SuspectGuessUI>();
-		icon = GetComponentsInChildren<Image>()[1].sprite;
+		icon = GetComponentsInChildren<Image>()[1];
 		buttonImage = GetComponent<Image>();
 		button = GetComponent<Button>();
 
@@ -25,10 +25,10 @@ public class GuessWeaponSpace : MonoBehaviour
 		button.onClick.AddListener(OnClick);
 	}
 
-	public void Init(int index, Sprite icon)
+	public void Init(int i, Sprite img)
 	{
-		this.icon = icon;
-		this.index = index;
+		this.icon.sprite = img;
+		this.index = i;
 		button.interactable = true;
 	}
 
@@ -46,6 +46,7 @@ public class GuessWeaponSpace : MonoBehaviour
 
 	private void OnClick()
 	{
+		Debug.Log(index);
 		manager.HandleGuess(index);
 	}
 }

@@ -7,7 +7,6 @@ public class GuessSuspectSpace : MonoBehaviour
 {
 	public string subject;
 
-	private Sprite icon;
 	private Image buttonImage;
 	private Button button;
 
@@ -16,7 +15,6 @@ public class GuessSuspectSpace : MonoBehaviour
 	private void Start()
 	{
 		manager = FindObjectOfType<SuspectGuessUI>();
-		icon = GetComponentsInChildren<Image>()[1].sprite;
 		buttonImage = GetComponent<Image>();
 		button = GetComponent<Button>();
 

@@ -8,15 +8,14 @@ using TMPro;
 
 public class SuspectGuessUI : MonoBehaviour
 {
-	public GameObject selectionSpace;
 
-	public GuessWeaponSpace[] weaponSpaces;
 	public GuessSuspectSpace[] suspectSpaces;
+	public GuessWeaponSpace[] weaponSpaces;
 
 	public TMP_Text suspectBlank;
 	public TMP_Text weaponBlank;
 
-	private List<Weapon> foundWeapons;
+	public List<Weapon> foundWeapons;
 	private List<string> suspectOrder;
 
 	private Weapon weaponGuess;
@@ -25,6 +24,7 @@ public class SuspectGuessUI : MonoBehaviour
 	private void Start()
 	{
 		foundWeapons = ClueGameManager.Instance.foundWeapons;
+		suspectOrder = new List<string>();
 
 		int i = 0;
 		foreach(Weapon weapon in foundWeapons)
@@ -37,12 +37,14 @@ public class SuspectGuessUI : MonoBehaviour
 			suspectOrder.Add(space.subject);
 		}
 
-
 	}
 
 	public void HandleGuess(int index)
 	{
-		weaponSpaces[foundWeapons.IndexOf(weaponGuess)].Deselect();
+		if (weaponGuess != null)
+		{
+			weaponSpaces[foundWeapons.IndexOf(weaponGuess)].Deselect();
+		}
 		weaponGuess = foundWeapons[index];
 		weaponBlank.text = weaponGuess.weaponName;
 		weaponSpaces[index].SetSelected();
@@ -50,7 +52,10 @@ public class SuspectGuessUI : MonoBehaviour
 
 	public void HandleGuess(string subject)
 	{
-		suspectSpaces[suspectOrder.IndexOf(suspectGuess)].Deselect();
+		if(suspectGuess != null)
+		{
+			suspectSpaces[suspectOrder.IndexOf(suspectGuess)].Deselect();
+		}
 		suspectGuess = subject;
 		suspectBlank.text = suspectGuess;
 		suspectSpaces[suspectOrder.IndexOf(subject)].SetSelected();
@@ -58,7 +63,6 @@ public class SuspectGuessUI : MonoBehaviour
 
 	public void FinalGuess()
 	{
-		selectionSpace.SetActive(false);
 		if (weaponGuess.relatedNPC.npcName == suspectGuess)
 		{
 			Debug.Log("Win");

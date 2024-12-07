@@ -295,8 +295,6 @@ public class GameStateManager : MonoBehaviour
     {
         Debug.Log("Entered Suspect Selection State");
         notepadUI.ResetToBase();
-        List<Weapon> weaponsList = ClueGameManager.Instance.foundWeapons;
-		//FindObjectOfType<SuspectGuessUI>().setUp(weaponsList);
 
         SceneManager.LoadSceneAsync(suspectSelectRoom, LoadSceneMode.Single);
     }
