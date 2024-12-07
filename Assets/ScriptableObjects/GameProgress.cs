@@ -68,7 +68,7 @@ public class GameProgress : ScriptableObject
 
     public void SavePlayerPosition(Vector3 playerPosition)
     {
-        diceRollPlayerPosition = playerPosition;
+        currentPlayerPosition = playerPosition;
         PlayerPrefs.SetFloat("PlayerPositionX", playerPosition.x);
         PlayerPrefs.SetFloat("PlayerPositionY", playerPosition.y);
         PlayerPrefs.SetFloat("PlayerPositionZ", playerPosition.z);
@@ -76,7 +76,7 @@ public class GameProgress : ScriptableObject
 
     public void SaveDiceRollPosition(Vector3 playerPosition)
     {
-        currentPlayerPosition = playerPosition;
+        diceRollPlayerPosition = playerPosition;
         PlayerPrefs.SetFloat("DiceRollPositionX", playerPosition.x);
         PlayerPrefs.SetFloat("DiceRollPositionY", playerPosition.y);
         PlayerPrefs.SetFloat("DiceRollPositionZ", playerPosition.z);
