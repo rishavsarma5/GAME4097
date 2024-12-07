@@ -8,21 +8,24 @@ using TMPro;
 
 public class SuspectGuessUI : MonoBehaviour
 {
-
+	public WinManager winManager;
 	public GuessSuspectSpace[] suspectSpaces;
 	public GuessWeaponSpace[] weaponSpaces;
 
 	public TMP_Text suspectBlank;
 	public TMP_Text weaponBlank;
 
-	public List<Weapon> foundWeapons;
+	private List<Weapon> foundWeapons;
 	private List<string> suspectOrder;
 
 	private Weapon weaponGuess;
 	private string suspectGuess;
 
+	private bool lockedIn;
+
 	private void Start()
 	{
+		lockedIn = false;
 		foundWeapons = ClueGameManager.Instance.foundWeapons;
 		suspectOrder = new List<string>();
 
@@ -63,12 +66,17 @@ public class SuspectGuessUI : MonoBehaviour
 
 	public void FinalGuess()
 	{
-		if (weaponGuess.relatedNPC.npcName == suspectGuess)
+		if (!lockedIn)
 		{
-			Debug.Log("Win");
-		} else
-		{
-			Debug.Log("Loss");
+			lockedIn = true;
+			if (weaponGuess.relatedNPC.npcName == suspectGuess)
+			{
+				winManager.WinGame();
+			}
+			else
+			{
+				winManager.LoseGame();
+			}
 		}
 	}
 	

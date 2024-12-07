@@ -12,7 +12,7 @@ public class GuessWeaponSpace : MonoBehaviour
 
 	private SuspectGuessUI manager;
 
-	private void Start()
+	private void Awake()
 	{
 		manager = FindObjectOfType<SuspectGuessUI>();
 		icon = GetComponentsInChildren<Image>()[1];
@@ -46,7 +46,6 @@ public class GuessWeaponSpace : MonoBehaviour
 
 	private void OnClick()
 	{
-		Debug.Log(index);
 		manager.HandleGuess(index);
 	}
 }

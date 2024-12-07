@@ -6,7 +6,7 @@ using UnityEngine;
 public class WinManager : MonoBehaviour
 {
 	public GameObject suspectUI;
-	public Light light;
+	public Light roofLight;
 
 	public AudioClip winSound;
 	public AudioClip loseSound;
@@ -19,7 +19,7 @@ public class WinManager : MonoBehaviour
 	public void WinGame()
 	{
 		suspectUI.SetActive(false);
-		light.color = Color.green;
+		roofLight.color = Color.green;
 		mainSong.Stop();
 		AudioSource.PlayClipAtPoint(winSound, Camera.main.transform.position);
 		winCanvas.SetActive(true);
@@ -29,7 +29,7 @@ public class WinManager : MonoBehaviour
 	public void LoseGame()
 	{
 		suspectUI.SetActive(false);
-		light.color = Color.red;
+		roofLight.color = Color.red;
 		mainSong.Stop();
 		AudioSource.PlayClipAtPoint(loseSound, Camera.main.transform.position);
 		winCanvas.SetActive(true);
