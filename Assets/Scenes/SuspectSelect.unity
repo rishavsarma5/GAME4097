@@ -329,7 +329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2826,6 +2826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2381e49307fee641aea31f422589345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winManager: {fileID: 1897383865}
   suspectSpaces:
   - {fileID: 45291135}
   - {fileID: 1475904616}
@@ -2842,7 +2843,6 @@ MonoBehaviour:
   - {fileID: 744494786}
   suspectBlank: {fileID: 903705812}
   weaponBlank: {fileID: 2036553528}
-  foundWeapons: []
 --- !u!82 &734296727
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3505,7 +3505,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 46da8634de2114354be217373280f00a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5645,7 +5645,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 46da8634de2114354be217373280f00a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5825,7 +5825,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 46da8634de2114354be217373280f00a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6103,6 +6103,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1621622399}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 734296726}
+        m_TargetAssemblyTypeName: SuspectGuessUI, Assembly-CSharp
+        m_MethodName: FinalGuess
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6528,7 +6540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suspectUI: {fileID: 734296725}
-  light: {fileID: 1919861909}
+  roofLight: {fileID: 1919861909}
   winSound: {fileID: 8300000, guid: 88dda0fcdeba75e44a457faa9d9ad1ff, type: 3}
   loseSound: {fileID: 8300000, guid: bb500edc80d00c746b195a090532db76, type: 3}
   winCanvas: {fileID: 1915885749}
@@ -6606,7 +6618,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 46da8634de2114354be217373280f00a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7011,7 +7023,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 46da8634de2114354be217373280f00a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7985,7 +7997,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 46da8634de2114354be217373280f00a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
